@@ -8,6 +8,11 @@
     <version>1.0-SNAPSHOT</version>
     <name>OuricoCLI</name>
     <url>http://maven.apache.org</url>
+    <parent>
+        <groupId>br.uff.ic.gems.ourico</groupId>
+        <artifactId>ourico-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
     <build>
         <plugins>
             <plugin>
