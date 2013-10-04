@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" >
+
+    <ui:composition  template="/WEB-INF/template/templatelogin.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.tituloPaginaLogin}" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.nomeDaPaginaLogin}" />
+        </ui:define>
+        <ui:define name="corpo">
+
+            <h:form id="formLogin">
+                <table>
+                    <tr>
+                        <td>
+                            <h:outputLabel for="txtLogin" value="#{mensagens.txtLogin}" />
+                        </td>
+                        <td>
+                            <h:message id="msgerroTxtLogin" styleClass="msgerro" for="txtLogin" />
+                            <h:inputText id="txtLogin" value="#{UsuarioBean.loginDigitado}" styleClass="loginSenha" required="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel for="txtSenha" value="#{mensagens.txtSenha}" />
+                        </td>
+                        <td>
+                            <h:message id="msgerroTxtSenha" styleClass="msgerro" for="txtSenha" />
+                            <h:inputSecret id="txtSenha" value="#{UsuarioBean.senhaDigitada}" styleClass="loginSenha" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:commandButton id="btnLogar" action="#{UsuarioBean.doLogar}" value="#{mensagens.btnSignIn}" />
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <h:messages id="msgerro" layout="list" styleClass="msgerro" globalOnly="true" />
+                        </td>
+                    </tr>
+                </table>
+
+            <p>#{mensagens.aProduct} :<a href="http://www.ic.uff.br" target="_blanck" >Instituto de Computação - UFF </a></p>
+            <p style="font-size:9px">#{mensagens.lblVersion}: <b>#{mensagens.version}</b> <br/> #{mensagens.lblUpdated}: <b>#{mensagens.timeBuild}</b></p>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

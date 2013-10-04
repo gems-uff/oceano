@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <head>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>
+            Oceano - <ui:insert name="titleDaPagina">Home</ui:insert>
+        </title>
+        <script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/recurso/js/Utils.js"></script>
+        <script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/recurso/js/cb.js"></script>
+        <script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/recursos/js/principal.js"></script>
+        <link href="#{facesContext.externalContext.request.contextPath}/recurso/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="#{facesContext.externalContext.request.contextPath}/recurso/css/PeixeEspada.css" rel="stylesheet" type="text/css" />
+
+        <!-- PrimeFaces -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <p:resources/>
+        <!-- End of PrimeFaces -->
+
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+            try {
+                var pageTracker = _gat._getTracker("UA-11981162-1");
+                pageTracker._trackPageview();
+            } catch(err) {}
+        </script>
+        <f:loadBundle basename="br.uff.ic.oceano.messages.Mensagens" var="mensagens"/>
+    </head>
+    <body>
+        <a4j:outputPanel id="all">
+
+            <div id="container" >
+                <div id="header">
+                    <table width="90%">
+                        <tr>
+                            <td>
+                                <ui:insert name="imgLogo">
+                                    <img alt="Gerência de Configuração Contínua"  title="Gerência de Configuração Contínua" style="height:110px;width:230px" src="#{facesContext.externalContext.request.contextPath}/recurso/img/#{SessaoDoUsuario.imgInterna}"/>
+                                </ui:insert>
+                            </td>
+                            <td>
+                                <div style="text-align:center;font-weight: bold">  .<span style=" color:white;font-size:18px; margin-top: -5px; position: absolute">OCEANO</span></div>
+                                <p >  .<span style=" color:white;font-size:14px; margin-top: 20px; margin-left: 10px; position: absolute">#{mensagens.hello}, <b>#{SessaoDoUsuario.identificador}</b></span></p>
+                                <p style="font-size:9px; color:white;text-align:right">#{mensagens.lblVersion}: <b>#{mensagens.version}</b> <br/> #{mensagens.lblUpdated}: <b>#{mensagens.timeBuild}</b></p>
+                            </td>
+                            <td><img style="height:50px;width:115px;" src="#{facesContext.externalContext.request.contextPath}/recurso/img/ic_logo.jpg" alt="IC- UFF" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width:230px;margin-top: -40px">&nbsp;
+                            </td>
+                            <td>
+                                <h:form id="formIdioms">
+                                    <h:outputLabel value=" #{mensagens.idioms}:"  style="margin-left: 50px;">
+                                        <h:selectOneMenu id="comboIdiomas" value="#{SessaoDoUsuario.idiom}" required="true">
+                                            <f:selectItems value="#{SessaoDoUsuario.idiomsList}" />
+                                            <a4j:support action="#{SessaoDoUsuario.changeIdiom}" event="onchange" reRender="all" oncomplete="cbb.init();"/>
+                                        </h:selectOneMenu>
+                                    </h:outputLabel>
+                                </h:form>
+                            </td>
+                            <td>&nbsp;
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div id="block-loading" >
+                    <a4j:status  startStyleClass="start" id="statusTemplate" >
+                        <f:facet name="start">
+                            <h:graphicImage  url="/recurso/img/carregando2.gif" style="text-align:center">
+                                <h:outputLabel value="Aguarde Carregando... " styleClass="texto-start" />
+                            </h:graphicImage>
+                        </f:facet>
+                    </a4j:status>
+                </div>
+
+
+                <ui:include src="/WEB-INF/componentes/menu/menuSuperior.xhtml" />
+
+
+                <ui:insert name="menuPrincipal">
+                    <ui:include src="/WEB-INF/componentes/menu/menuPrincipal.xhtml" />
+                </ui:insert>
+
+                <div id="content">
+                    <div class="cbb">
+                        <h2><ui:insert name="nomePagina">Nome padrao</ui:insert></h2>
+                        <div id="divMensagens">
+                            <rich:messages id="msgs" layout="list" errorClass="msgerroBlock" infoClass="msginfo" globalOnly="true" />
+                        </div>
+                        <ui:insert name="corpo">Corpo padrao</ui:insert>
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>#{mensagens.aProduct}: <a href="http://www.ic.uff.br" target="_blanck" >Instituto de Computação - UFF</a>.</p>
+                </div>
+            </div>
+
+
+        </a4j:outputPanel>
+    </body>
+
+</html>

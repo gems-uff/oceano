@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblProjectOverview}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblProjectOverview}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="PolvoBean" />
+            <h:form id="formVisaoGeralProjeto">
+                <fieldset>
+                    <!-- <legend>Dados Necessários</legend> -->
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <h:column>
+                                #{mensagens.lblMetrics}:<br/>
+                                <h:selectOneMenu id="comboMetrica" value="#{PolvoBean.selectBranchingMetric.selecao}" required="true">
+                                    <f:selectItems value="#{PolvoBean.selectBranchingMetric.listaSelecao}" />
+                                    <a4j:support action="#{PolvoBean.mudancaMetrica}" event="onchange" ajaxSingle="true" /> 
+                                </h:selectOneMenu>
+                                <rich:message id="msgMetrica" styleClass="msgerro" for="comboMetrica" />
+                            </h:column>
+
+                            <h:column>
+                                #{mensagens.lblProject}:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboProjeto" value="#{PolvoBean.selectProject.selecao}" required="false">
+                                        <f:selectItems value="#{PolvoBean.selectProject.listaSelecao}" />
+                                        <a4j:support action="#{PolvoBean.mudancaProjetoVisaoGeral}" event="onchange" ajaxSingle="true" /> 
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgProjeto" styleClass="msgerro" for="comboProjeto" />
+                            </h:column>
+
+                            <br/>
+
+                        </h:panelGrid>
+                    </div>
+
+                    <fieldset>
+                        <legend>#{mensagens.lblAction}</legend>
+                        <h:commandButton id="btnGerarGrafico" action="#{PolvoBean.gerarGraficoVisaGeral}" value="#{mensagens.lblGenerateGraph}" />
+                    </fieldset>
+
+                    <div style="margin:10px">
+
+                        <applet code="treebolic.applet.Treebolic.class" archive="TreebolicAppletDom.jar" id="Treebolic" width="550" height="500">
+                            <param name="doc" value="visaoGeral.xml"/>
+                            <param name="images" value="images"/>
+                        </applet>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>#{mensagens.lblCriticalityBranches}</legend>
+                    <div style="background-color:#9FB6CD">
+                    <font color="#FF0000"><b>------> #{mensagens.lblHigh}</b></font>
+                    <font color="#FFA500"><b>------> #{mensagens.lblMedium}</b></font>
+                    <font color="#FFFF00"><b>------> #{mensagens.lblLow}</b></font>
+                    <font color="#00FF00"><b>------> #{mensagens.lblVeryLow}</b></font>
+                    </div>
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

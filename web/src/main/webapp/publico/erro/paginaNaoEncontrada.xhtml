@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+    <ui:composition  template="/WEB-INF/template/templatelogin.xhtml">
+
+        <ui:define name="titleDaPagina">
+            Peixe Espada
+        </ui:define>
+        <ui:define name="nomePagina">
+            Página não Encontrada
+        </ui:define>
+
+        <ui:define name="javascript">
+            <script type="text/javascript">
+                var tempo = 5;
+                function mostraTempo(){
+                    document.getElementById('redirecionamento').innerHTML = tempo;
+                    if(tempo-- == 0){
+                        history.back(1);
+                    }else{
+                        setTimeout('mostraTempo()', 1000);
+                    }
+                }
+            </script>
+        </ui:define>
+
+        <ui:define name="corpo">
+            <p class="msgerro"><b>Página não encontrada:</b></p>
+            Você será redirecionado em:[<span  class="msgerro" id="redirecionamento"></span>]
+            <br/>
+            <br/>
+            <script type="text/javascript">
+                mostraTempo();
+            </script>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>

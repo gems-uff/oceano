@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+        
+    <application>
+        <action-listener>br.uff.ic.oceano.exception.ExceptionHandler</action-listener>
+        <navigation-handler>
+            br.uff.ic.oceano.controller.handler.NavegacaoHandler
+        </navigation-handler>
+
+        <view-handler>
+            com.sun.facelets.FaceletViewHandler
+        </view-handler>
+    </application>
+
+    <application>
+        <locale-config>
+            <default-locale>pt_BR</default-locale>
+            <supported-locale>pt_BR</supported-locale>
+        </locale-config>
+        <message-bundle>
+            br.uff.ic.oceano.messages.Mensagens
+        </message-bundle>
+    </application>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>erro</from-outcome>
+            <to-view-id>/publico/erro/paginaErro.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+<!-- MANAGED BEANS -->
+    <managed-bean>
+        <managed-bean-name>DataMiningBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ostra.controller.DataMiningBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>MetricBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.MetricBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ProjectBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.ProjectBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+<!--    <managed-bean>
+        <managed-bean-name>OstraBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ostra.controller.OstraBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>-->
+    <managed-bean>
+        <managed-bean-name>MonitoringBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ostra.controller.MonitoringBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>MonitoringChartBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ostra.controller.MonitoringChartBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>CreateMetricBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ostra.controller.CreateMetricBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+     <managed-bean>
+        <managed-bean-name>PeixeEspadaBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.peixeespada.controller.PeixeEspadaBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>SessaoDoUsuario</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.SessaoDoUsuario</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>UsuarioBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.UsuarioBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+<!--    <managed-bean>
+        <managed-bean-name>ConfiguracaoBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.ConfiguracaoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>-->
+
+    <managed-bean>
+        <managed-bean-name>AmbienteAgenteBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.peixeespada.controller.AmbienteAgenteBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>PolvoBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.polvo.controller.PolvoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>idProject</property-name>
+            <value>#{param.idProject}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>nameMainBranch</property-name>
+            <value>#{param.nameMainBranch}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>nameSecondaryBranch</property-name>
+            <value>#{param.nameSecondaryBranch}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>idBranchingModel</property-name>
+            <value>#{param.idBranchingModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>idBranchingMetric</property-name>
+            <value>#{param.idBranchingMetric}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>beginRevision</property-name>
+            <value>#{param.beginRevision}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>OuricoBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ourico.controller.OuricoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+<!--    <managed-bean>
+        <managed-bean-name>OuricoUserBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ourico.controller.OuricoUserBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>-->
+    <managed-bean>
+        <managed-bean-name>OuricoConfigBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ourico.controller.OuricoConfigBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>OuricoVerificationBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.ourico.controller.OuricoVerificationBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ProjectUserBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.ProjectUserBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ConfigurationItemBean</managed-bean-name>
+        <managed-bean-class>br.uff.ic.oceano.controller.ConfigurationItemBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+<!-- FIM MANAGED BEANS -->
+
+</faces-config>
+
+

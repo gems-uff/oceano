@@ -1,0 +1,72 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title>Peixe Espada</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="/${context}/recurso/css/styleLogin.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+            var tempo = 5;
+            function mostraTempo(){
+                document.getElementById('redirecionamento').innerHTML = tempo;
+                if(tempo-- == 0){
+                    window.location = window.location;
+                }else{
+                    setTimeout('mostraTempo()', 1000);
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+        <div id="container">
+
+            <div id="header">
+            </div>
+            <div id="header">
+            </div>
+
+            <div id="content">
+                <div class="cbb" align="center" style="background-image: url('/${context}/recurso/img/oceano.jpg')">
+                    <div class="cbb" style="background-image: url('/${context}/recurso/img/oceano.jpg')">
+                        <p class="msgerro"><b>Sessão Expirada:</b></p>
+                        Favor autenticar-se novamente em:[<span  class="msgerro" id="redirecionamento"></span>]
+                        <br/>
+                        <br/>
+                        <script type="text/javascript">
+                            mostraTempo();
+                        </script>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+<!--                    <img src="/${context}/recurso/img/espadaLogin.PNG" alt="Peixe Espada - Relatórios SubVersion" />-->
+<!--                    <img src="/${context}/recurso/img/oceano.jpg" alt="Oceano" />-->
+
+                </div>
+            </div>
+        </div>
+        <!-- google-analytics -->
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+            try {
+                //orion.secoi.com.br:
+                var pageTracker = _gat._getTracker("UA-7528563-2");
+
+                //testeorion.com.br
+                //var pageTracker = _gat._getTracker("UA-7528563-1");
+                pageTracker._trackPageview();
+            } catch(err) {}</script>
+    </body>
+</html>

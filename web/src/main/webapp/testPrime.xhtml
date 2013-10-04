@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Project Details" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            #{ProjectBean.currentProject.name}
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="helloWorldPageForm">
+                1
+                <p:panel id="primefacesPanel" header="Hello World"
+                         footer="Footer"
+                         style="position: relative; width: 500px;">
+                    <h:outputText value="Primefaces is great. My first application using Primefaces"/>
+                </p:panel>
+                2
+                <p:barChart value="#{MonitoringBean.developpersInformations}" var="information"
+                            yfield="#{information.developperName}" style="chartStyle">
+                    <p:chartSeries label="TotalCommits" value="#{information.totalCommits}"/>
+                    <p:chartSeries label="TotalCommits" value="#{information.totalCommits}"/>
+                </p:barChart>
+                3
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

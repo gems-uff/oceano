@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblLink}" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblLink}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="ProjectUserBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px" >
+                            <h:column>
+                                #{mensagens.lblUsers}:<br/>
+                                <h:selectOneMenu id="comboUsuarios" value="#{ProjectUserBean.selectOneOceanoUser.selecao}" required="true">
+                                    <f:selectItems value="#{ProjectUserBean.selectOneOceanoUser.listaSelecao}" />
+                                    <a4j:support action="#{ProjectUserBean.preencheTabelaProjetosDecorados}" event="onchange" reRender="panelProject" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgUsuario" styleClass="msgerro" for="comboUsuarios" />
+                                <br/>
+                            </h:column>
+                        </h:panelGrid>
+
+                        <a4j:outputPanel id="panelProjectUser" rendered="#{ProjectUserBean.currentProjectUser != null}">
+                        <br/><br/>
+
+                            <b>Projeto:</b> #{ProjectUserBean.currentProjectUser.project}
+                            <br/><br/>
+
+                            <b> Anonymous Access:</b>
+                            <h:selectBooleanCheckbox value="#{ProjectUserBean.currentProjectUser.anonymous}">
+                                <a4j:support event="onchange" action="#{ProjectUserBean.updateAnonymousAccess}" reRender="panelProjectUser" immediate="true"/>
+                            </h:selectBooleanCheckbox>
+                            <br/><br/>
+
+                            <h:column rendered="#{!ProjectUserBean.currentProjectUser.anonymous}">
+                                <b>Login:</b>
+                                <h:inputText id="txtLoginSVN" value="#{ProjectUserBean.currentProjectUser.login}"/>
+                                <rich:message id="msgLogin" styleClass="msgerro" for="txtLoginSVN" />
+                                <br/><br/>
+
+                                <b>Senha:</b>
+                                <h:inputSecret id="txtSenhaSVN" value="#{ProjectUserBean.currentProjectUser.password}" />
+                                <rich:message id="msgSenha" styleClass="msgerro" for="txtSenhaSVN" />
+                                <br/><br/>
+
+                                <b>Confirmação de Senha:</b>
+                                <h:inputSecret id="txtConfirmacaoSenhaSVN" value="#{ProjectUserBean.confirmacaoSenhaSVN}" />
+                                <rich:message id="msgConfirmacaoSenha" styleClass="msgerro" for="txtConfirmacaoSenhaSVN" />
+                                <br/><br/>
+                            </h:column>
+
+                            <fieldset>
+                                <legend>Actions</legend>
+                                <h:commandButton id="btnSalva" action="#{ProjectUserBean.doSave}" value="Save" />
+                                <h:commandButton id="btnVoltar" action="#{ProjectUserBean.doCancel}" value="Cancel" immediate="true" />
+                            </fieldset>
+
+                        </a4j:outputPanel>
+                    </div>
+                </fieldset>
+
+                <br/>
+
+                <a4j:outputPanel id="panelProject">
+                    <h:column rendered="#{ProjectUserBean.tabelaProjetosDecorados != null}">
+                        <fieldset>
+                            <legend>#{mensagens.lblProjects}</legend>
+                            <rich:dataTable value="#{ProjectUserBean.tabelaProjetosDecorados}" var="projectUserDecorado">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="OceanoUser"/>
+                                    </f:facet>
+                                    <h:outputText value="#{projectUserDecorado.item.oceanoUser.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{mensagens.lblProject}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{projectUserDecorado.item.project}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{mensagens.lblLogin}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{projectUserDecorado.item.login}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{mensagens.lblConnection}"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{mensagens.lblChange}" rendered="#{projectUserDecorado.item.id != null}" action="#{ProjectUserBean.incluirOuAlterar}"/>
+                                    <h:commandLink value="#{mensagens.lblAdd}" rendered="#{projectUserDecorado.item.id == null}" action="#{ProjectUserBean.incluirOuAlterar}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{mensagens.lblRemove}"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{mensagens.lblRemove}" rendered="#{projectUserDecorado.item.id != null}" action="#{ProjectUserBean.excluir}" immediate="true"/>
+                                </h:column>
+                            </rich:dataTable>
+                        </fieldset>
+                    </h:column>
+                </a4j:outputPanel>
+
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+

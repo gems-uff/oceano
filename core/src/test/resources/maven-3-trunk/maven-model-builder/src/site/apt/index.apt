@@ -1,0 +1,115 @@
+ -----
+ Introduction
+ -----
+ Hervé Boutemy
+ -----
+ 2011-09-03
+ -----
+
+Maven Model Builder
+
+ The effective model builder, with inheritance, profile activation, interpolation, ...
+
+ The main component is <<<ModelBuilder>>>
+ ({{{./apidocs/org/apache/maven/model/building/ModelBuilder.html}javadoc}},
+ {{{./xref/org/apache/maven/model/building/ModelBuilder.html}source}}),
+ with its <<<DefaultModelBuilder>>> implementation
+ ({{{./apidocs/org/apache/maven/model/building/DefaultModelBuilder.html}javadoc}},
+ {{{./xref/org/apache/maven/model/building/DefaultModelBuilder.html}source}})
+ that manages the steps sequence.
+
+ The sequence is divided into 2 phases, with optional plugin processing:
+
+ * phase 1
+
+   ** profile activation (see {{{./apidocs/org/apache/maven/model/profile/activation/package-summary.html}available activators}})
+
+   ** model normalization
+
+   ** profile injection
+
+   ** parent resolution until {{{./super-pom.html}super-pom}}
+
+   ** inheritance assembly
+
+   ** model interpolation (see below)
+
+   ** url normalization
+
+   []
+
+ * phase 2
+
+   ** model path translation
+
+   ** plugin management injection
+
+   ** <(optional)> lifecycle bindings injection
+
+   ** dependency management import (for dependencies of type <<<pom>>> in the <<<\<dependencyManagement\>>>> section)
+
+   ** dependency management injection
+
+   ** <(optional)> reports configuration
+
+   ** <(optional)> reports conversion to decoupled site plugin
+
+   ** <(optional)> plugins configuration
+
+   ** effective model validation
+
+   []
+
+ []
+
+
+* Model Interpolation
+
+  Model Interpolation consists in replacing <<<$\{...\}>>> with calculated value. It is done in <<<StringSearchModelInterpolator>>>
+  ({{{./apidocs/org/apache/maven/model/interpolation/StringSearchModelInterpolator.html}javadoc}},
+  {{{./xref/org/apache/maven/model/interpolation/StringSearchModelInterpolator.html}source}}).
+
+  Values are evaluated in sequence from different syntaxes:
+
+*----+------+------+
+|| value || evaluation result || common examples ||
+*----+------+------+
+| <<<project.*>>>\
+<<<pom.*>>> (<deprecated>)\
+<<<*>>> (<deprecated>) | POM content (see {{{../maven-model/maven.html}POM reference}}) | <<<$\{project.version\}>>>\
+ | | <<<$\{project.build.finalName\}>>>\
+ | | <<<$\{project.build.artifactId\}>>>\
+ | | <<<$\{project.build.directory\}>>> |
+*----+------+------+
+| <<<basedir>>>\
+<<<project.basedir>>>\
+<<<pom.basedir>>> (<deprecated>) | the directory containing the <<<pom.xml>>> file | <<<$\{project.basedir\}>>> |
+*----+------+------+
+| <<<project.baseUri>>>\
+<<<pom.baseUri>>> (<deprecated>) | the directory containing the <<<pom.xml>>> file as URI | <<<$\{project.baseUri\}>>> |
+*----+------+------+
+| <<<build.timestamp>>>\
+<<<maven.build.timestamp>>> | the timestamp of build start, in <<<yyyyMMdd-HHmm>>> default format, which can be overridden with <<<maven.build.timestamp.format>>> POM property | <<<$\{maven.build.timestamp\}>>> |
+*----+------+------+
+| <<<*>>> | user properties, set from CLI with <<<-Dproperty=value>>> | <<<$\{skipTests\}>>> |
+*----+------+------+
+| <<<*>>> | model properties, such as project properties set in the pom | <<<$\{any.key\}>>> |
+*----+------+------+
+| <<<maven.home>>> | The path to the current Maven home. | <<<$\{maven.home\}>>> |
+*----+------+------+
+| <<<maven.version>>> | The version number of the current Maven execution <(since 3.0.4)>. For example, "<<<3.0.3>>>". | <<<$\{maven.version\}>>> |
+*----+------+------+
+| <<<maven.build.version>>> | The full build version of the current Maven execution <(since 3.0.4)>. For example, "<<<Apache Maven 3.0.3 (r1075438; 2011-02-28 11:31:09-0600)>>>". | <<<$\{maven.build.version\}>>> |
+*----+------+------+
+| <<<*>>> | Java system properties (see {{{http://download.oracle.com/javase/6/docs/api/java/lang/System.html#getProperties()}JDK reference}}) | <<<$\{user.home\}>>>\
+ | | <<<$\{java.home\}>>> |
+*----+------+------+
+| <<<env.*>>>\
+<<<*>>> | environment variables | <<<$\{env.PATH\}>>> |
+*----+------+------+
+| <<<settings.*>>> | Local user settings (see {{{../maven-settings/settings.xml/settings.html}settings reference}}) | <<<$\{settings.localRepository\}>>> |
+*----+------+------+
+
+  Notice that after model interpolation, <<<$\{...\}>>> content can remain in the model that will be evaluated later
+  when setting plugin parameters. This happens in particular with <<<settings.*>>> values for
+  {{{../maven-settings/settings.html}Settings Model}}.

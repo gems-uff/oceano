@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Valores de Metricas" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Lista de Métricas extraidas" />
+        </ui:define>
+
+        <ui:define name="corpo">
+
+            <a4j:form >
+
+                <a4j:keepAlive beanName="OstraBean" />
+
+                <!--columnsWidth=", 90, , "-->
+                <br/>
+                <rich:dataTable id="tabelaMetricas"
+                                style="font-size:10px" width="100%"
+                                columnClasses=",,coluna-centralizada,coluna-centralizada, coluna-centralizada"
+                                var="mv"
+                                rows="50"
+                                value="#{OstraBean.listMetricValue}">
+
+                    <rich:column >
+                        <f:facet name="header">
+                            Metric Name
+                        </f:facet>
+                        #{mv.metricName}
+                        <rich:toolTip for="tabelaMetricas">#{mv.metricDescription}</rich:toolTip>
+                    </rich:column>
+                    <!--
+                                        <rich:column >
+                                            <f:facet name="header">
+                                                Metric Rationale
+                                            </f:facet>
+                                            #{mv.metricDescription}
+                                        </rich:column>
+                    -->
+                    <rich:column >
+                        <f:facet name="header">
+                            Type
+                        </f:facet>
+                        #{mv.typeAsString}
+                    </rich:column>
+
+                    <rich:column >
+                        <f:facet name="header">
+                            Value
+                        </f:facet>
+                        #{mv.doubleValue}
+                    </rich:column>
+
+                    <rich:column >
+                        <f:facet name="header">
+                            Configuration
+                        </f:facet>
+                        #{mv.configuration.caminhoLocal}
+                    </rich:column>
+
+                </rich:dataTable>
+
+            </a4j:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

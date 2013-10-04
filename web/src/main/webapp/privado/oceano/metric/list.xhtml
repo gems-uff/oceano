@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Listagem de Projetos" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Metrics" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            Known Metrics
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="MetricBean"/>
+            <h:form id="iformDetailMetric">
+                <rich:dataTable id="tableMetrics"
+                                style="font-size:10px" width="100%"
+                                columnClasses=""
+                                var="metric"
+                                rows="25"
+                                value="#{MetricBean.metricsTable}">
+                    <rich:column sortBy="#{metric.name}"><f:facet name="header">Metric Name</f:facet>
+                        <b>#{metric.name}</b>
+                    </rich:column>
+
+                    <rich:column><f:facet name="header">Description</f:facet>
+                        #{metric.description}
+                    </rich:column>
+
+                    <rich:column sortBy="#{metric.typeAsString}"><f:facet name="header">Type</f:facet>
+                        #{metric.typeAsString}
+                    </rich:column>
+
+                    <rich:column sortBy="#{metric.extractsFromFont}"><f:facet name="header">Must Compile</f:facet>
+                         <center><h:graphicImage value="#{MetricBean.mustCompileImage}"/></center>
+                    </rich:column>
+
+
+                    <rich:column sortBy="#{metric.targetAsString}"><f:facet name="header">Target</f:facet>
+                        #{metric.targetAsString}
+                    </rich:column>
+
+                    <rich:column sortBy="#{metric.metricManagerClass}"><f:facet name="header">Auto Extractable</f:facet>
+                        <center><h:graphicImage value="#{MetricBean.autoExecutableImage}"/></center>
+                    </rich:column>
+
+                    <rich:column sortBy="#{metric.derived}"><f:facet name="header">Derived Metric</f:facet>
+                        <center><h:graphicImage value="#{MetricBean.derivedMetricImage}"/></center>
+                    </rich:column>
+                </rich:dataTable>
+
+                <rich:datascroller for="tableMetrics" maxPages="30"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.titlePageEnvironmentContext}" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.namePageEnvironmentContext}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+
+            <script type="text/javascript">
+            var tempo = 5;
+            function mostraTempo(){
+                document.getElementById('redirecionamento').innerHTML = tempo;
+                if(tempo-- == 0){
+                    atualizaTabelas();
+                    tempo = document.getElementById('tempoAtualizacao').value;
+                    setTimeout('mostraTempo()', 1000);
+                }else{
+                    setTimeout('mostraTempo()', 1000);
+                }
+            }
+            </script>
+
+            <a4j:form >
+                <a4j:jsFunction name="atualizaTabelas" 
+                                reRender="tabelaAgentes, tabelaConhecimento" />
+
+                <fieldset>
+                    <legend>#{mensagens.lblUpdate}</legend>
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                #{mensagens.lblUpdating} :[<span  style="color:red" id="redirecionamento"></span>] seconds
+                            </td>
+                            <td>
+                                #{mensagens.lblTimeToUpdate}: <input type="text" id="tempoAtualizacao" value="5" size="1" onblur="tempo = this.value" /> seconds
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <script type="text/javascript">
+                        mostraTempo();
+                    </script>
+
+                </fieldset>
+
+                    <br/>
+                <fieldset>
+                    <legend>#{mensagens.lblLegend}</legend>
+                    <table>
+                        <tr><th>#{mensagens.lblAcronym}</th><th>#{mensagens.lblDescription}</th></tr>
+                        <tr><td>#{mensagens.lblAcronymCycles}</td><td>#{mensagens.lblCycles}</td></tr>
+                        <tr><td>#{mensagens.lblAcronymSuccessCycles}</td><td>#{mensagens.lblSuccessCycles}</td></tr>
+                        <tr><td>#{mensagens.lblAcronymWorsenCycles}</td><td>#{mensagens.lblWorsenCycles}</td></tr>
+                        <tr><td>#{mensagens.lblAcronymNotImproveNorWorsened}</td><td>#{mensagens.lblNotImproveNorWorsened}</td></tr>
+                        <tr><td>%</td><td>#{mensagens.lblPercentageSuccess}</td></tr>
+                    </table>
+                </fieldset>
+
+
+                <fieldset>
+                    <!--columnsWidth=", 90, , "-->
+                    <br/>
+                    <legend>#{mensagens.lblMonitoring}</legend>
+                    <rich:dataTable id="tabelaAgentes"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=",,coluna-centralizada,coluna-centralizada, coluna-centralizada"
+                                    var="agente"
+                                    rows="50"
+                                    value="#{AmbienteAgenteBean.tabelaAgentes}">
+
+                        <rich:column>
+                            <f:facet name="header">
+                                #{mensagens.lblAgent}
+                            </f:facet>
+                            #{agente.orchestrator.qualityAttribute}
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                #{mensagens.lblProject}
+                            </f:facet>
+                            #{agente.orchestrator.project.configurationItem.name}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                %
+                            </f:facet>
+                            <h:outputText value="#{100 * agente.orchestrator.successCycles/agente.orchestrator.cycles}" >
+                                <f:convertNumber pattern="00.00"/>
+                            </h:outputText>
+                            
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                #{mensagens.lblWorkerAgents}
+                            </f:facet>
+                            <rich:dataTable id="tabelaAgentes" rendered="#{not empty agente.workAgents}"
+                                            style="font-size:10px" width="100%"
+                                            columnClasses=",,coluna-centralizada,coluna-centralizada, coluna-centralizada"
+                                            var="workAgente"
+                                            rows="50"
+                                            value="#{agente.workAgents}">
+
+                                <rich:column >
+                                    <f:facet name="header">
+                                        #{mensagens.lblWorkerAgent}
+                                    </f:facet>
+                                    #{workAgente.name}
+                                </rich:column>
+
+                                <rich:column >
+                                    <f:facet name="header">
+                                        #{mensagens.lblStatus}
+                                    </f:facet>
+                                    #{workAgente.status}
+                                </rich:column>
+
+                                <rich:column >
+                                    <f:facet name="header">
+                                        #{mensagens.lblAcronymCycles}
+                                    </f:facet>
+                                    #{workAgente.cycles}
+                                </rich:column>
+
+                                <rich:column >
+                                    <f:facet name="header">
+                                        #{mensagens.lblAcronymSuccessCycles}
+                                    </f:facet>
+                                    #{workAgente.successCycles}
+                                </rich:column>
+
+                                <rich:column >
+                                    <f:facet name="header">
+                                        #{mensagens.lblAcronymWorsenCycles}
+                                    </f:facet>
+                                    #{workAgente.worsenCycles}
+                                </rich:column>
+                                
+                                <rich:column >
+                                    <f:facet name="header">
+                                        #{mensagens.lblAcronymNotImproveNorWorsened}
+                                    </f:facet>
+                                    #{workAgente.notImproveNorWorsenCycles}
+                                </rich:column>
+
+                                <rich:column>
+                                    <f:facet name="header">
+                                        #{mensagens.lblInitialDate}
+                                    </f:facet>
+                                    <h:outputText value="#{workAgente.initDate}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>
+                                </rich:column>
+
+                                <rich:column>
+                                    <f:facet name="header">
+                                        #{mensagens.lblEndDate}
+                                    </f:facet>
+                                    <h:outputText value="#{workAgente.endDate}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>
+                                </rich:column>
+
+                            </rich:dataTable>
+                        </rich:column>
+
+                    </rich:dataTable>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <!--columnsWidth=", 90, , "-->
+                    <br/>
+                    <legend>#{mensagens.lblKnowledge}</legend>
+                    <rich:dataTable id="tabelaConhecimento"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=",,coluna-centralizada,coluna-centralizada, coluna-centralizada"
+                                    var="conhecimento"
+                                    value="#{AmbienteAgenteBean.tabelaConhecimento}">
+
+                        <!--rows="50"-->
+                        <rich:column sortBy="#{conhecimento.refactoring.name}">
+                            <f:facet name="header">
+                                #{mensagens.lblRefactoring}
+                            </f:facet>
+                            #{conhecimento.refactoring}
+                        </rich:column>
+
+                        <rich:column sortBy="#{conhecimento.qualityAttribute}">
+                            <f:facet name="header">
+                                #{mensagens.lblQualityAttribute}
+                            </f:facet>
+                            #{conhecimento.qualityAttribute}
+                        </rich:column>
+
+                        <rich:column sortBy="#{conhecimento.totalSuccess}">
+                            <f:facet name="header">
+                                #{mensagens.lblImproved}
+                            </f:facet>
+                            <h:outputText value="#{conhecimento.totalSuccess}" />
+                        </rich:column>
+
+                        <rich:column sortBy="#{conhecimento.totalWorsen}">
+                            <f:facet name="header">
+                                #{mensagens.lblWorsened}
+                            </f:facet>
+                            <h:outputText value="#{conhecimento.totalWorsen}" />
+                        </rich:column>
+
+                        <rich:column sortBy="#{conhecimento.totalNotImproveNorWorsen}">
+                            <f:facet name="header">
+                                #{mensagens.lblNotChanged}
+                            </f:facet>
+                            <h:outputText value="#{conhecimento.totalNotImproveNorWorsen}" />
+                        </rich:column>
+
+                        <rich:column sortBy="#{conhecimento.totalUsed}">
+                            <f:facet name="header">
+                                #{mensagens.lblUsed}
+                            </f:facet>
+                            <h:outputText value="#{conhecimento.totalUsed}" />
+                        </rich:column>
+
+                        <rich:column sortBy="#{100*conhecimento.totalSuccess/conhecimento.totalUsed}">
+                            <f:facet name="header">
+                                %
+                            </f:facet>
+                            <h:outputText value="#{100*conhecimento.totalSuccess/conhecimento.totalUsed}" >
+                                <f:convertNumber pattern="00.00"/>
+                            </h:outputText>
+                        </rich:column>
+
+                    </rich:dataTable>
+                </fieldset>
+
+
+
+            </a4j:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

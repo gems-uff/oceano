@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TESTS">
+    <test name="TESTS" verbose="0" preserve-order="true">        
+        <packages>
+            <package name="br.uff.ic.oceano.util.*"/>
+        </packages>
+    </test>
+</suite>
+

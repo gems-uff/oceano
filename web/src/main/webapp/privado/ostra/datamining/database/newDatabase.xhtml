@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Data Base Setup" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Data Base Setup"/>
+        </ui:define>
+
+        <ui:define name="corpo">
+
+            <a4j:form id="iformLista">
+                <rich:simpleTogglePanel switchType="client" label="Project Selection" opened="true">
+                    <rich:dataTable id="tableSelectProjects"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada, coluna-centralizada"
+                                    var="sp"
+                                    value="#{DataMiningBean.tableSelectProjects}">
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Select
+                            </f:facet>
+                            <h:selectBooleanCheckbox id="checkSelectProject" value="#{sp.selected}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                Project
+                            </f:facet>
+                            #{sp.item.configurationItem.name}
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                Revisions
+                            </f:facet>
+                            #{sp.item.numberOfRevisionsMeasured}
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                Not Compiled Revisions
+                            </f:facet>
+                            #{sp.item.uncompiledRevisionCount}
+                        </rich:column>
+                    </rich:dataTable>
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Attribute Selection" opened="false" id="idPanelMetrics">
+                    <h:selectBooleanCheckbox id="checkSelectRevisionDate" value="true" disabled="true"/> Revision date (commit date)
+                    <br/>
+                    <h:selectBooleanCheckbox id="checkSelectRevisionCommiter" value="true" disabled="true"/> Revision commiter (developer login)
+                    <br/>
+                    <rich:spacer height="10"></rich:spacer>
+
+                    <rich:dataTable id="tableSelectMetrics"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada, coluna-centralizada"
+                                    var="sm"
+                                    rows="50"
+                                    value="#{DataMiningBean.tableSelectMetrics}">
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Select
+                            </f:facet>
+                            <h:selectBooleanCheckbox id="checkSelectMetricToUSe" value="#{sm.selected}"/>
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Metric
+                            </f:facet>
+                            #{sm.item.name}
+                        </rich:column>
+
+                        <rich:column sortBy="#{sm.item.derived}"><f:facet name="header">Derived Metric</f:facet>
+                            <center><h:graphicImage value="/recurso/img/end.png" rendered="#{sm.item.derived}"/></center>
+                            <center><h:graphicImage value="/recurso/img/ico_excluir.png" rendered="#{!sm.item.derived}"/></center>
+                        </rich:column>
+
+                    </rich:dataTable>
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Discretizer Selection" opened="false">
+                    This is not possible at this moment. Please wait software updates.
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+                <br/>
+                <h:selectBooleanCheckbox id="checkCalculateStandardDeviation" value="#{DataMiningBean.calculateStandardDeviation}" disabled="true"/>
+                Calculate Standard Deviation
+                <br/>
+                <h:selectBooleanCheckbox id="checkIgnoreRevisionsThatDontCompile" value="#{DataMiningBean.ignoreRevisionsThatDontCompile}"/>
+                Ignore revisions that don't compile
+                <br/>
+                <rich:spacer height="10"></rich:spacer>
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton action="#{DataMiningBean.configureDataMining}" value="Configure Data Mining parameters"/>
+<!--                    <a4j:commandButton action="#{DataMiningBean.configureDataMining}" value="Configure Data Mining parameters (a4j)"/>-->
+                </fieldset>
+            </a4j:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

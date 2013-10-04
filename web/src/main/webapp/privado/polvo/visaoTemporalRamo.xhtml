@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblBranchTemporalView}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblBranchTemporalView}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="PolvoBean" />
+            <h:form id="formVisaoDetalhadaRamo">
+
+                <h:panelGrid columns="1" cellpadding="5px">
+                    <h:column>
+                        #{mensagens.lblProject}: <b>#{PolvoBean.currentProject.configurationItem.name}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblMainBranch}: <b>#{PolvoBean.currentMainBranch}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblSecondaryBranch}: <b>#{PolvoBean.currentSecondaryBranch}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblBranchingModel}: <b>#{PolvoBean.currentBranchingModel}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblMetrics}: <b>#{PolvoBean.currentBranchingMetric}</b><br/>
+                    </h:column>
+                </h:panelGrid>
+                <br/>
+
+                <div style="margin:10px">
+
+                    <applet code="demos/applets/VisaoTemporalRamo.class"
+                        archive="jfreechart.jar,jfreechart-1.0.13.jar,jcommon-1.0.16.jar"
+                        width="600" height="350">
+
+                        <param name="nodesGraph1" value="#{PolvoBean.nodesGraph1}"/>
+                        <param name="nodesGraph2" value="#{PolvoBean.nodesGraph2}"/>
+                    </applet>
+
+                </div>
+
+                <rich:dataTable id="tabelaRevisoes"
+                                style="font-size:10px" width="40%"
+                                columnClasses="coluna-centralizada,coluna-centralizada"
+                                var="linkRevision"
+                                rows="50"
+                                align="center"
+                                value="#{PolvoBean.tableRevision}">
+
+                    <rich:column>
+                        <f:facet name="header">
+                            #{mensagens.lblLinkRevisionGraph}
+                        </f:facet>
+                        <h:commandLink action="#{PolvoBean.detailRevision}" value="#{linkRevision}" />
+                    </rich:column>
+
+                </rich:dataTable>
+<!--
+                <fieldset>
+                    <legend>Ações</legend>
+                    <h:commandButton id="btnVisaoDetalhada" action="#{PolvoBean.compararRamos}" value="Visão Detalhada" />
+                </fieldset>
+-->
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

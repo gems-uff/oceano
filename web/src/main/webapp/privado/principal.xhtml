@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+<ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+    <ui:define name="titleDaPagina">
+        #{mensagens.titleHome}
+    </ui:define>
+    
+    <ui:define name="nomePagina">
+        #{mensagens.lblWelcome}
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <p>#{mensagens.lblHomeOceanoDescription}</p>
+        <br/>
+        <h3>#{mensagens.lblImplementedTools}</h3>
+        <p>Peixe-Espada : <a href="https://gems.ic.uff.br/trac/oceano/wiki/PeixeEspada">ISSUE-TRAC</a></p>
+        <p>Ouriço : <a href="https://gems.ic.uff.br/trac/oceano/wiki/Ouri%C3%A7o">ISSUE-TRAC</a></p>
+        <p>Ostra : <a href="https://gems.ic.uff.br/trac/oceano/wiki/Ostra">ISSUE-TRAC</a></p>
+        <p>Polvo : <a href="https://gems.ic.uff.br/trac/oceano/wiki/Polvo">ISSUE-TRAC</a></p>
+    </ui:define>
+    
+</ui:composition>
+
+</html>

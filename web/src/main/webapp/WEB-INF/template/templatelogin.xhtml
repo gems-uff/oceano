@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="pagelogin" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <f:loadBundle basename="br.uff.ic.oceano.messages.Mensagens" var="mensagens" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>
+            <h:outputText value="Oceano " />-<ui:insert name="titleDaPagina">Default Title</ui:insert>
+        </title>
+        <link href="#{facesContext.externalContext.request.contextPath}/recurso/css/styleLogin.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/recursos/js/Utils.js"></script>
+        <ui:insert name="javascript" />
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-18443312-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    </head>
+    <body>
+        <a4j:outputPanel id="all">
+            <div id="container">
+
+                <div id="header">
+                </div>
+                <div id="header">
+                </div>
+
+                <div id="content" >
+                    <div class="cbb" align="center" style="background-image: url('#{facesContext.externalContext.request.contextPath}/recurso/img/oceano.jpg')">
+
+                        <h:form id="formIdioms">
+                            <h:selectOneMenu id="comboIdiomas" value="#{SessaoDoUsuario.idiom}" required="true">
+                                <f:selectItems value="#{SessaoDoUsuario.idiomsList}" />
+                                <a4j:support action="#{SessaoDoUsuario.changeIdiom}" event="onchange" reRender="all" />
+                            </h:selectOneMenu>
+                        </h:form>
+                        <br/>
+                        <h2 style="color: white;font-size: 25px">Oceano</h2>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <div class="cbb" style="background-image: url('#{facesContext.externalContext.request.contextPath}/recurso/img/oceano.jpg') 17px">
+                            <br/>
+
+                            <ui:insert name="corpo">Corpo padrao</ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- google-analytics -->
+            <script type="text/javascript">
+                var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+                document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            <script type="text/javascript">
+                try {
+                    var pageTracker = _gat._getTracker("UA-11981162-1");
+                    pageTracker._trackPageview();
+                } catch(err) {}
+            </script>
+        </a4j:outputPanel>
+    </body>
+
+</html>

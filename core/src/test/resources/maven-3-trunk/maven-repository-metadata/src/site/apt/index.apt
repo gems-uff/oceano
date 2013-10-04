@@ -1,0 +1,35 @@
+ -----
+ Introduction
+ -----
+ Hervé Boutemy
+ -----
+ 2009-04-26
+ -----
+
+Maven Repository Metadata Model
+
+ This is strictly the model for Maven Repository Metadata, so really just plain objects.
+
+ Maven Repository Metadata is available in directories representing:
+
+ [[1]] an un-versioned artifact: it gives informations about available versions of the artifact,
+
+ [[2]] a snapshot artifact: it gives precise information on the snapshot,
+
+ [[3]] a group containing Maven plugins artifacts: it gives informations on plugins available in this group.
+
+ []
+
+ The metadata file name is:
+
+ * <<<maven-metadata.xml>>> in a remote repository,
+
+ * <<<maven-metadata-\<repo-id>.xml>>> in a local repository, for metatada from a repository with <<<repo-id>>> identifier.
+
+ []
+
+ The following are generated from this model:
+
+   * {{{./apidocs/index.html}Java sources}} with Reader and Writers for the Xpp3 XML parser, to read and write <<<maven-metadata(-*).xml>>> files
+
+   * A {{{./repository-metadata.html}Descriptor Reference}}

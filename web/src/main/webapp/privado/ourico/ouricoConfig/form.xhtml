@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Relação do usuário com Projeto Ouriço" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Cadastro de Usuários Ouriço" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="OuricoConfigBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <session-title>Configurar</session-title>
+                            <br/><br/>
+
+
+                            <h:column>
+                                Projeto:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboProjetos" value="#{OuricoConfigBean.selectOneProject.selecao}" required="true">
+                                        <f:selectItems value="#{OuricoConfigBean.selectOneProject.listaSelecao}" />
+                                        <a4j:support action="#{OuricoConfigBean.preencheDadosProjeto}" event="onchange" reRender="panelProjeto" ajaxSingle="true"/>
+
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgProjetos" styleClass="msgerro" for="comboProjetos" />
+                                <br/><br/>
+                            </h:column>
+
+                            <a4j:outputPanel id="panelProjeto" >
+                                <h:column rendered="#{OuricoConfigBean.projetoVerificado}">
+                                    Diretório Autobranch:<br/>
+                                    <h:inputText id="txtDirAutobranch" value="#{OuricoConfigBean.dirAutobranch}" required="true"/>
+                                    <rich:message id="msgDirAutobranch" styleClass="msgerro" for="txtDirAutobranch" />
+                                    <br/><br/>
+                                </h:column>
+
+                                <h:column rendered="#{OuricoConfigBean.projetoVerificado}">
+
+                                    Politica:<br/>
+                                    <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                        <h:selectOneMenu id="comboPoliticas" value="#{OuricoConfigBean.selectOnePolitica.selecao}" required="true" >
+                                            <f:selectItems value="#{OuricoConfigBean.selectOnePolitica.listaSelecao}" />
+                                            <a4j:support action="#{OuricoConfigBean.preencheListaFiltrosInformativos}" event="onchange" reRender="panelInformativo" ajaxSingle="true"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <rich:message id="msgPoliticas" styleClass="msgerro" for="comboPoliticas" />
+                                    <br/><br/>
+                                </h:column>
+
+
+                                <a4j:outputPanel id="panelInformativo" >
+
+
+                                    <h:column  rendered="#{OuricoConfigBean.filtroSemantico}">
+                                        <fieldset title="Selecione os filtro informativos:">
+                                            Filtros Informativos:   <br/>
+
+                                            <h:column rendered="#{OuricoConfigBean.filtroSintatico}">
+                                                <h:selectBooleanCheckbox id="chSintatico" value="#{OuricoConfigBean.chboxFiltroSintatico}" title="Sintático"/>
+                                                <h:outputText value="Sintático"/>
+                                                <br/>
+                                            </h:column>
+
+                                            <h:column rendered="#{OuricoConfigBean.filtroSemantico}">
+                                                <h:selectBooleanCheckbox id="chSemantico" value="#{OuricoConfigBean.chboxFiltroSemantico}" title="Semântico">
+                                                    <a4j:support action="#{OuricoConfigBean.OnClickSemantico}" event="onchange" ajaxSingle="true" reRender="panelInformativo" />
+                                                </h:selectBooleanCheckbox>
+                                                <h:outputText value="Semântico"/>
+
+                                            </h:column>
+
+                                        </fieldset>
+                                    </h:column>
+
+                                </a4j:outputPanel>
+                            </a4j:outputPanel>
+
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton id="btnSalva" action="#{OuricoConfigBean.doSalvar}" value="Save" />
+                    <h:commandButton id="btnVoltar" action="#{OuricoConfigBean.doCancelar}" value="Cancel" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

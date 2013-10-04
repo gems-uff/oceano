@@ -1,0 +1,3 @@
+EasyLOC(http://www.monperrus.net/martin/easysloc.c.txt)
+Classe C com parser simples, para uso em cmd.
+

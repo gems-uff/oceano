@@ -1,0 +1,40 @@
+/* $Id: from the drupal.css file,v 1.147.2.8 2006/12/14 20:20:21 killes Exp $ */
+/*
+** Collapsing fieldsets
+*/
+
+/* Removes Fieldset Border */
+html.js fieldset {
+    /*border: 1px solid #000;*/
+    padding: 7px;
+}
+
+html.js fieldset.collapsed {
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    margin-bottom: 0;
+}
+
+html.js fieldset.collapsed * {
+    display: none;
+}
+
+html.js fieldset.collapsed table *,
+html.js fieldset.collapsed legend,
+html.js fieldset.collapsed legend * {
+    display: inline;
+}
+
+html.js fieldset.collapsible legend a {
+    padding-left: 15px;
+    background: url(../imagens/menu-expanded.png) 5px 50% no-repeat;
+}
+
+html.js fieldset.collapsed legend a {
+    background-image: url(../imagens/menu-collapsed.png);
+}
+
+/* Note: IE-only fix due to '* html' (breaks Konqueror otherwise). */
+* html.js fieldset.collapsible legend a {
+}

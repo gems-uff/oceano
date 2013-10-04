@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblBranchDetailedView}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblBranchDetailedView}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="PolvoBean" />
+            <h:form id="formVisaoDetalhadaRamo">
+
+                <h:panelGrid columns="1" cellpadding="5px">
+                    <h:column>
+                        #{mensagens.lblProject}: <b>#{PolvoBean.currentProject.configurationItem.name}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblMainBranch}: <b>#{PolvoBean.currentMainBranch}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblSecondaryBranch}: <b>#{PolvoBean.currentSecondaryBranch}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblBranchingModel}: <b>#{PolvoBean.currentBranchingModel}</b><br/>
+                    </h:column>
+
+                    <h:column>
+                        #{mensagens.lblRevision}: <b>#{PolvoBean.currentRevision}</b><br/>
+                    </h:column>
+
+                </h:panelGrid>
+                <br/>
+                <fieldset>
+                    <legend>#{mensagens.lblInformationGeneratedComparing}</legend>
+                    <div style="margin:10px">
+
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <h:column>
+                                #{mensagens.lblNumberFiles} <u>#{PolvoBean.currentMainBranch}</u>: <b>#{PolvoBean.qtdArqMainBranch}</b><br/>
+                            </h:column>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <h:column>
+                                #{mensagens.lblNumberFiles} <u>#{PolvoBean.currentSecondaryBranch}</u>: <b>#{PolvoBean.qtdArqSecondaryBranch}</b><br/>
+                            </h:column>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <h:column>
+                                <!-- <b>#{PolvoBean.qtdDiverg} %</b> #{mensagens.lblFilesReferenceBranchUnchanged}<br/> -->
+                            </h:column>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <h:column>
+                                #{mensagens.lblMetrics} <b>#{PolvoBean.currentBranchingMetric}</b>: <br/>
+                                <b>#{PolvoBean.qtdMetric}</b>
+                            </h:column>
+                        </h:panelGrid>
+
+                        <br/>
+
+
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>#{mensagens.lblAction}</legend>
+                    <h:commandButton id="btnVisaoTemporal" action="#{PolvoBean.visaoTemporalRamo}" value="#{mensagens.lblTemporalView}" />
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,22 @@
+ -----
+ Introduction
+ -----
+ Jason van Zyl
+ Vincent Siveton
+ Hervé Boutemy
+ -----
+ 2011-06-12
+ -----
+
+Maven Model
+
+ This is strictly the model for Maven POM (Project Object Model), so really just plain objects. All the effective model
+ building logic from multiple POMs and building context is done in {{{../maven-model-builder/}Maven Model Builder}}.
+
+ The following are generated from this model:
+
+   * {{{./apidocs/index.html}Java sources}} with Reader and Writers for the Xpp3 XML parser
+
+   * A {{{./maven.html}Descriptor Reference}}
+
+   * An XSD {{{http://maven.apache.org/xsd/maven-v3_0_0.xsd}for Maven 1.1}} and {{{http://maven.apache.org/xsd/maven-4.0.0.xsd}for Maven 2.0}}.

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Experiments">
+    <test name="Datamining" verbose="1" preserve-order="true">
+        <classes>
+            <class name="br.uff.ic.oceano.core.util.TestDefaultDatabaseLoader"/>
+            <class name="br.uff.ic.oceano.tools.datamining.test.TestDataMiningControl"/>
+        </classes>
+    </test>
+</suite>
+

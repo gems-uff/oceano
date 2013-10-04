@@ -1,0 +1,59 @@
+@RELATION "Oceano 23/11/10 - 12:37:40"
+%
+@ATTRIBUTE project-revision {"Commons Utils-r3154","Commons Utils-r2601","Commons Utils-r3225","Commons Utils-r174","Commons Utils-r4663","Commons Utils-r3882","Commons Utils-r108","Commons Utils-r1207","Commons Utils-r2649","Commons Utils-r6594","Commons Utils-r6476","Commons Utils-r3558","Commons Utils-r3224","Commons Utils-r2600","Commons Utils-r3649","Commons Utils-r4451","Commons Utils-r3852","Commons Utils-r3551","Commons Utils-r3180","Commons Utils-r120","Commons Utils-r1208","Commons Utils-r4308","Commons Utils-r3116","Commons Utils-r4221","Commons Utils-r4515","Commons Utils-r3142","Commons Utils-r2445","Commons Utils-r6599"}
+@ATTRIBUTE rdate {Terça,Sábado,Sexta,Quinta,Segunda,Domingo,Quarta}
+@ATTRIBUTE rcommiter {kann,daniel,beto,thiagodiogo,jack,thiago,dmoutinho,marcello,jack.f.rocha}
+@ATTRIBUTE #files {1-, 2, 3-4, 5-8, 9+}
+@ATTRIBUTE "dAvg-Data Access" {-, 0, +}
+@ATTRIBUTE "dAvg-Number Of Attributes" {-, 0, +}
+@ATTRIBUTE "dAvg-Method Lines Of Code" {-, 0, +}
+@ATTRIBUTE "dAvg-Number Of Static Methods" {-, 0, +}
+@ATTRIBUTE "dAvg-Direct Class Coupling" {-, 0, +}
+@ATTRIBUTE "dAvg-Number Of Methods" {-, 0, +}
+@ATTRIBUTE "dAvg-Number Of Static Attributes" {-, 0, +}
+@ATTRIBUTE "dAvg-Class Interface Size" {-, 0, +}
+@ATTRIBUTE "dAvg-Number of Overridden Methods" {-, 0, +}
+@ATTRIBUTE "dAvg-Total Cyclomatic Complexity" {-, 0, +}
+@ATTRIBUTE "dAvg-Lines Of Code" {-, 0, +}
+@ATTRIBUTE "dAvg-Lack Of Cohesion Of Methods" {-, 0, +}
+@ATTRIBUTE dAvg-Abstractness {-, 0, +}
+@ATTRIBUTE "dAvg-Cyclomatic Complexity" {-, 0, +}
+@ATTRIBUTE "dAvg-Measure Of Functional Abstraction" {-, 0, +}
+@ATTRIBUTE "dAvg-Design Size In Classes" {-, 0, +}
+@ATTRIBUTE "dAvg-Number Of Hierarchies" {-, 0, +}
+@ATTRIBUTE "dAvg-Number Of Polymorphic Methods" {-, 0, +}
+@ATTRIBUTE "dAvg-Average Number Of Ancestors" {-, 0, +}
+@ATTRIBUTE "dAvg-Measure Of Aggregation" {-, 0, +}
+%
+% Instancias: 28
+%
+@DATA 
+%
+"Commons Utils-r108",Quinta,jack,3-4,+,+,+,-,+,+,-,+,+,+,+,+,+,+,+,+,+,+,+,+
+"Commons Utils-r120",Sexta,thiago,2,-,-,+,-,-,+,-,+,+,+,+,-,-,+,+,+,+,+,+,+
+"Commons Utils-r174",Terça,beto,2,-,-,+,-,-,+,-,+,+,+,+,+,-,+,+,+,+,+,+,+
+"Commons Utils-r1207",Segunda,thiago,2,-,-,+,-,-,+,-,+,+,+,+,+,+,+,+,+,+,+,+,+
+"Commons Utils-r1208",Segunda,thiago,2,-,-,-,-,-,-,-,-,-,-,0,-,-,-,+,+,+,+,+,+
+"Commons Utils-r2445",Terça,thiago,5-8,+,+,+,+,-,+,+,+,+,+,+,+,-,+,+,+,+,+,+,+
+"Commons Utils-r2600",Quinta,marcello,2,+,+,+,+,+,+,+,+,+,+,+,-,-,+,+,+,+,+,+,+
+"Commons Utils-r2601",Quinta,marcello,2,-,-,-,-,-,-,-,-,-,-,-,-,-,-,+,+,+,+,+,+
+"Commons Utils-r2649",Sábado,marcello,2,+,+,+,+,-,+,+,+,+,+,+,+,-,+,+,+,+,+,+,+
+"Commons Utils-r3116",Sábado,marcello,2,+,+,+,-,-,+,-,+,+,+,+,-,-,+,+,+,+,+,+,+
+"Commons Utils-r3142",Terça,jack.f.rocha,2,-,-,-,-,-,-,-,-,-,-,+,-,-,-,+,+,+,+,+,+
+"Commons Utils-r3154",Terça,marcello,2,-,-,-,-,-,-,-,-,-,-,+,-,-,-,+,+,+,+,+,+
+"Commons Utils-r3180",Quarta,thiagodiogo,2,+,0,+,-,-,+,0,+,-,+,-,-,-,0,+,+,+,+,+,+
+"Commons Utils-r3224",Sexta,thiagodiogo,2,-,-,0,-,-,-,-,-,-,0,+,-,-,0,+,+,+,+,+,+
+"Commons Utils-r3225",Sexta,thiagodiogo,2,-,-,+,-,-,-,-,-,-,+,-,-,-,+,+,+,+,+,+,+
+"Commons Utils-r3551",Quinta,jack.f.rocha,2,0,+,+,-,-,-,+,-,-,+,+,-,-,+,+,+,+,+,+,+
+"Commons Utils-r3558",Quinta,thiagodiogo,5-8,+,+,+,+,+,+,+,+,-,+,+,+,-,+,+,+,+,+,+,+
+"Commons Utils-r3649",Quarta,thiagodiogo,2,-,-,+,+,-,+,-,+,-,+,+,+,0,+,+,+,+,+,+,+
+"Commons Utils-r3852",Domingo,daniel,2,-,-,-,-,-,-,-,-,-,-,-,-,-,-,+,+,+,+,+,+
+"Commons Utils-r3882",Terça,marcello,2,0,+,+,-,-,-,+,-,-,+,+,-,-,+,+,+,+,+,+,+
+"Commons Utils-r4221",Terça,daniel,3-4,-,-,+,+,-,+,-,+,-,+,+,0,-,0,+,+,+,+,+,+
+"Commons Utils-r4308",Sexta,kann,2,+,+,+,+,+,+,+,+,+,+,+,+,-,+,+,+,+,+,+,+
+"Commons Utils-r4451",Terça,dmoutinho,2,-,-,+,-,-,+,-,+,-,+,+,+,-,+,+,+,+,+,+,+
+"Commons Utils-r4515",Sexta,daniel,2,+,0,0,-,-,-,0,-,-,0,0,-,-,0,+,+,+,+,+,+
+"Commons Utils-r4663",Sexta,daniel,2,+,0,0,+,-,+,0,-,-,0,0,+,-,0,+,+,+,+,+,+
+"Commons Utils-r6476",Quarta,kann,5-8,+,+,+,+,-,+,+,+,+,+,+,0,-,+,+,+,+,+,+,+
+"Commons Utils-r6594",Quarta,kann,2,-,-,+,-,-,-,-,-,-,-,+,-,-,-,+,+,+,+,+,+
+"Commons Utils-r6599",Quarta,kann,2,-,-,+,-,-,-,-,-,+,-,-,-,-,-,+,+,+,+,+,+

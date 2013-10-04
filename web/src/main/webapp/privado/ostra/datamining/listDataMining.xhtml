@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Mineração de dados" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Data Mining" />
+        </ui:define>
+
+        <ui:define name="corpo">
+
+            <h:form id="iformLista">
+                <fieldset>
+                    <legend>Saved Data Mining Results</legend>
+                    <rich:dataTable id="tabelaDataMiningResults"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada, coluna-centralizada"
+                                    var="dmr"
+                                    rows="50"
+                                    value="#{DataMiningBean.tableDataMiningResults}">
+
+                        <rich:column >
+                            <f:facet name="header">
+                                Details
+                            </f:facet>
+                            <h:commandLink action="#{DataMiningBean.detailDataMiningResult}" value="#{dmr.description}" />
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                Algoritmo
+                            </f:facet>
+                            #{dmr.usedAlgorithmName}
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                Min. Support
+                            </f:facet>
+                            #{dmr.minSupport}
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                Min. Metric
+                            </f:facet>
+                            #{dmr.minConfidence}
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                Mined at
+                            </f:facet>
+                            #{dmr.formatedMinedInTime}
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                Actions
+                            </f:facet>
+                            <h:commandButton action="#{DataMiningBean.deleteDataMiningResult}" value="Delete" />
+                        </rich:column>
+                    </rich:dataTable>
+                </fieldset>
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton action="#{DataMiningBean.pageNewDataBase}" value="Mine Database" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

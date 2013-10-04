@@ -1,0 +1,17 @@
+ -----
+ ${project.name}
+ -----
+ Hervé Boutemy
+ -----
+ 2012-04-29
+ -----
+
+${project.name}
+
+ ${project.description}
+
+* References
+
+ * {{{./cli.html}CLI options}},
+
+ * {{{./logging.html}logging API}}.

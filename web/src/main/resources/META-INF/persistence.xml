@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence     http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">-->
+<persistence version="2.0" 
+             xmlns="http://java.sun.com/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <!-- Teste PRODUÇÂO -->
+    <persistence-unit name="Producao">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>br.uff.ic.oceano.core.model.MetricValue</class>
+        <class>br.uff.ic.oceano.core.model.OceanoUser</class>
+        <class>br.uff.ic.oceano.core.model.SoftwareProject</class>
+        <class>br.uff.ic.oceano.core.model.ProjectUser</class>
+        <class>br.uff.ic.oceano.core.model.Repository</class>
+        <class>br.uff.ic.oceano.core.model.Revision</class>
+        <class>br.uff.ic.oceano.ostra.model.Item</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItem</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItemMetricValue</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningPattern</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningResult</class>
+        <class>br.uff.ic.oceano.ostra.model.Task</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Knowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Agent</class>
+        <class>br.uff.ic.oceano.peixeespada.model.AgentKnowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Refactoring</class>
+        <class>br.uff.ic.oceano.core.model.Metric</class>
+        <class>br.uff.ic.oceano.core.model.Branch</class>
+        <class>br.uff.ic.oceano.core.model.BranchingMetric</class>
+        <class>br.uff.ic.oceano.core.model.BranchingModel</class>
+        <class>br.uff.ic.oceano.core.model.QualityAttribute</class>
+        <class>br.uff.ic.oceano.core.model.MetricQualityAttribute</class>
+        <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+        <class>br.uff.ic.oceano.ourico.model.Estado</class>    
+        <class>br.uff.ic.oceano.ourico.model.ProjectConfiguration</class>
+        <class>br.uff.ic.oceano.ourico.model.VerificacaoPosCheckout</class>
+        <class>br.uff.ic.oceano.core.model.ConfigurationItem</class>
+        <class>br.uff.ic.oceano.ourico.model.ConfiguracaoVerificacao</class>
+        <class>br.uff.ic.oceano.ostra.model.MeasurementLog</class>
+        <class>br.uff.ic.oceano.core.model.MetricExtractor</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>      
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>      
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/oceano"/>
+            <property name="hibernate.connection.username" value="oceano"/>
+            <property name="hibernate.connection.password" value="rydAsBas2"/>
+            <property name="hibernate.archive.autodetection" value="class"/>  
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>    
+            <property name="hibernate.c3p0.min_size" value="5"/>
+            <property name="hibernate.c3p0.max_size" value="10"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/>
+        </properties>
+    </persistence-unit>
+    <!-- Teste Memória -->
+    <persistence-unit name="TesteMemoria">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>br.uff.ic.oceano.core.model.MetricValue</class>
+        <class>br.uff.ic.oceano.core.model.OceanoUser</class>
+        <class>br.uff.ic.oceano.core.model.SoftwareProject</class>
+        <class>br.uff.ic.oceano.core.model.ProjectUser</class>
+        <class>br.uff.ic.oceano.core.model.Repository</class>
+        <class>br.uff.ic.oceano.core.model.Revision</class>
+        <class>br.uff.ic.oceano.ostra.model.Item</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItem</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItemMetricValue</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningPattern</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningResult</class>
+        <class>br.uff.ic.oceano.ostra.model.Task</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Knowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Agent</class>
+        <class>br.uff.ic.oceano.peixeespada.model.AgentKnowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Refactoring</class>
+        <class>br.uff.ic.oceano.core.model.Metric</class>
+        <class>br.uff.ic.oceano.core.model.Branch</class>
+        <class>br.uff.ic.oceano.core.model.BranchingMetric</class>
+        <class>br.uff.ic.oceano.core.model.BranchingModel</class>
+        <class>br.uff.ic.oceano.core.model.QualityAttribute</class>
+        <class>br.uff.ic.oceano.core.model.MetricQualityAttribute</class>
+        <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+        <class>br.uff.ic.oceano.ourico.model.Estado</class>    
+        <class>br.uff.ic.oceano.ourico.model.ProjectConfiguration</class>
+        <class>br.uff.ic.oceano.ourico.model.VerificacaoPosCheckout</class>
+        <class>br.uff.ic.oceano.core.model.ConfigurationItem</class>
+        <class>br.uff.ic.oceano.ourico.model.ConfiguracaoVerificacao</class>
+        <class>br.uff.ic.oceano.ostra.model.MeasurementLog</class>
+        <class>br.uff.ic.oceano.core.model.MetricExtractor</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <!--PROPRIEDADES-->
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>      
+            <property name="hibernate.use_sql_comments" value="false" />
+            
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>            
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            
+            <!-- Connection pool -->
+            <property name="hibernate.c3p0.min_size" value="10"/>
+            <property name="hibernate.c3p0.max_size" value="50"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/>       
+                                              
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:oceano"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+        </properties>
+    </persistence-unit>
+    <!-- Local -->
+    <persistence-unit name="Local">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>br.uff.ic.oceano.core.model.MetricValue</class>
+        <class>br.uff.ic.oceano.core.model.OceanoUser</class>
+        <class>br.uff.ic.oceano.core.model.SoftwareProject</class>
+        <class>br.uff.ic.oceano.core.model.ProjectUser</class>
+        <class>br.uff.ic.oceano.core.model.Repository</class>
+        <class>br.uff.ic.oceano.core.model.Revision</class>
+        <class>br.uff.ic.oceano.ostra.model.Item</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItem</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItemMetricValue</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningPattern</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningResult</class>
+        <class>br.uff.ic.oceano.ostra.model.Task</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Knowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Agent</class>
+        <class>br.uff.ic.oceano.peixeespada.model.AgentKnowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Refactoring</class>
+        <class>br.uff.ic.oceano.core.model.Metric</class>
+        <class>br.uff.ic.oceano.core.model.Branch</class>
+        <class>br.uff.ic.oceano.core.model.BranchingMetric</class>
+        <class>br.uff.ic.oceano.core.model.BranchingModel</class>
+        <class>br.uff.ic.oceano.core.model.QualityAttribute</class>
+        <class>br.uff.ic.oceano.core.model.MetricQualityAttribute</class>
+        <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+        <class>br.uff.ic.oceano.ourico.model.Estado</class>    
+        <class>br.uff.ic.oceano.ourico.model.ProjectConfiguration</class>
+        <class>br.uff.ic.oceano.ourico.model.VerificacaoPosCheckout</class>
+        <class>br.uff.ic.oceano.core.model.ConfigurationItem</class>
+        <class>br.uff.ic.oceano.ourico.model.ConfiguracaoVerificacao</class>
+        <class>br.uff.ic.oceano.ostra.model.MeasurementLog</class>
+        <class>br.uff.ic.oceano.core.model.MetricExtractor</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.use_sql_comments" value="false"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.c3p0.min_size" value="10"/>
+            <property name="hibernate.c3p0.max_size" value="50"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/>      
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/oceano"/>
+            <property name="javax.persistence.jdbc.password" value="postgres"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+        </properties>
+    </persistence-unit>
+    <!-- LocalTemp -->
+    <persistence-unit name="LocalTemp" transaction-type="RESOURCE_LOCAL">    
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>br.uff.ic.oceano.core.model.SoftwareProject</class>
+        <class>br.uff.ic.oceano.core.model.MetricValue</class>
+        <class>br.uff.ic.oceano.core.model.OceanoUser</class>        
+        <class>br.uff.ic.oceano.core.model.ProjectUser</class>
+        <class>br.uff.ic.oceano.core.model.Repository</class>
+        <class>br.uff.ic.oceano.core.model.Revision</class>
+        <class>br.uff.ic.oceano.ostra.model.Item</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItem</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItemMetricValue</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningPattern</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningResult</class>
+        <class>br.uff.ic.oceano.ostra.model.Task</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Knowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Agent</class>
+        <class>br.uff.ic.oceano.peixeespada.model.AgentKnowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Refactoring</class>
+        <class>br.uff.ic.oceano.core.model.Metric</class>
+        <class>br.uff.ic.oceano.core.model.Branch</class>
+        <class>br.uff.ic.oceano.core.model.BranchingMetric</class>
+        <class>br.uff.ic.oceano.core.model.BranchingModel</class>
+        <class>br.uff.ic.oceano.core.model.QualityAttribute</class>
+        <class>br.uff.ic.oceano.core.model.MetricQualityAttribute</class>
+        <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+        <class>br.uff.ic.oceano.ourico.model.Estado</class>
+        <class>br.uff.ic.oceano.ourico.model.ProjectConfiguration</class>
+        <class>br.uff.ic.oceano.ourico.model.VerificacaoPosCheckout</class>
+        <class>br.uff.ic.oceano.core.model.ConfigurationItem</class>
+        <class>br.uff.ic.oceano.ourico.model.ConfiguracaoVerificacao</class>
+        <class>br.uff.ic.oceano.ostra.model.MeasurementLog</class>
+        <class>br.uff.ic.oceano.core.model.MetricExtractor</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes> 
+        <properties>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.use_sql_comments" value="false"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.connection.autocommit" value="false"/> 
+            <property name="hibernate.c3p0.min_size" value="10"/>
+            <property name="hibernate.c3p0.max_size" value="50"/>
+            <property name="hibernate.c3p0.timeout" value="0"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/>                 
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>      
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/oceanotemp"/>
+            <property name="javax.persistence.jdbc.password" value="postgres"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+        </properties>
+    </persistence-unit>
+    <!-- OuricoExperimento -->
+    <persistence-unit name="OuricoExperimento">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>br.uff.ic.oceano.core.model.MetricValue</class>
+        <class>br.uff.ic.oceano.core.model.OceanoUser</class>
+        <class>br.uff.ic.oceano.core.model.SoftwareProject</class>
+        <class>br.uff.ic.oceano.core.model.ProjectUser</class>
+        <class>br.uff.ic.oceano.core.model.Repository</class>
+        <class>br.uff.ic.oceano.core.model.Revision</class>
+        <class>br.uff.ic.oceano.ostra.model.Item</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItem</class>
+        <class>br.uff.ic.oceano.ostra.model.VersionedItemMetricValue</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningPattern</class>
+        <class>br.uff.ic.oceano.ostra.model.DataMiningResult</class>
+        <class>br.uff.ic.oceano.ostra.model.Task</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Knowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Agent</class>
+        <class>br.uff.ic.oceano.peixeespada.model.AgentKnowledge</class>
+        <class>br.uff.ic.oceano.peixeespada.model.Refactoring</class>
+        <class>br.uff.ic.oceano.core.model.Metric</class>
+        <class>br.uff.ic.oceano.core.model.Branch</class>
+        <class>br.uff.ic.oceano.core.model.BranchingMetric</class>
+        <class>br.uff.ic.oceano.core.model.BranchingModel</class>
+        <class>br.uff.ic.oceano.core.model.QualityAttribute</class>
+        <class>br.uff.ic.oceano.core.model.MetricQualityAttribute</class>
+        <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+        <class>br.uff.ic.oceano.ourico.model.Estado</class>
+        <class>br.uff.ic.oceano.ourico.model.ProjectConfiguration</class>
+        <class>br.uff.ic.oceano.ourico.model.VerificacaoPosCheckout</class>
+        <class>br.uff.ic.oceano.core.model.ConfigurationItem</class>
+        <class>br.uff.ic.oceano.ourico.model.ConfiguracaoVerificacao</class>
+        <class>br.uff.ic.oceano.ostra.model.MeasurementLog</class>    
+        <class>br.uff.ic.oceano.core.model.MetricExtractor</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/experimento"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="postgres"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.c3p0.min_size" value="1"/>
+            <property name="hibernate.c3p0.max_size" value="5"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblBranchesConfiguration}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblBranchesConfiguration}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="PolvoBean" />
+            <h:form id="formConfigRamos">
+                <fieldset>
+                    <!-- <legend>Dados Necessários</legend> -->
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+
+                            <h:column>
+                                #{mensagens.lblProject}:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboProjeto" value="#{PolvoBean.selectProject.selecao}" required="true">
+                                        <f:selectItems value="#{PolvoBean.selectProject.listaSelecao}" />
+                                        <a4j:support action="#{PolvoBean.mudancaProjeto}" event="onchange" reRender="tabelaRamos" ajaxSingle="true" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgProjeto" styleClass="msgerro" for="comboProjeto" />
+                            </h:column>
+
+                <br/><br/>
+
+                <h2 align="center">#{mensagens.lblBranches}</h2>
+                <rich:dataTable id="tabelaRamos"
+                                style="font-size:10px" width="100%"
+                                columnClasses="coluna-centralizada,coluna-centralizada"
+                                var="branch"
+                                rows="50"
+                                value="#{PolvoBean.tableBranch}">
+
+                    <rich:column>
+                        <f:facet name="header">
+                            #{mensagens.lblNames}
+                        </f:facet>
+                        #{branch.name}
+                    </rich:column>
+
+                    <rich:column>
+                        <f:facet name="header">
+                            #{mensagens.lblBranchingModel}
+                        </f:facet>
+                        <h:selectOneMenu id="comboEstrategiaRamificacao" value="#{branch.branchingModel.name}" required="true">
+                            <f:selectItems value="#{PolvoBean.selectBranchingModel.listaSelecao}" />
+                        </h:selectOneMenu>
+                        <rich:message id="msgEstrategiaRamificacao" styleClass="msgerro" for="comboEstrategiaRamificacao" />
+                    </rich:column>
+
+                </rich:dataTable>
+
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>#{mensagens.lblAction}</legend>
+                    <h:commandButton id="btnGravar" action="#{PolvoBean.configurarRamos}" value="#{mensagens.lblSave}" />
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

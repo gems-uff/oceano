@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Novo Usuário" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="User Manager" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="UsuarioBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <session-title>Personal Data</session-title>
+
+                            <h:column>
+                                Name:<br/>
+                                <h:inputText id="txtUserName" value="#{UsuarioBean.currentUsuario.name}" required="true" />
+                                <rich:message id="msgUserName" styleClass="msgerro" for="txtUserName" />
+                                <br/><br/>
+                            </h:column>
+
+                            <h:column>
+                                E-mail:<br/>
+                                <h:inputText id="txtUserEmail" value="#{UsuarioBean.currentUsuario.email}" required="true" />
+                                <rich:message id="msgUserEmail" styleClass="msgerro" for="txtUserEmail" />
+                                <br/><br/>
+                            </h:column>
+
+                            <session-title>Oceano Data</session-title>
+
+                            <h:column>
+                                Username:<br/>
+                                <h:inputText id="txtUserLogin" value="#{UsuarioBean.currentUsuario.login}" required="true" />
+                                <rich:message id="msgUserLogin" styleClass="msgerro" for="txtUserLogin" />
+                                <br/><br/>
+                            </h:column>
+
+                            <h:column>
+                                Password:<br/>
+                                <h:inputSecret id="txtUserSenha" value="#{UsuarioBean.currentUsuario.password}" required="true" />
+                                <rich:message id="msgUserSenha" styleClass="msgerro" for="txtUserSenha" />
+                            </h:column>
+
+                            <h:column>
+                                Password Confirmation<br/>
+                                <h:inputSecret id="txtUserConfirmacaoSenha" value="#{UsuarioBean.confirmacaoSenha}" required="true" />
+                                <rich:message id="msgProjectBranchesFolder" styleClass="msgerro" for="txtUserConfirmacaoSenha" />
+                            </h:column>
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton id="btnCriar" action="#{UsuarioBean.doSave}" value="Save" />
+                    <h:commandButton id="btnVoltar" action="#{UsuarioBean.doCancel}" value="Cancel" immediate="true" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

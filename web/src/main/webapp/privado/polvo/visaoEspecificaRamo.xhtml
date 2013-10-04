@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:ajax="https://ajax4jsf.dev.java.net/ajax" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblBranchSpecificView}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblBranchSpecificView}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="PolvoBean" />
+            <h:form id="formVisaoEspecificaRamo">
+                <fieldset>
+                    <!-- <legend>Dados Necessários</legend> -->
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <h:column>
+                                #{mensagens.lblProject}:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboProjeto" value="#{PolvoBean.selectProject.selecao}" required="true">
+                                        <f:selectItems value="#{PolvoBean.selectProject.listaSelecao}" />
+                                        <a4j:support action="#{PolvoBean.mudancaProjeto}" event="onchange" reRender="comboRamoReferencia" ajaxSingle="true" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgProjeto" styleClass="msgerro" for="comboProjeto" />
+                            </h:column>
+
+                            <h:column>
+                                #{mensagens.lblMainBranch}:<br/>
+                                <h:selectOneMenu id="comboRamoReferencia" value="#{PolvoBean.selectMainBranch.selecao}" required="true">
+                                    <f:selectItems value="#{PolvoBean.selectMainBranch.listaSelecao}" />
+                                    <a4j:support action="#{PolvoBean.mudancaRamoPrincipal}" event="onchange" reRender="comboCompararRamo" ajaxSingle="true" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgRamoReferencia" styleClass="msgerro" for="comboRamoReferencia" />
+                            </h:column>
+
+                            <h:column>
+                                #{mensagens.lblSecondaryBranch}:<br/>
+                                <h:selectOneMenu id="comboCompararRamo" value="#{PolvoBean.selectSecondaryBranch.selecao}" required="true">
+                                    <f:selectItems value="#{PolvoBean.selectSecondaryBranch.listaSelecao}" />
+                                    <a4j:support action="#{PolvoBean.mudancaRamoSecundario}" event="onchange" ajaxSingle="true" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgCompararRamo" styleClass="msgerro" for="comboCompararRamo" />
+                            </h:column>
+                            
+                            <h:column>
+                                #{mensagens.lblBranchingModel}:<br/>
+                                <h:selectOneMenu id="comboEstrategiaRamificacao" value="#{PolvoBean.selectBranchingModel.selecao}" required="true">
+                                    <f:selectItems value="#{PolvoBean.selectBranchingModel.listaSelecao}" />
+                                    <a4j:support action="#{PolvoBean.mudancaEstrategiaRamificacao}" event="onchange" ajaxSingle="true" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgEstrategiaRamificacao" styleClass="msgerro" for="comboEstrategiaRamificacao" />
+                            </h:column>
+
+
+                            <h:column>
+                                #{mensagens.lblMetrics}:<br/>
+                                <h:selectOneMenu id="comboMetrica" value="#{PolvoBean.selectBranchingMetric.selecao}" required="true">
+                                    <f:selectItems value="#{PolvoBean.selectBranchingMetric.listaSelecao}" />
+                                    <a4j:support action="#{PolvoBean.mudancaMetrica}" event="onchange" ajaxSingle="true" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgMetrica" styleClass="msgerro" for="comboMetrica" />
+                            </h:column>
+
+                            <h:column>
+                                #{mensagens.lblRevision}:<br/>
+                                <h:inputText id="txtCurrentRevision" value="#{PolvoBean.currentRevision}" required="false" />
+                                <rich:message id="msgCurrentRevision" styleClass="msgerro" for="txtCurrentRevision" />
+                                <br/><br/>
+                            </h:column>
+
+                            <br/>
+
+                        </h:panelGrid>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>#{mensagens.lblAction}</legend>
+                    <h:commandButton id="btnComparar" action="#{PolvoBean.compararRamos}" value="#{mensagens.lblCompare}" />
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

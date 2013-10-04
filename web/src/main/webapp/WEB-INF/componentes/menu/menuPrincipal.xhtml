@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:composition>
+        <h:form id="form">
+            <div id="sidebar-a">
+                <div class="cbb">
+                    <h2>Oceano</h2>
+                    <ul id="m1" class="menu">
+                        <li><h:commandLink action="#{UsuarioBean.doCadastrar}" value="Oceano User" /></li>
+                        <li><h:commandLink action="#{ConfigurationItemBean.doCadastro}" value="Configuration Item" /></li>
+                        <li><h:commandLink action="#{ProjectBean.returnListProjects}" value="Projects" /></li>
+                        <li><h:commandLink action="#{ProjectUserBean.doCadastrar}" value="Project User" /></li>
+                        <li><h:commandLink action="#{MetricBean.returnListMetrics}" value="Metrics" /></li>
+                    </ul>
+                </div>
+               <!-- <div class="cbb">
+                    <h2>Relatórios e gerências</h2>
+                    <ul id="m1" class="menu">
+                        <li><a>Emitir relatórios</a></li>
+                        <li><a>Gerência de Métricas</a></li>
+                        <li><a>Gerência de Transformações</a></li>
+                    </ul>
+                </div>-->
+                <div class="cbb">
+                    <h2>#{mensagens.titleMenuPeixeespada}</h2>
+                    <ul id="m1" class="menu">
+                        <li><h:commandLink action="#{AmbienteAgenteBean.paginaAmbiente}" value="#{mensagens.menuEnvironmentContext}" /></li>
+                        <li><h:commandLink action="#{AmbienteAgenteBean.pageRefactoring}" value="#{mensagens.menuRefactoring}" /></li>
+                        <li><h:commandLink action="#{AmbienteAgenteBean.paginaNovoAgente}" value="#{mensagens.menuCreateAgent}" /></li>
+                        <li><h:commandLink action="#{PeixeEspadaBean.pageDownloadJNPL}" value="#{mensagens.menuDownloadPeixeEpadaAgent}" /></li>
+                        <li><h:commandLink action="#{PeixeEspadaBean.pageUploadJNPL}" value="#{mensagens.menuUploadPeixeEpadaAgentModule}" /></li>
+                    </ul>
+                </div>
+                <div class="cbb">
+                    <h2>Ostra</h2>
+                    <ul id="m1" class="menu">
+                        <li><h:commandLink action="#{CreateMetricBean.detailMetric}" value="Create Metric" /></li>
+                        <li><h:commandLink action="#{MonitoringChartBean.returnListProjects}" value="Monitoring Chart" /></li>
+                        <li><h:commandLink action="#{MonitoringBean.returnListProjects}" value="Monitoring" /></li>
+                        <li><h:commandLink action="#{DataMiningBean.pageListDataMining}" value="Data Mining" /></li>
+                    </ul>
+                </div>
+                <div class="cbb">
+                    <h2>#{mensagens.titleMenuPolvo}</h2>
+                    <ul id="m1" class="menu">
+                        <li><h:commandLink action="#{PolvoBean.paginaNovaVisaoEspecificaRamo}" value="#{mensagens.menuBranchSpecificView}" /></li>
+                        <li><h:commandLink action="#{PolvoBean.paginaNovaConfigRamos}" value="#{mensagens.menuBranchesConfiguration}" /></li>
+                        <li><h:commandLink action="#{PolvoBean.paginaNovaVisaoGeralProjeto}" value="#{mensagens.menuProjectOverview}" /></li>
+                    </ul>
+                </div>
+
+                <div class="cbb">
+                    <h2>Ouriço</h2>
+                    <ul id="m1" class="menu">
+                        <li><h:commandLink action="#{OuricoBean.pagina_lista_autobranches}" value="Autobranches" /></li>
+                        <!--li><h:commandLink action="#{OuricoUserBean.doCadastrar}" value="Subscribe Ouriço User" /></li-->
+                        <li><h:commandLink action="#{OuricoConfigBean.doCadastrar}" value="Project Association" /></li>
+                        <li><h:commandLink action="#{OuricoVerificationBean.doCadastrar}" value="Verification Configuration" /></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </h:form>
+    </ui:composition>
+
+</html>

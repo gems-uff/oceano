@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+    <ui:composition>
+        <h:form>
+            <h3><center>Developper's commits</center></h3>
+
+            <rich:dataTable id="tabelaProjetos"
+                            style="font-size:10px" width="100%"
+                            columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada, coluna-centralizada"
+                            var="information"
+                            rows="50"
+                            value="#{MonitoringBean.developpersInformations}">
+                <rich:column >
+                    <f:facet name="header">
+                        Name
+                    </f:facet>
+                    #{information.developperName}
+                </rich:column>
+                <rich:column >
+                    <f:facet name="header">
+                        commits
+                    </f:facet>
+                    #{information.totalCommits}
+                </rich:column>
+            </rich:dataTable>
+            1
+            <p:barChart value="#{MonitoringBean.developpersInformations}" var="information"
+                        yfield="#{information.developperName}" style="chartStyle">
+                <p:chartSeries label="TotalCommits" value="#{information.totalCommits}"/>
+            </p:barChart>
+            2
+            <p:barChart value="#{MonitoringBean.developpersInformations}" var="information"
+                        yfield="#{information.developperName}" refreshInterval="300" styleClass="bar" style="chartStyle">
+                <p:chartSeries label="Total Commits" value="#{information.totalCommits}" style="candidatosStyle"/>
+            </p:barChart>
+            3
+            <p:panel id="primefacesPanel" header="Hello World"
+                     footer="Footer"
+                     style="position: relative; width: 500px;">
+                <h:outputText value="Primefaces is great. My first application using Primefaces"/>
+            </p:panel>
+            5
+        </h:form>
+    </ui:composition>
+
+</html>

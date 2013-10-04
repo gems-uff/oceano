@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Data Mining Details" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            Data Mining Details
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="DataMiningBean"/>
+
+            <h:form id="iformDetailDataMiningResult">
+                <br/>
+                <rich:simpleTogglePanel switchType="client" label="Data Mining information" opened="true">
+
+                    <table cellspacing="10px">
+                        <tr>
+                            <td  class="attributeName">Details:</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.description}</td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Algorithm:</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.usedAlgorithmName}</td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Description of #{DataMiningBean.currentDataMiningResult.usedAlgorithmName}:</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.usedAlgorithmDescription}</td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Minimum Support:</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.minSupport}</td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Minimum Rule Metric</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.minConfidence}</td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Mining time:</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.formatedMinedInTime}</td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Mined Rules:</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.numberOfMinedPatterns}</td>
+                        </tr>
+                    </table>
+                </rich:simpleTogglePanel>
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Arff Parameter" opened="false">
+
+                    <h:commandButton action="#{DataMiningBean.downloadARFF}" value="Download ARFF"/>
+
+                    <rich:dataTable id="tabelaArff"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=""
+                                    var="line"
+                                    rows="50"
+                                    value="#{DataMiningBean.currentDataMiningResult.arffAsStringList}">
+                        <rich:column >
+                            #{line}
+                        </rich:column>
+                    </rich:dataTable>
+                    <rich:datascroller for="tabelaArff" maxPages="30">
+                        <f:facet name="first">
+                            <h:outputText value="First"/>
+                        </f:facet>
+
+                        <f:facet name="last">
+                            <h:outputText value="Last"/>
+                        </f:facet>
+                    </rich:datascroller>
+                </rich:simpleTogglePanel>
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Data Mining Output" opened="false">
+                    <rich:dataTable id="tabelaResult"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=""
+                                    var="line"
+                                    rows="25"
+                                    value="#{DataMiningBean.currentDataMiningResult.resultAsStringList}">
+
+                        <rich:column >
+                            #{line}
+                        </rich:column>
+                    </rich:dataTable>
+                    <rich:datascroller for="tabelaResult" maxPages="30">
+                        <f:facet name="first">
+                            <h:outputText value="First"/>
+                        </f:facet>
+
+                        <f:facet name="last">
+                            <h:outputText value="Last"/>
+                        </f:facet>
+                    </rich:datascroller>
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Quality Attribute Behavior" opened="true">
+                    <ui:include src="/privado/ostra/datamining/includeBehaviorTable.xhtml"/>
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel id="panelRules" switchType="client" label="Mined Rules" opened="true">
+                    <fieldset>
+                        <legend>Filters</legend>
+                        <fieldset style="height: 100%">
+                            <legend>Size</legend>
+                            <h:panelGrid columns="2" style="border:gray;width:100%">
+                                <h:column>
+                                    <b>Precedent Limit Size: </b>
+                                    <h:selectOneMenu id="comboPrecedentSize" value="#{DataMiningBean.comboPrecedentSize.selecao}">
+                                        <f:selectItems value="#{DataMiningBean.comboPrecedentSize.listaSelecao}"/>
+                                        <a4j:support event="onchange" action="#{DataMiningBean.updateFilteredPatternList}" reRender="panelRules"/>
+                                    </h:selectOneMenu>
+                                    <rich:message id="msgComboPrecedentSize" styleClass="msgerro" for="comboPrecedentSize" />
+                                </h:column>
+                                <h:column>
+                                    <b>Consequent Limit Size: </b>
+                                    <h:selectOneMenu id="comboConsequentSize" value="#{DataMiningBean.comboConsequentSize.selecao}">
+                                        <f:selectItems value="#{DataMiningBean.comboConsequentSize.listaSelecao}"/>
+                                        <a4j:support event="onchange" action="#{DataMiningBean.updateFilteredPatternList}" reRender="panelRules"/>
+                                    </h:selectOneMenu>
+                                    <rich:message id="msgComboConsequentSize" styleClass="msgerro" for="comboConsequentSize" />
+                                    <rich:spacer height="5"/>
+                                </h:column>
+                            </h:panelGrid>
+
+                        </fieldset>
+                        <fieldset style="height: 100%">
+                            <legend>Attribute</legend>
+                            <h:panelGrid columns="3" style="border:gray;width:100%">
+                                <h:column>
+                                    <b>Attributes: </b>
+                                    <h:selectOneMenu id="comboMetric" value="#{DataMiningBean.comboUnusedAttributes.selecao}">
+                                        <f:selectItems value="#{DataMiningBean.comboUnusedAttributes.listaSelecao}"/>
+                                    </h:selectOneMenu>
+                                    <rich:message id="msg" styleClass="msgerro" for="comboMetric" />
+                                </h:column>
+                                <h:column><a4j:commandButton value="Precedent" reRender="panelRules" action="#{DataMiningBean.addPrecedentAttribute}"/></h:column>
+                                <h:column><a4j:commandButton value="Consequent" reRender="panelRules" action="#{DataMiningBean.addConsequentAttribute}"/></h:column>
+                            </h:panelGrid>
+
+                            <rich:spacer height="5"/>
+
+                            <h:panelGrid columns="2" style="border:gray;width:100%">
+                                <h:column>
+                                    <b>Precedent attributes:</b>
+                                    <a4j:repeat value="#{DataMiningBean.precedentAttributes}" var="att">
+                                        <li>#{att}</li>
+                                    </a4j:repeat>
+                                </h:column>
+                                <h:column>
+                                    <b>Consequent attributes:</b>
+                                    <a4j:repeat value="#{DataMiningBean.consequentAttributes}" var="att">
+                                        <li>#{att}</li>
+                                    </a4j:repeat>
+                                </h:column>
+                            </h:panelGrid>
+                        </fieldset>
+
+                        <h:panelGrid columns="2" style="border:gray;width:100%">
+                            <h:column>Showing with actual filter: <b>#{DataMiningBean.filteredMinedPatternsSize} rules.</b></h:column>
+                            <h:column><a4j:commandButton value="Clean Filters" reRender="panelRules" action="#{DataMiningBean.cleanFilters}"/></h:column>
+                        </h:panelGrid>
+                    </fieldset>
+
+                    <rich:spacer height="10"></rich:spacer>
+
+                    <rich:dataTable id="tabelaPatterns"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=""
+                                    var="rule"
+                                    rows="25"
+                                    value="#{DataMiningBean.filteredMinedPatterns}">
+                        <rich:column sortBy="#{rule.pattern.precedent}">
+                            <f:facet name="header">
+                                Precedent
+                            </f:facet>
+                            #{rule.precedent}                            
+                        </rich:column>
+                        <rich:column sortBy="#{rule.pattern.consequent}">
+                            <f:facet name="header">
+                                Consequent
+                            </f:facet>
+                            #{rule.consequent}                            
+                        </rich:column>
+
+                        <rich:column sortBy="#{rule.support}">
+                            <f:facet name="header"> Sup. </f:facet>
+                            #{rule.supportAsString} (#{rule.count})
+                            <rich:toolTip>Support</rich:toolTip>
+                        </rich:column>
+
+                        <rich:column sortBy="#{rule.confidence}">
+                            <f:facet name="header"> Conf. </f:facet>
+                            #{rule.confidenceAsString}
+                            <rich:toolTip>Confidence</rich:toolTip>
+                        </rich:column>
+
+                        <rich:column sortBy="#{rule.lift}">
+                            <f:facet name="header"> Lift </f:facet>
+                            #{rule.liftAsString}
+                            <rich:toolTip>Lift</rich:toolTip>
+                        </rich:column>
+
+<!--                        <rich:column sortBy="#{rule.conviction}">
+                            <f:facet name="header"> Conv. </f:facet>
+                            #{rule.convictionAsString}
+                            <rich:toolTip>Conviction</rich:toolTip>
+                        </rich:column>
+
+                        <rich:column sortBy="#{rule.leverage}">
+                            <f:facet name="header"> Lev. </f:facet>
+                            #{rule.leverageAsString}
+                            <rich:toolTip>Leverage</rich:toolTip>
+                        </rich:column>
+
+                        <rich:column sortBy="#{rule.size}">
+                            <f:facet name="header">
+                                Size
+                            </f:facet>
+                            #{rule.size}
+                            <rich:toolTip>
+                                <li><b>Rule Size =</b> #{rule.size}</li>
+                                <li><b>Precedent Size =</b> #{rule.precedentSize}</li>
+                                <li><b>Consequent Size =</b> #{rule.consequentSize}</li>
+                            </rich:toolTip>
+                        </rich:column>-->
+
+                    </rich:dataTable>
+                    <rich:datascroller for="tabelaPatterns" maxPages="30">
+                        <f:facet name="first">
+                            <h:outputText value="First"/>
+                        </f:facet>
+
+                        <f:facet name="last">
+                            <h:outputText value="Last"/>
+                        </f:facet>
+                    </rich:datascroller>
+                </rich:simpleTogglePanel>
+
+                <rich:column rendered="#{DataMiningBean.currentDataMiningResult.id eq null}" style="width: 100%">
+                    <fieldset>
+                        <legend>Actions</legend>
+                        <h:commandButton action="#{DataMiningBean.saveDataMiningResult}" value="Save Data Mining Result"/>
+                    </fieldset>
+                </rich:column>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

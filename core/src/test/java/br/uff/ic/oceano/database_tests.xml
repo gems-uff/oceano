@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DATABASE TESTS" preserve-order="true">
+    <!--Tests which require loade database -->
+<!--    <test name="Load database" verbose="1" preserve-order="true">
+        <classes>
+            <class name="br.uff.ic.oceano.core.util.DefaultDatabaseLoaderNGTest"/>
+        </classes>
+    </test>-->
+    <test name="Tests" verbose="1" preserve-order="true">
+        <classes preserve-order="true">
+            <class name="br.uff.ic.oceano.core.util.DefaultDatabaseLoaderNGTest"/>
+        </classes>
+        
+        <packages preserve-order="true">
+            <package name="br.uff.ic.oceano.core.service"/>
+            <package name="br.uff.ic.oceano.core.service.vcs"/>        
+            <package name="br.uff.ic.oceano.core.dao.controle"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.service"/>            
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.derived"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.java"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.cpp"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics"/>
+        </packages>
+    </test>
+</suite>
+

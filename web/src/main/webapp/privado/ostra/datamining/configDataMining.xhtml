@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            Data Mining configuration
+        </ui:define>
+        <ui:define name="nomePagina">
+            Data Mining configuration
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="DataMiningBean" />
+            <rich:simpleTogglePanel switchType="client" label="Database Details" opened="true">
+                <b>Creation time:</b> #{DataMiningBean.dataBaseSnapshot.snapshotTime}<br/>
+                <b>Number of Attributes:</b> #{DataMiningBean.dataBaseSnapshot.attributesSize}<br/>
+                <b>Number of Instances:</b> #{DataMiningBean.dataBaseSnapshot.instancesSize}<br/>
+
+                <br/><br/>
+
+                <rich:simpleTogglePanel switchType="client" label="Attributes" opened="false">
+                    <rich:dataTable id="tableAttributes"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=""
+                                    var="attribute"
+                                    rows="50"
+                                    value="#{DataMiningBean.dataBaseSnapshot.attributes}">
+                        <rich:column>
+                            #{attribute}
+                        </rich:column>
+                    </rich:dataTable>
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Instances" opened="false">
+                    <rich:dataTable id="tableInstances"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses=""
+                                    var="instance"
+                                    rows="50"
+                                    value="#{DataMiningBean.dataBaseSnapshot.instances}">
+                        <rich:column>
+                            #{instance}
+                        </rich:column>
+                    </rich:dataTable>
+                </rich:simpleTogglePanel>
+
+                <br/><rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Show .ARFF content" opened="false">
+                    #{DataMiningBean.dataBaseAsArff}
+                </rich:simpleTogglePanel>
+
+                <br/><rich:spacer height="10"></rich:spacer>
+
+                <h:commandButton action="#{DataMiningBean.downloadARFF}" value="Save .ARFF file"/>
+            </rich:simpleTogglePanel>
+
+            <rich:spacer height="10"></rich:spacer>
+
+
+            <h:form id="iformDetailDataMiningResult">
+                <fieldset>
+                    <legend>Data Mining Configuration</legend>
+                    <table cellspacing="10px">
+                        <tr>
+                            <td  class="attributeName">Minimun Suport</td>
+                            <td><h:inputText id="txtMinSup" value="#{DataMiningBean.miningControl.minSup}" required="true" size="5"/></td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Maximum Suport</td>
+                            <td><h:inputText id="txtMaxSup" value="#{DataMiningBean.miningControl.maxSup}" required="true" size="5"/></td>
+                        </tr>
+
+                        <tr>
+                            <td  class="attributeName">Select Association Rules Metric</td>
+                            <td>
+                                <h:selectOneMenu id="comboMetricType" value="#{DataMiningBean.comboAssociationRuleMetric.selecao}">
+                                    <f:selectItems value="#{DataMiningBean.comboAssociationRuleMetric.listaSelecao}"/>
+                                    <a4j:support event="onchange" action="#{DataMiningBean.updateMetricType}"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Minimum Association Rule Metric</td>
+                            <td><h:inputText id="txtMinMetric" value="#{DataMiningBean.miningControl.minMetric}" required="true" size="5"/></td>
+                        </tr>
+                        <tr>
+                            <td  class="attributeName">Number of Rules</td>
+                            <td><h:inputText id="txtMaxRules" value="#{DataMiningBean.miningControl.maxRules}" required="true" size="5"/></td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+
+                <br/><br/>
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton action="#{DataMiningBean.mineAssociationRules}" value="Extract Association Rules" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

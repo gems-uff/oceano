@@ -1,0 +1,279 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rdf:RDF xml:lang="en" xmlns="http://usefulinc.com/ns/doap#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:asfext="http://projects.apache.org/ns/asfext#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <Project rdf:about="http://Maven.rdf.apache.org/">
+    <created>2001</created>
+    <license rdf:resource="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+    <name>Apache Maven</name>
+    <homepage rdf:resource="http://maven.apache.org/"/>
+    <asfext:pmc rdf:resource="http://maven.apache.org/"/>
+    <shortdesc>Maven is a project development management and comprehension tool.</shortdesc>
+    <description>Maven is a project development management and comprehension tool. Based on the concept of a project object model: builds, dependency management, documentation creation, site publication, and distribution publication are all controlled from the declarative file. Maven can be extended by plugins to utilise a number of other development tools for reporting or the build process.</description>
+    <bug-database rdf:resource="http://jira.codehaus.org/browse/MNG"/>
+    <mailing-list rdf:resource="http://maven.apache.org/mail-lists.html"/>
+    <download-page rdf:resource="http://maven.apache.org/download.html"/>
+    <programming-language>Java</programming-language>
+    <category rdf:resource="http://projects.apache.org/category/build-management"/>
+    <release>
+      <Version>
+        <name>Latest stable release</name>
+        <created>2012-01-20</created>
+        <revision>3.0.4</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.4-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.4-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.4-src.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.4-src.tar.gz</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 3.0.3</name>
+        <created>2011-03-03</created>
+        <revision>3.0.3</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.3-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.3-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.3-src.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.3-src.tar.gz</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 3.0.2</name>
+        <created>2011-01-12</created>
+        <revision>3.0.2</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.2-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.2-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.2-src.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.2-src.tar.gz</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 3.0.1</name>
+        <created>2010-11-23</created>
+        <revision>3.0.1</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.1-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.1-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.1-src.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0.1-src.tar.gz</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 3.0</name>
+        <created>2010-10-04</created>
+        <revision>3.0</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-3.0-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0-src.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/source/apache-maven-3.0-src.tar.gz</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.2.1</name>
+        <created>2009-08-06</created>
+        <revision>2.2.1</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.2.0</name>
+        <created>2009-07-01</created>
+        <revision>2.2.0</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.0-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.0-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.0-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.1.0</name>
+        <created>2009-03-18</created>
+        <revision>2.1.0</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.1.0-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.1.0-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.1.0-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.11</name>
+        <created>2010-02-26</created>
+        <revision>2.0.11</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.11-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.11-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.11-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.10</name>
+        <created>2009-02-18</created>
+        <revision>2.0.10</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.10-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.10-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.10-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.9</name>
+        <created>2008-04-10</created>
+        <revision>2.0.9</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.9-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.9-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.9-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.8</name>
+        <created>2007-11-27</created>
+        <revision>2.0.8</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.8-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.8-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.8-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.7</name>
+        <created>2007-06-21</created>
+        <revision>2.0.7</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.7-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.7-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.7-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.6</name>
+        <created>2007-04-01</created>
+        <revision>2.0.6</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.6-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.6-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.6-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <release>
+      <Version>
+        <name>Apache Maven 2.0.5</name>
+        <created>2007-02-14</created>
+        <revision>2.0.5</revision>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.5-bin.zip</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.5-bin.tar.gz</file-release>
+        <file-release>http://archive.apache.org/dist/maven/binaries/maven-2.0.5-bin.tar.bz2</file-release>
+      </Version>
+    </release>
+    <repository>
+      <SVNRepository>
+        <location rdf:resource="http://svn.apache.org/repos/asf/maven/maven-3/trunk"/>
+        <browse rdf:resource="http://svn.apache.org/viewvc/maven/maven-3/trunk"/>
+      </SVNRepository>
+    </repository>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Jason van Zyl</foaf:name>
+        <foaf:mbox rdf:resource="mailto:jason@sonatype.com"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Brett Porter</foaf:name>
+        <foaf:mbox rdf:resource="mailto:brett@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Emmanuel Venisse</foaf:name>
+        <foaf:mbox rdf:resource="mailto:evenisse@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Kenney Westerhof</foaf:name>
+        <foaf:mbox rdf:resource="mailto:kenney@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Stephane Nicoll</foaf:name>
+        <foaf:mbox rdf:resource="mailto:snicoll@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Vincent Massol</foaf:name>
+        <foaf:mbox rdf:resource="mailto:vmassol@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Fabrizio Giustina</foaf:name>
+        <foaf:mbox rdf:resource="mailto:fgiust@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Edwin Punzalan</foaf:name>
+        <foaf:mbox rdf:resource="mailto:epunzalan@mergere.com"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Mike Perham</foaf:name>
+        <foaf:mbox rdf:resource="mailto:mperham@gmail.com"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>John Casey</foaf:name>
+        <foaf:mbox rdf:resource="mailto:jdcasey@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Trygve Laugstol</foaf:name>
+        <foaf:mbox rdf:resource="mailto:trygvis@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Vincent Siveton</foaf:name>
+        <foaf:mbox rdf:resource="mailto:vsiveton@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Carlos Sanchez</foaf:name>
+        <foaf:mbox rdf:resource="mailto:carlos@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Dennis Lundberg</foaf:name>
+        <foaf:mbox rdf:resource="mailto:dennisl@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+  </Project>
+</rdf:RDF>

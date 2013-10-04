@@ -1,0 +1,52 @@
+
+echo um repositorio deve existir ex. svnadmin create e:/Desenvolvimento/svn_repository/experimento/
+
+echo <INCLUIR>
+echo Projetos utilizados para o experimento
+
+echo BCEL
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/bcel/trunk -m "import to experiments"
+svn export http://svn.apache.org/repos/asf/jakarta/bcel/trunk/ C:\Desenvolvimento\svn_repository\bcel --force --depth "infinity"
+svn import C:\Desenvolvimento\svn_repository\bcel file:///c:/Desenvolvimento/svn_repository/experimento/bcel/trunk -m "import to experiments"
+
+echo IDUFF
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/iduff/trunk -m "import to experiments"
+svn export http://svn.desenvolvimento.uff.br/uff/proac/academico-graduacao/iduff-academico/ C:\Desenvolvimento\svn_repository\iduff --force --depth "infinity"
+svn import D:\projeto-peixe-espada\IDUFF file:///c:/Desenvolvimento/svn_repository/experimento/iduff/trunk -m "import to experiments"
+
+echo Oceano-Core
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/oceano-core/trunk -m "import to experiments"
+svn export https://gems.ic.uff.br/svn/oceano/oceano-core/trunk/ C:\Desenvolvimento\svn_repository\oceano-core --force --depth "infinity"
+svn import C:\Desenvolvimento\svn_repository\oceano-core file:///c:/Desenvolvimento/svn_repository/experimento/oceano-core/trunk -m "import to experiments"
+
+echo Peixe-Espada
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/peixe-espada/trunk -m "import to experiments"
+svn export https://gems.ic.uff.br/svn/oceano/peixeespada/peixeespadacliente/trunk/ C:\Desenvolvimento\svn_repository\peixe-espada --force --depth "infinity"
+svn import C:\Desenvolvimento\svn_repository\peixe-espada file:///c:/Desenvolvimento/svn_repository/experimento/peixe-espada/trunk -m "import to experiments"
+
+
+echo <EXCLUIR>
+echo excluir para facilitar os testes
+
+echo BCEL
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/bcel/trunk/docs -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/bcel/trunk/src/examples -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/bcel/trunk/src/test -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/bcel/trunk/src/site -m "removing to experiments"
+
+echo IDUFF
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/iduff/trunk/docs -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/iduff/trunk/src/test -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/iduff/trunk/src/site -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/iduff/trunk/src/main/webapp -m "removing to experiments"
+
+echo Oceano-Core
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/oceano-core/trunk/docs -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/oceano-core/trunk/src/test -m "removing to experiments"
+
+echo peixe-espada
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/peixe-espada/trunk/doc -m "removing to experiments"
+svn delete file:///c:/Desenvolvimento/svn_repository/experimento/peixe-espada/trunk/src/test -m "removing to experiments"
+
+echo FIM
+pause

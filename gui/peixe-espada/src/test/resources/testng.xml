@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SUITE DE TESTE">
+    <test name="Testes de carga" verbose="1">
+
+<!--        <classes>
+            <class name="TesteJPA"/>
+        </classes>-->
+
+        <classes>
+            <class name="br.uff.ic.gems.peixeespadacliente.refactoring.TesteRefactoring"/>
+        <!--
+            NÃO EXECUTARÁ TESTES
+            <class name="br.uff.ic.gems.peixeespadacliente.BrincadeiraRefactorit"/>
+            <class name="br.uff.ic.gems.peixeespadacliente.TesteBadSmeels"/>
+            <class name="br.uff.ic.gems.peixeespadacliente.TesteRefactoring"/>
+            <class name="br.uff.ic.gems.peixeespadacliente.TesteMetricas"/>
+        -->
+            
+        </classes>
+
+    </test>
+</suite>
+
+<!-- TUTORIAL MUITO BOM DE TESTNG:
+    http://www.ibm.com/developerworks/java/library/j-testng/
+
+    http://testng.org/doc/documentation-main.html
+
+    http://testng.org/dtd/
+
+    http://www.ibm.com/developerworks/java/library/j-testng/
+-->

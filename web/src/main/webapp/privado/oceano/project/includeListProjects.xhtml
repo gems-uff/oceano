@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich" >
+
+    <ui:composition>
+        <h2 align="center">Projects</h2>
+        <rich:dataTable id="tabelaProjetos"
+                        style="font-size:10px" width="100%"
+                        columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada, coluna-centralizada"
+                        var="project"
+                        value="#{bean.tableProject}">
+
+            <rich:column >
+                <f:facet name="header">
+                    Name
+                </f:facet>
+                <h:commandLink action="#{bean.detailProject}" value="#{project.configurationItem.name}" />
+
+            </rich:column>
+
+            <rich:column>
+                <f:facet name="header">
+                    Maven project
+                </f:facet>
+                #{project.mavenProject}
+            </rich:column>
+
+            <rich:column>
+                <f:facet name="header">
+                    Repository Url
+                </f:facet>
+                #{project.repositoryUrl}
+            </rich:column>
+
+            <rich:column>
+                <f:facet name="header">
+                    Repository
+                </f:facet>
+                #{project.configurationItem.repository.name}
+            </rich:column>
+
+        </rich:dataTable>
+
+
+    </ui:composition>
+
+</html>

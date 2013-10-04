@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Project Details" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            #{MonitoringChartBean.currentProject.configurationItem.name}
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="iformDetailProject">
+                <a4j:keepAlive beanName="MonitoringChartBean"/>
+                <p:resources/>
+
+                <ui:include src="/privado/oceano/project/includeDetailProjectBasicInformations.xhtml">
+                    <ui:param name="bean" value="#{MonitoringChartBean}"/>
+                </ui:include>
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Project Charts" opened="true">
+                         <script type="text/javascript">
+                             google.load('visualization', '1', {packages: ['gauge']});
+                         </script>
+                         <script type="text/javascript">
+                             function drawVisualization() {
+                               // Create and populate the data table.
+                               var data = new google.visualization.DataTable();
+                               data.addColumn('string', 'Developer');
+                               data.addColumn('number', 'Value');
+                               data.addRows(3);
+                               data.setValue(0, 0, 'Integrity %');
+                               data.setValue(0, 1, #{MonitoringChartBean.currentProjectIntegrity});
+
+                               // Create and draw the visualization.
+                               new google.visualization.Gauge(document.getElementById('visualization')).
+                                   draw(data);
+                             }
+
+
+                             google.setOnLoadCallback(drawVisualization);
+                         </script>
+                         <div id="visualization" style="width: 300px; height: 150px;"></div>
+                </rich:simpleTogglePanel>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Metric Charts" opened="true">
+                    <h:panelGrid id="panelMetricChart" columns="2">
+                        <h:column>
+                            <b>Select metric </b>
+                            <h:selectOneMenu id="comboMetric" value="#{MonitoringChartBean.projectExtractedMetricNames.selecao}" required="true">
+                                <f:selectItems value="#{MonitoringChartBean.projectExtractedMetricNames.listaSelecao}"/>
+                                <a4j:support event="onchange" action="#{MonitoringChartBean.updateMetricChart}" reRender="iformDetailProject"/>
+                            </h:selectOneMenu>
+
+                        </h:column>
+
+                        <rich:spacer height="10"></rich:spacer>
+
+                        <h:column rendered="#{MonitoringChartBean.showChart}" id="metricCharts">
+                            <!--Absolute Chart-->
+                            <fieldset><legend>Absolute Value</legend>
+                                This chart show the absolute value of each commit that created the target revision.
+                                Note that, for non project metrics, the values in this chart are only for the changed files, but not for the whole project.
+
+                                <img alt="Gerência de Configuração Contínua"   src="#{facesContext.externalContext.request.contextPath}#{MonitoringChartBean.chartValue.chartPath}" ismap="true" usemap="#imgMap" />
+                                <h:outputText id="outMap" escape="false" value="#{MonitoringChartBean.chartValue.tag}"/>
+                            </fieldset>
+
+                            <!--Average Chart-->
+                            <h:column rendered="#{!MonitoringChartBean.chartValue.projectMetric}" id="idAverageChart">
+                                <fieldset><legend>Average Value</legend>
+                                    <img alt="Gerência de Configuração"   src="#{facesContext.externalContext.request.contextPath}#{MonitoringChartBean.chartValue.averageChart}" ismap="true" usemap="#averageimgMap" />
+                                    <h:outputText id="averageChartOutMap" escape="false" value="#{MonitoringChartBean.chartValue.averageTag}"/>
+                                </fieldset>
+                            </h:column>
+
+                            <!--Delta Chart-->
+                            <fieldset><legend>Delta</legend>
+                                <img alt="Gerência de Configuração"   src="#{facesContext.externalContext.request.contextPath}#{MonitoringChartBean.chartValue.deltaChart}" ismap="true" usemap="#deltaimgMap" />
+                                <h:outputText id="deltaChartOutMap" escape="false" value="#{MonitoringChartBean.chartValue.deltaTag}"/>
+                            </fieldset>
+
+                            <!--Histogram Chart-->
+                            <fieldset><legend>Histogram Chart</legend>
+                                <h:panelGrid columns="2" id="panelMetricHistogram">
+                                    <h:column>
+                                        <fieldset ><legend>Number Of Sets</legend>
+                                            <h:inputText value="#{MonitoringChartBean.histogramSets}" />
+                                            <h:commandButton value="Update" action="#{MonitoringChartBean.updateNumberOfSets}">
+                                                <a4j:support event="onclick" reRender="panelMetricHistogram"/>
+                                            </h:commandButton>
+                                        </fieldset>
+
+                                        <fieldset><legend>Set Margins</legend>
+                                            <ui:repeat value="#{MonitoringChartBean.histogramValues}" var="loc">
+                                                <h:inputText value="#{loc.value}" id="inputtext">
+                                                    <a4j:support event="onkeyup" reRender="inputtext"/>
+                                                </h:inputText>
+                                            </ui:repeat>
+                                            <h:commandButton value="Update" action="#{MonitoringChartBean.updateHistogramChart}" style="width:100%">
+                                                <a4j:support event="onclick" reRender="panelMetricHistogram"/>
+                                            </h:commandButton>
+                                        </fieldset>
+                                    </h:column>
+                                    <h:column  id="algumnome" rendered="#{MonitoringChartBean.showHistogram}">
+                                        <img alt="Histograma Configuração Contínua"   src="#{facesContext.externalContext.request.contextPath}#{MonitoringChartBean.histogramValue.chartPath}" ismap="true" usemap="#imgHistogramMap" />
+                                        <h:outputText id="outHistogramMap" escape="false" value="#{MonitoringChartBean.histogramValue.tag}"/>
+                                    </h:column>
+                                </h:panelGrid>
+                            </fieldset>
+                        </h:column>
+                    </h:panelGrid>
+                </rich:simpleTogglePanel>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

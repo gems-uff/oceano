@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Nova tarefa" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Cadastro de Tarefas" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="OstraBean" />
+
+                <fieldset>
+                    <session-title>Tipo de Tarefa</session-title>
+                    <div style="margin:10px">
+                        <h:panelGrid id="panelNewtask" columns="2" cellpadding="5px">
+
+                            <h:column>
+                                Tipo:
+                            </h:column>
+
+                            <h:column>
+                                Medição
+                                <!--
+                                <h:selectOneMenu id="comboType" value="#{OstraBean.selectTaskType.selecao}" required="true">
+                                    <f:selectItems value="#{OstraBean.selectTaskType.listaSelecao}" />
+                                    <a4j:support action="#{OstraBean.updateTaskType}" event="onchange" reRender="panelNewtask" ajaxSingle="true"/>
+                                </h:selectOneMenu>
+                                <rich:message id="msgConfig" styleClass="msgerro" for="comboConfig" />
+                                -->
+                            </h:column>
+                            <!--rendered="#{OstraBean.showSelectProject}"-->
+                            <h:column  >
+                                Projeto:
+                            </h:column>
+                            <!--rendered="#{OstraBean.showSelectProject}"--> 
+                            <h:column >
+                                <h:selectOneMenu id="comboProject" value="#{OstraBean.selectProject.selecao}" required="true">
+                                    <f:selectItems value="#{OstraBean.selectProject.listaSelecao}" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgProject" styleClass="msgerro" for="comboProject" />
+                            </h:column>
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Ações</legend>
+                    <h:commandButton id="btnCriar" action="#{OstraBean.saveNewTask}" value="Criar" />
+                    <h:commandButton id="btnVoltar" action="#{OstraBean.returnListTasks}" value="Voltar" immediate="true"/>
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

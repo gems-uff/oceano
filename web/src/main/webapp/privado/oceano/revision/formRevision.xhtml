@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Gerar Configuração" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="Gerar Configuração" />
+        </ui:define>
+
+        <ui:define name="corpo">
+             <a4j:keepAlive beanName="ConfiguracaoBean" />
+            <h:form>
+                <fieldset>
+                    <legend>Dados Necessários</legend>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="2">
+                            URL Subversion:
+                            <h:column>
+                                <h:inputText id="txtURL" value="#{ConfiguracaoBean.configuracaoCorrente.url}" required="true" />
+                                <h:message id="msgURL" styleClass="msgerro" for="txtURL" />
+                            </h:column>
+                            Login:
+                            <h:inputText id="txtLogin" value="#{ConfiguracaoBean.configuracaoCorrente.login}"  />
+                            Senha:
+                            <h:inputSecret id="txtSenha" value="#{ConfiguracaoBean.configuracaoCorrente.senha}" />
+                            Diretório Destino:
+                            <h:column>
+                                <h:inputText id="txtDirDestino" value="#{ConfiguracaoBean.configuracaoCorrente.caminhoLocal}" required="true" />
+                                <h:message id="msgDirDestino" styleClass="msgerro" for="txtDirDestino" />
+                            </h:column>
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Ações</legend>
+                    <h:commandButton id="btnCheckout" action="#{ConfiguracaoBean.doCheckout}" value="Checkout" disabled="true"/>
+                    <h:commandButton id="btnSalvarConfig" action="#{ConfiguracaoBean.salvarConfiguracao}" value="Salvar acesso à configuração" />
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

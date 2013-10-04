@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Relação do usuário com Projeto Ouriço" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Cadastro de Usuários Ouriço" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="OuricoVerificationBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <session-title>Maven</session-title>
+                            <h:column>
+                                Settings.xml Path:<br/>
+                                <h:inputText id="txtSettings" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.mvnSettings}" required="true"/>
+                                <rich:message id="msgSettings" styleClass="msgerro" for="txtSettings" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Maven repository Path:<br/>
+                                <h:inputText id="txtRepository" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.mvnRepository}" required="true"/>
+                                <rich:message id="msgRepository" styleClass="msgerro" for="txtRepository" />
+                                <br/><br/>
+                            </h:column>
+                            <br/><br/>
+                            <session-title>Email</session-title>
+                            <h:column>
+                                Email:<br/>
+                                <h:inputText id="txtLoginEmail" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.email}" required="true"/>
+                                <rich:message id="msgLogin" styleClass="msgerro" for="txtLoginEmail" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Senha:<br/>
+                                <h:inputSecret id="txtSenhaEmail" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.senhaEmail}" required="true"/>
+                                <rich:message id="msgSenha" styleClass="msgerro" for="txtSenhaEmail" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Confirmação de Senha:<br/>
+                                <h:inputSecret id="txtConfirmacaoSenhaEmail" value="#{OuricoVerificationBean.confirmacaoSenhaEmail}" required="true"/>
+                                <rich:message id="msgConfirmacaoSenha" styleClass="msgerro" for="txtConfirmacaoSenhaEmail" />
+                                <br/><br/>
+                            </h:column>
+
+                            <session-title>Server</session-title>
+                            <h:column>
+                                Workspace:<br/>
+                                <h:inputText id="txtWorkspce" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.workspacePath}" required="true"/>
+                                <rich:message id="msgWorkspace" styleClass="msgerro" for="txtWorkspce" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Autobranch Directory:<br/>
+                                <h:inputText id="txtAutobranchDirectory" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.workspaceAutobranchDir}" required="true"/>
+                                <rich:message id="msgAutobranchDirectory" styleClass="msgerro" for="txtAutobranchDirectory" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Protected Directory:<br/>
+                                <h:inputText id="txtProtectedDirectory" value="#{OuricoVerificationBean.currentConfiguracaoVerificacao.workspaceProtectedDir}" required="true"/>
+                                <rich:message id="msgProtectedDirectory" styleClass="msgerro" for="txtProtectedDirectory" />
+                                <br/><br/>
+                            </h:column>
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton id="btnSalva" action="#{OuricoVerificationBean.doSave}" value="Save" />
+                    <h:commandButton id="btnCancel" action="#{OuricoVerificationBean.doCancel}" value="Cancel" immediate="true"/>
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

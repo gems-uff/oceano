@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition>
+        <rich:simpleTogglePanel switchType="client" label="Project Identification" opened="true">
+            <table cellspacing="10px">
+                <tr>
+                    <td  class="attributeName">Name</td>
+                    <td>#{bean.currentProject.configurationItem.name}</td>
+                </tr>
+                <tr>
+                    <td  class="attributeName">Maven Project</td>
+                    <td>#{bean.currentProject.mavenProject}</td>
+                </tr>
+                <tr>
+                    <td  class="attributeName">Repositório</td>
+                    <td>#{bean.currentProject.repositoryUrl}</td>
+                </tr>
+                <tr>
+                    <td class="attributeName">Control Version System</td>
+                    <td>#{bean.currentProject.configurationItem.repository.name}</td>
+                </tr>
+                <tr>
+                    <td class="attributeName">Revisions Measured</td>
+                    <td>#{bean.currentProject.numberOfRevisionsMeasured}</td>
+                </tr>
+                <tr>
+                    <td class="attributeName">Revisions that don't compile</td>
+                    <td>#{bean.uncompiledRevisionsFromCurrentProject}</td>
+                </tr>
+            </table>
+        </rich:simpleTogglePanel>
+
+        <rich:spacer height="10"></rich:spacer>
+
+        <rich:simpleTogglePanel switchType="client" label="Revisions" opened="false">
+
+            <rich:datascroller id="scrTopTableRevisions" for="tableRevisions" align="center"/>
+            <rich:dataTable id="tableRevisions"
+                            style="font-size:10px" width="100%"
+                            columnClasses=""
+                            var="revision"
+                            rows="25"
+                            value="#{bean.currentProject.revisionsAsList}">
+                <rich:column sortBy="#{revision.number}">
+                    <f:facet name="header" >
+                        Revision Number
+                    </f:facet>
+                    <b>#{revision.number}</b>
+                    <rich:toolTip>
+                        #{revision.message}
+                    </rich:toolTip>
+                </rich:column>
+                <rich:column sortBy="#{revision.commiter}">
+                    <f:facet name="header">
+                        Commiter
+                    </f:facet>
+                    #{revision.commiter}
+                    <rich:toolTip>
+                        #{revision.message}
+                    </rich:toolTip>
+                </rich:column>
+                <rich:column sortBy="#{revision.formattedCommitDate}">
+                    <f:facet name="header">
+                        Commit Date
+                    </f:facet>
+                    #{revision.formattedCommitDate}
+                    <rich:toolTip>
+                        #{revision.message}
+                    </rich:toolTip>
+                </rich:column>
+                <rich:column sortBy="#{revision.cannotCompile}">
+                    <f:facet name="header">
+                        Compile
+                    </f:facet>
+                    #{!revision.cannotCompile}
+                    <rich:toolTip>
+                        #{revision.message}
+                    </rich:toolTip>
+                </rich:column>
+                <rich:column sortBy="#{revision.numberOfComittedFiles}">
+                    <f:facet name="header">
+                        Measured files
+                    </f:facet>
+                    #{revision.numberOfComittedFiles}
+                    <rich:modalPanel id="panelFiles" width="720" height="400">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Showing changed files of this revision" id="titleModal"></h:outputText>
+                            </h:panelGroup>
+                        </f:facet>
+                        <a href="#" onclick="#{rich:component('panelFiles')}.hide()">Hide this panel</a>
+                        <rich:extendedDataTable id="tooltipFilesTable" var="vi" value="#{revision.changedFilesAsList}" style="font-size:10px;text-align: left" height="300px" width="700px" selectionMode="none">
+                            <f:facet name="header">
+                                Changed Files
+                            </f:facet>
+                            <rich:column width="100%">
+                                #{vi.item.path}
+                            </rich:column>
+                        </rich:extendedDataTable>
+                    </rich:modalPanel>
+                    <h:outputLink value="#" id="linkPanelFiles">
+                        <img alt="search"  src="#{facesContext.externalContext.request.contextPath}/recurso/img/search.png" id="search"/>
+                        <rich:componentControl for="panelFiles" attachTo="linkPanelFiles" operation="show" event="onclick"/>
+                    </h:outputLink>
+                </rich:column>
+            </rich:dataTable>
+            <rich:datascroller id="scrTableRevisions" for="tableRevisions" align="center"/>
+        </rich:simpleTogglePanel>
+    </ui:composition>
+
+</html>

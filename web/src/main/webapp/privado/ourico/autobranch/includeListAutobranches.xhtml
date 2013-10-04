@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition>
+                <h2 align="center">Autobranches</h2>
+                <rich:dataTable id="tabelaCheckOuts"
+                                style="font-size:10px" width="80%" align="center"
+                                columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada, coluna-centralizada"
+                                var="checkouts"
+                                rows="10000"
+                                value="#{beanAutobranches.tableAutobranches}">
+
+                    <rich:column >
+                        <f:facet name="header">
+                            Autobranch
+                        </f:facet>
+                         <h:commandLink action="#{beanAutobranches.detailAutobranch}" value="#{checkouts.autobranch}" />
+                        
+
+                    </rich:column>
+
+                    <rich:column>
+                        <f:facet name="header">
+                            Revision
+                        </f:facet>
+                        #{checkouts.revisao}
+                    </rich:column>
+
+                    <rich:column>
+                        <f:facet name="header">
+                            User
+                        </f:facet>
+                        #{checkouts.responsavel.login}
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            Repository URL
+                        </f:facet>
+                        #{checkouts.urlCheckedOut}
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            Current State
+                        </f:facet>
+                            #{checkouts.currentState.descricao}
+                    </rich:column>
+
+                </rich:dataTable>
+
+
+    </ui:composition>
+
+</html>

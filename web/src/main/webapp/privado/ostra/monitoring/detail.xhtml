@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Project Details" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            #{MonitoringBean.currentProject.configurationItem.name}
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="iformDetailProject">
+                <a4j:keepAlive beanName="MonitoringBean"/>
+
+
+                <ui:include src="/privado/oceano/project/includeDetailProjectBasicInformations.xhtml">
+                    <ui:param name="bean" value="#{MonitoringBean}"/>
+                </ui:include>
+
+                <rich:spacer height="10"></rich:spacer>
+
+                <rich:simpleTogglePanel switchType="client" label="Metric Values" opened="false">
+                    <h:panelGrid id="panelMetricValues">
+                        <h:column>
+                            <b>Select metric </b>
+                            <h:selectOneMenu id="comboMetric" value="#{MonitoringBean.projectExtractedMetricNames.selecao}" required="true">
+                                <f:selectItems value="#{MonitoringBean.projectExtractedMetricNames.listaSelecao}" />
+                                <a4j:support event="onchange" action="#{MonitoringBean.updateProjectMetricsTable}" reRender="panelMetricValues"/>
+                            </h:selectOneMenu>
+                            <rich:message id="msg" styleClass="msgerro" for="comboMetric" />
+                        </h:column>
+
+                        <rich:spacer height="10"></rich:spacer>
+
+                        <h:column rendered="#{!MonitoringBean.showTableProjectMetric}">
+                            Select one metric in the combo above the detail it.
+                        </h:column>
+
+                        <rich:datascroller id="scrTopTableProjectMetrics" for="tableProjectMetrics" align="center" rendered="#{MonitoringBean.showTableProjectMetric}"/>
+                        <rich:dataTable id="tableProjectMetrics"
+                                        style="font-size:10px" width="100%"
+                                        columnClasses=""
+                                        var="projectMetricDto"
+                                        rows="25"
+                                        value="#{MonitoringBean.projectMetricsTable}" rendered="#{MonitoringBean.showTableProjectMetric}">
+                            <rich:column sortBy="#{projectMetricDto.revisionNumber}">
+                                <f:facet name="header">
+                                    Revision Number
+                                </f:facet>
+                                <b>#{projectMetricDto.revisionNumber}</b>
+                            </rich:column>
+                            <rich:column sortBy="#{projectMetricDto.sumMetricValue}">
+                                <f:facet name="header">
+                                    Sum
+                                </f:facet>
+                                #{projectMetricDto.sumMetricValue}
+                            </rich:column>
+                            <rich:column sortBy="#{projectMetricDto.countItems}">
+                                <f:facet name="header">
+                                    # Items
+                                </f:facet>
+                                #{projectMetricDto.countItems}
+                            </rich:column>
+                            <rich:column sortBy="#{projectMetricDto.avgMetricValue}">
+                                <f:facet name="header">
+                                    Average
+                                </f:facet>
+                                #{projectMetricDto.avgMetricValue}
+                            </rich:column>
+                        </rich:dataTable>
+                        <rich:datascroller id="scrtableProjectMetrics" for="tableProjectMetrics" align="center" rendered="#{MonitoringBean.showTableProjectMetric}"/>
+
+                    </h:panelGrid>
+                </rich:simpleTogglePanel>             
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

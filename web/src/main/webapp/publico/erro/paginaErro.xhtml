@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+    
+<ui:composition template="/WEB-INF/template/templatelogin.xhtml">
+
+    <!--
+    <ui:define name="menuPrincipal">
+        <ui:include src="/WEB-INF/includes/menu.xhtml" />
+    </ui:define>
+    -->
+    
+    <ui:define name="titleDaPagina">
+        <h:outputText value="Página de Erro" />
+    </ui:define>
+    
+    <ui:define name="nomePagina">
+        <h:outputText value="Erro inexperado" />
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <h3>Ops!</h3>
+        <p class="msgerroBlock">Ocorreu um erro inexperado, favor repetir o processo ou reportar o problema</p>
+        <a href="#{facesContext.externalContext.request.contextPath}/privado/principal.oceano" >Início</a>
+        <br/>
+        <br/>
+    </ui:define>
+    
+</ui:composition>
+
+</html>

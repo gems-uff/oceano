@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Novo Projeto" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Project Manager" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="ProjectBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <!--                            <session-title>Project Identification</session-title>-->
+
+                            <h:column>
+                                Configuration Item:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboConfigurationItem" value="#{ProjectBean.selectConfigurationItem.selecao}" required="true">
+                                        <f:selectItems value="#{ProjectBean.selectConfigurationItem.listaSelecao}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgRepositoruetrica" styleClass="msgerro" for="comboRepository" />
+                                <br/><br/>
+                            </h:column>
+
+
+                            <h:column>
+                                Repository Url:<br/>
+                                <h:inputText id="txtProjectUrl" value="#{ProjectBean.currentProject.repositoryUrl}" required="true" size="50" />
+                                <rich:message id="msgProjectURL" styleClass="msgerro" for="txtProjectUrl" />
+                                <br/><br/>
+                            </h:column>
+
+                            <h:column>
+                                <br/>
+                                <br/>
+                                <h:selectBooleanCheckbox title="Projeto Maven" value="#{ProjectBean.currentProject.mavenProject}" />
+                                Maven Project
+                            </h:column>
+
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton id="btnCriar" action="#{ProjectBean.saveNewProject}" value="Save" />
+                    <h:commandButton id="btnVoltar" action="#{ProjectBean.returnListProjects}" value="Cancel" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

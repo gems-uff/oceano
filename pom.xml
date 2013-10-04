@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId}</name>
+    <groupId>br.uff.ic.gems</groupId>
+    <artifactId>oceano-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <url>https://sel.ic.uff.br/redmine/projects/oceano-parent</url>
+    <description>see https://sel.ic.uff.br/redmine/projects/oceano-parent/wiki</description>
+    <scm>
+        <connection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</connection>
+        <developerConnection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</developerConnection>
+        <url>https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</url>
+    </scm>
+    <modules>
+        <module>oceano-core</module>
+        <module>oceano-web</module>		        
+        <module>oceano-util</module>
+    </modules>   
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
+        <maven.build.timestamp.format>dd/MM/yyyy - HH:mm</maven.build.timestamp.format>
+        <build.timestamp>${maven.build.timestamp}</build.timestamp>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>                
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>deploy</id>
+        </profile>
+        <profile>
+            <id>release-profile</id>
+        </profile>
+        <profile>
+            <id>memory-test</id>
+        </profile>
+        <profile>
+            <id>local-test</id>
+        </profile>
+        <profile>
+            <id>memory-debug</id>
+        </profile>
+        <profile>
+            <id>local-debug</id>
+        </profile>
+    </profiles>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>stat-scm-sourceforge</id>
+            <url>http://stat-scm.sourceforge.net/maven2</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>stat-scm-sourceforge-snapshot</id>
+            <url>http://stat-scm.sourceforge.net/maven2-snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <distributionManagement>        
+        <repository>
+            <id>releases</id>
+            <name>GEMS Releases</name>
+            <url>http://sel.ic.uff.br/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>GEMS Snapshots</name>
+            <url>http://sel.ic.uff.br/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>                
+        <repository>
+            <id>public</id>
+            <name>GEMs Public</name>
+            <url>http://sel.ic.uff.br/nexus/content/groups/public</url>
+        </repository>        
+    </repositories>    
+</project>

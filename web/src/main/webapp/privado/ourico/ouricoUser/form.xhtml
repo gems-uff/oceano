@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Relação do usuário com Projeto Ouriço" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Cadastro de Usuários Ouriço" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="OuricoUserBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <session-title>Relação do Projeto com Usuário</session-title>
+                            <br/><br/>
+                            <h:column>
+                                Usuários:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboUsuarios" value="#{OuricoUserBean.selectOneOceanoUser.selecao}" required="true">
+                                        <f:selectItems value="#{OuricoUserBean.selectOneOceanoUser.listaSelecao}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgUsuario" styleClass="msgerro" for="comboUsuarios" />
+                                <br/>
+                            </h:column>
+                            <h:column>
+                                Projeto:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboProjetos" value="#{OuricoUserBean.selectOneProject.selecao}" required="true">
+                                        <f:selectItems value="#{OuricoUserBean.selectOneProject.listaSelecao}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <rich:message id="msgProjetos" styleClass="msgerro" for="comboProjetos" />
+                                <br/><br/>
+                            </h:column>
+                            <session-title>Dados Sistema de Controle de Versões</session-title>
+                            <h:column>
+                                Login:<br/>
+                                <h:inputText id="txtLoginSVN" value="#{OuricoUserBean.loginSVN}" required="true"/>
+                                <rich:message id="msgLogin" styleClass="msgerro" for="txtLoginSVN" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Senha:<br/>
+                                <h:inputSecret id="txtSenhaSVN" value="#{OuricoUserBean.senhaSVN}" required="true"/>
+                                <rich:message id="msgSenha" styleClass="msgerro" for="txtSenhaSVN" />
+                                <br/><br/>
+                            </h:column>
+                            <h:column>
+                                Confirmação de Senha:<br/>
+                                <h:inputSecret id="txtConfirmacaoSenhaSVN" value="#{OuricoUserBean.confirmacaoSenhaSVN}" required="true"/>
+                                <rich:message id="msgConfirmacaoSenha" styleClass="msgerro" for="txtConfirmacaoSenhaSVN" />
+                                <br/><br/>
+                            </h:column>
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton id="btnSalva" action="#{OuricoUserBean.doSave}" value="Save" />
+                    <h:commandButton id="btnVoltar" action="#{OuricoUserBean.doCancel}" value="Cancel" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

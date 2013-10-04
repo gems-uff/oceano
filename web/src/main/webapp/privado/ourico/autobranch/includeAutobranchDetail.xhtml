@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition>
+        <br/><br/><br/>
+        <rich:dataTable id="tabelaEstado"
+                        style="font-size:10px" width="80%" align="center"
+                                columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada"
+                                var="estados"
+                                rows="50"
+                                value="#{beanAutobranches.tableEstados}">
+
+                   
+                    <rich:column>
+                        <f:facet name="header">
+                            Start Time
+                        </f:facet>
+                        #{estados.inicio}
+                    </rich:column>
+
+                    <rich:column>
+                        <f:facet name="header">
+                            End Time
+                        </f:facet>
+                        #{estados.fim}
+                    </rich:column>
+
+                    <rich:column>
+                        <f:facet name="header">
+                            Description
+                        </f:facet>
+                        #{estados.descricao}
+                        <h:commandLink action="#{OuricoBean.detailConflict}" value=" (Detail)" rendered="#{estados.detalhe != null}"/>
+                    </rich:column>
+
+                </rich:dataTable>
+
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblCreatingPeixeEspadaAgents}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblCreatingPeixeEspadaAgents}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+
+            <!--
+            <a4j:keepAlive beanName="AmbienteAgenteBean" />
+            <a href="#{facesContext.externalContext.request.contextPath}/upload/jnlp/peixeespada/espadaCliente.jnlp">Peixe Espada Cliente</a>
+            -->
+            <!-- Or use the following script element to launch with the Deployment Toolkit -->
+            <!-- Open the deployJava.js script to view its documentation -->
+            <script type="text/javascript"  src="http://java.com/js/deployJava.js"></script>
+
+            <fieldset>
+                <legend>#{mensagens.lblDescription}</legend>
+                <p>#{mensagens.lblPeixeEspadaDescription1}</p>
+                <p>#{mensagens.lblPeixeEspadaDescription2}</p>
+                <p>#{mensagens.lblPeixeEspadaDescription3}: <a href="#{facesContext.externalContext.request.contextPath}/upload/jnlp/peixeespada/espadaCliente.jnlp">#{mensagens.lblDownloadLocalAgent}</a>
+<!--                    <script type="text/javascript" >
+                            var url='#{facesContext.externalContext.request.contextPath}/upload/jnlp/peixeespada/espadaCliente.jnlp';
+                            deployJava.createWebStartLaunchButton(url, "1.6")
+                    </script>-->
+                </p>
+            </fieldset>
+
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>

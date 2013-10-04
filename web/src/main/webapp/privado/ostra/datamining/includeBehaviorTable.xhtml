@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition>
+        <h3> #{DataMiningBean.tableBehaviorMetric} Behavior Table</h3>
+        <table width="100%">
+            <tr>
+                <td>
+                    <table border="1px">
+                        <ui:repeat value="#{DataMiningBean.tableBehavior}" var="line" id="tableBehaviorLines">
+                            <tr>
+                                <ui:repeat value="#{line}" var="cel" id="tableBehaviorLinesColumnsCel">
+                                    <rich:column height="55px" width="55px" style="text-align:center" styleClass="#{cel.behaviorName}">
+
+                                        <!--matrix headers-->
+                                        <b><h:outputText value="#{cel.shortValue}" rendered="#{cel.highestConfidence eq 0}"/></b>
+                                        <rich:toolTip rendered="#{cel.highestConfidence eq 0}">
+                                            #{cel.value}
+                                        </rich:toolTip>
+
+                                        <!--matrix values-->
+                                        <h:column rendered="#{cel.highestConfidence ne 0}">
+                                            <b>S:</b>#{cel.averageSuport}<br/>
+                                            <b>C:</b>#{cel.averageConfidence}<br/>
+                                            <b>L:</b>#{cel.averageLift}<br/>
+                                        </h:column>
+
+                                        <!--tooltip showEvent="click"-->
+                                        <rich:toolTip >
+                                            <b>Rules:</b>
+                                            <ul>
+                                                <ui:repeat value="#{cel.rules}" var="rule">
+                                                    <li>#{rule}</li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </rich:toolTip>
+                                    </rich:column>
+                                </ui:repeat>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </td>
+                <td>
+                    <fieldset>
+                        <legend>Help</legend>
+                        <table>
+                            <tr>
+                                <td colspan="2">
+                                    <b>The following colors are used when appear rules with the following patterns: </b><br/>
+                                    <table border="1px">
+                                        <tr><td><b>Cell Color</b></td>                   <td><b>Behavior Name</b></td>           <td><b>Description</b></td></tr>
+                                        <tr><td class="proportional_minus"></td>    <td><b>Proportional Minus</b></td>      <td>minus -> minus</td></tr>
+                                        <tr><td class="proportional_plus"></td>     <td><b>Proportional Plus</b></td>       <td>plus -> plus</td></tr>
+<!--                                        <tr><td class="proportional_both"></td>     <td><b>Proportional Both</b></td>       <td>When both proportional rules are found.</td></tr>-->
+                                        <tr><td class="neutral"></td>               <td><b>Neutral</b></td>                 <td>zero -> zero</td></tr>
+                                        <tr><td class="inverse_minus_plus"></td>    <td><b>Inverse Minus Plus</b></td>      <td>minus -> plus</td></tr>
+                                        <tr><td class="inverse_plus_minus"></td>    <td><b>Inverse Plus Minus</b></td>      <td>plus -> minus</td></tr>
+<!--                                        <tr><td class="inverse_both"></td>          <td><b>Inverse Both</b></td>            <td>When both inverse behavior rules are found.</td></tr>-->
+                                        <tr><td class="inverse_neutral_minus"></td> <td><b>Inverse Neutral Minus</b></td>   <td>zero -> minus  , minus -> zero</td></tr>
+                                        <tr><td class="inverse_neutral_plus"></td>  <td><b>Inverse Neutral Plus</b></td>    <td>zero -> plus   , plus -> zero</td></tr>
+                                        <tr><td class="undefined"></td>             <td><b>Undefined:</b></td>              <td>Conflicted behavior. Proportional and insversely proportional at the same time.<br/>
+                                                Ostra cannot define the behavior because rules with oposite behavior appeared.</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table border="1px">
+                                        <tr><td><b>Acronym</b></td>     <td><b>Quality Attribute</b></td></tr>
+                                        <tr><td><b>Reu</b></td>        <td>Reusability</td></tr>
+                                        <tr><td><b>Fle</b></td>        <td>Flexibility</td></tr>
+                                        <tr><td><b>Und</b></td>        <td>Understandability</td></tr>
+                                        <tr><td><b>Fun</b></td>        <td>Functionality</td></tr>
+                                        <tr><td><b>Ext</b></td>        <td>Extendability</td></tr>
+                                        <tr><td><b>Eff</b></td>        <td>Effectiveness</td></tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <b>Cel content:</b><br/>
+                                    The average values for the behavior's rules
+                                    <li>(S) suport </li>
+                                    <li>(C) confidence  </li>
+                                    <li>(L) lift  </li>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+    </ui:composition>
+</html>

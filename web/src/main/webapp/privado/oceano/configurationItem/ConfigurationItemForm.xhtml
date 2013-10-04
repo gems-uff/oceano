@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Novo Item de Configuração" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Configuration Item Manager" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <h:form id="idform">
+                <a4j:keepAlive beanName="ConfigurationItemBean" />
+
+                <fieldset>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+                            <session-title>Configuration Item Identification</session-title>
+
+                            <h:column>
+                                Name:<br/>
+                                <h:inputText id="txtCIName" value="#{ConfigurationItemBean.currentConfigurationItem.name}" required="true" size="50" />
+                                <rich:message id="msgCIName" styleClass="msgerro" for="txtCIName" />
+                                <br/><br/>
+                            </h:column>
+
+                            <h:column>
+                                Base URL:<br/>
+                                <h:inputText id="txtCIBaseUrl" value="#{ConfigurationItemBean.currentConfigurationItem.baseUrl}" required="true" size="50" />
+                                <rich:message id="msgCIBaseUrl" styleClass="msgerro" for="txtCIBaseUrl" />
+                                <br/><br/>
+                            </h:column>
+
+                            <h:column>
+                                Trunk Path:<br/>
+                                <h:inputText id="txtTrunkPath" value="#{ConfigurationItemBean.currentConfigurationItem.trunkPath}" required="true" />
+                                <rich:message id="msgTrunkPath" styleClass="msgerro" for="txtTrunkPath" />
+                            </h:column>
+
+                            <h:column>
+                                Branch Path:<br/>
+                                <h:inputText id="txtBranchPath" value="#{ConfigurationItemBean.currentConfigurationItem.branchPath}" required="true" />
+                                <rich:message id="msgBranchPath" styleClass="msgerro" for="txtBranchPath" />
+                            </h:column>
+                            <h:column>
+                                Repository:
+                                <h:selectOneMenu id="comboRepository" value="#{ConfigurationItemBean.selectOneRepository.selecao}" required="true">
+                                    <f:selectItems value="#{ConfigurationItemBean.selectOneRepository.listaSelecao}" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgRepositoruetrica" styleClass="msgerro" for="comboRepository" />
+                                <br/><br/>
+                            </h:column>
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Actions</legend>
+                    <h:commandButton id="btnCriar" action="#{ConfigurationItemBean.doSave}" value="Save" />
+                    <h:commandButton id="btnVoltar" action="#{ConfigurationItemBean.doCancel}" value="Cancel" immediate="true" />
+                </fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

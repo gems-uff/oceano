@@ -1,0 +1,2 @@
+*.jar              -text -crlf
+*.graffle          -text -crlf

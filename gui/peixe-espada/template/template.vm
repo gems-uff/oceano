@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="$finalUrlJnlp" href="$outputFile">
+
+ <information>
+    <title>$finalName</title>
+    <vendor>$vendor</vendor>
+    <homepage href="$urlProject"/>
+    <description kind="one-line">$descriptionOneLine</description>
+    <description kind="short">$description</description>
+    <description kind="tooltip">$description</description>
+    <icon href="${finalUrlJnlp}icone.jpg" kind="default"/>
+
+    <offline-allowed/>
+
+    <shortcut online="true">
+        <desktop/>
+        <menu submenu="$finalName"/>
+    </shortcut>
+ </information>
+
+ <security>
+     <all-permissions/>
+ </security>
+
+ <resources>
+    <j2se version="1.5+" initial-heap-size="32m" max-heap-size="128m" />
+    <property name="jnlp.versionEnabled" value="true"/>
+    $dependencies
+    <nativelib href="dllsystray4j-1.2.4.jar"/>
+ </resources>
+
+ <application-desc main-class="$mainClass">
+ </application-desc>
+
+</jnlp>

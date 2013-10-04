@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DATABASE TEST SUITE">
+
+    <test name="LoadDefaultDatabase" verbose="0" preserve-order="true">
+        <classes>
+            <class name="br.uff.ic.oceano.core.util.TestDefaultDatabaseLoader"/>
+        </classes>
+    </test>
+
+    <test name="Tests" verbose="1" preserve-order="true">
+        <classes>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerServiceNGTest"/>
+            <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerServiceNGTest"/>-->
+            <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.NumberOfTypes_DependomenterExtractorCppNGTest"/>-->
+            
+            <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.Abstractness_DependomenterExtractorCppNGTest"/>-->
+            
+            <!--
+            
+            <class name="br.uff.ic.oceano.core.tools.metrics.service.MetricExtractorServiceNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.service.MetricServiceNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.CumulativeComponentDependency_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.Abstractness_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.NumberOfTypes_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.DependsUpon_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.AverageComponentDependency_DependomenterExtractorCppNGTest"/>
+                
+            <class name="br.uff.ic.oceano.core.tools.revision.TestJavaRevisionTool"/>
+            <class name="br.uff.ic.oceano.tools.datamining.test.TestMyApriori"/>
+            <class name="br.uff.ic.oceano.core.service.vcs.VCSServiceNGTest"/>            
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.AverageComponentDependency_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.NumberOfTypes_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.DependsUpon_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.Abstractness_DependomenterExtractorCppNGTest"/>
+            
+            <class name="br.uff.ic.oceano.core.service.vcs.VCSServiceNGTest">
+                <methods>
+                    <include name=".*testSequencialUpdatesAgainstCheckout.*"/>
+                    <include name=".*testSequencialUpdatesUntilHead.*"/>
+                    <include name=".*testRevisionsAvailable.*"/>
+                </methods>
+            </class>
+      
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.AfferentIncomingCouplingProjectExternal_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.NumberOfTypes_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.revision.TestCPPRevisionTool"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.cpp.TestLinesOfCodeCpp"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerServiceNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.Abstractness_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.NumberOfOutgoingDependencies_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.Abstractness_DependomenterExtractorCppNGTest"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.java.TestANA"/>
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.java.TestCIS"/>-->
+        </classes>
+        <packages>                      
+            
+                        
+            <!--            
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.derived"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.cpp"/>            
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.java"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer"/>
+            <package name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics"/>
+            
+            <package name="br.uff.ic.oceano.core.service.vcs"/>            
+            <package name="br.uff.ic.oceano.core.tools.revision"/>
+            
+            -->
+        </packages>
+    </test>
+</suite>
+

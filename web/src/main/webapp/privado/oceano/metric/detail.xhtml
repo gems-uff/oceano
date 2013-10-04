@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Detalhar projeto" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            #{ProjectBean.currentProject.name}
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="OstraBean" />
+            <h:form id="iformDetailProject">
+                <br/>
+                <session-title>Identificação do Projeto</session-title>
+                <table cellspacing="10px">
+                    <tr>
+                        <td  class="attributeName">Name</td>
+                        <td>#{ProjectBean.currentProject.name}</td>
+                    </tr>
+                    <tr>
+                        <td  class="attributeName">Maven Project</td>
+                        <td>#{ProjectBean.currentProject.mavenProject}</td>
+                    </tr>
+                    <tr>
+                        <td  class="attributeName">Repositório</td>
+                        <td>#{ProjectBean.currentProject.repositoryUrl}</td>
+                    </tr>
+                    <tr>
+                        <td class="attributeName">Control Version System</td>
+                        <td>#{ProjectBean.currentProject.repository.name}</td>
+                    </tr>
+                </table>
+
+                <br/>
+                <session-title>Revisions</session-title>
+                <rich:dataTable id="tableRevisions"
+                                style="font-size:10px" width="100%"
+                                columnClasses=""
+                                var="revision"
+                                rows="50"
+                                value="#{ProjectBean.currentProject.revisionsAsList}">
+                    <rich:column>
+                        <f:facet name="header">
+                            Revision Number
+                        </f:facet>
+                        <b>#{revision.number}</b>
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            Commiter
+                        </f:facet>
+                        <b>#{revision.commiter}</b>
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            Commit Date
+                        </f:facet>
+                        <b>#{revision.formattedCommitDate}</b>
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            Committed files
+                        </f:facet>
+                        <b>#{revision.changedFilesAsList.size}</b>
+                    </rich:column>
+                    <!--
+                    <rich:column>
+                        <f:facet name="header">
+                            Changed Files
+                        </f:facet>
+                        <rich:dataTable id="tableChangedFiles"
+                                        style="font-size:10px" width="100%"
+                                        columnClasses=""
+                                        var="versionedItem"
+                                        rows="50"
+                                        value="#{revision.changedFilesAsList}">
+                            <rich:column>
+                                #{versionedItem.item.path}
+                            </rich:column>
+                        </rich:dataTable>
+                    </rich:column>
+                    -->
+                </rich:dataTable>
+                <rich:datascroller for="tableRevisions" maxPages="30">
+                    <f:facet name="first">
+                        <h:outputText value="First"/>
+                    </f:facet>
+
+                    <f:facet name="last">
+                        <h:outputText value="Last"/>
+                    </f:facet>
+                </rich:datascroller>
+
+                <br/>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

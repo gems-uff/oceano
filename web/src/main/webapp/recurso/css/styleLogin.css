@@ -1,0 +1,377 @@
+html{
+    background-color:#F5F0DE;
+    background-image:url(../img/box/bgd.jpg);
+    background-repeat:repeat-x;
+    background-position: 0px 80px;
+
+
+}
+
+#header img{position:absolute;
+            top:10px;
+}
+
+.bold{
+    font-weight:bold;
+}
+
+.loginSenha{
+    width :150px;
+}
+
+body{
+    text-align: center; /* hack IE5 */
+    background-color:#F5F0DE;
+    margin:0;
+    padding:0;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:11px;
+    background-image:url(../img/box/bg2.jpg);
+    background-repeat:repeat-x;
+
+    height:1000px;
+}
+
+
+
+
+a{color:#02679c;text-decoration:none}
+a:hover{color:#00344f;text-decoration:underline}
+a img,img a{border:0}
+#container {
+    width: 920px;
+    min-width: 920px;
+    max-width: 1003px;
+    margin:0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    text-align:left; /* hack IE5 */
+}
+
+#header {
+    padding: 5px;
+    height:80px;
+
+}
+
+#content {
+    padding: 0px;
+    float: left;
+    width: 298px;
+    margin-left: 251px;
+
+
+}
+
+#sidebar-a {
+    float: left;
+    width: 243px;
+
+}
+
+#sidebar-b {
+    float: right;
+    width: 284px;
+}
+
+#footer {
+    clear: both;
+    padding: 5px;
+    margin-top: 5px;
+    text-align:center;
+    background-color:#DAD2B8;
+    color:#fff;
+}
+#header a{
+    display:block;
+    margin:20px;
+    border:none!important;
+}
+#header a span{display:none}
+#header a img{border:none;}
+
+.hmenu{
+    margin-left:auto;
+    margin-right:auto;
+    /*
+    height:50px;
+    */
+    height:10px;
+    text-align:right;
+
+}
+.hmenu a{
+    font-size:12px;
+    line-height:10px;
+    /*
+    line-height:50px;
+    */
+}
+.menu{
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    margin-bottom:10px
+}
+.menu li{
+    margin-bottom:1px;
+    padding:4px;
+
+}
+.menu li a{
+    text-decoration:none
+}
+.thumbs tr td{text-align:center;}
+.thumbs tr td a{display:block;text-decoration:none;}
+.thumbs tfoot tr td a{display:block;text-decoration:none;text-align:center; border:1px solid #666; background-color:#CCCCCC; width:100px; color:#000000}
+
+
+.list ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.list li{
+    padding-bottom:10px;
+    list-style-type:none;
+    display:block;
+    margin-left:-30px;
+
+}
+
+#scraplist div{
+    font-size:10px;
+    color:#CCCCCC;
+}
+#scraplist div a{
+    color:#663366;
+}
+
+
+
+
+/* Default CSS
+================================================*/
+/* Basic styling, used when JavaScript is unsupported */
+.cbb {
+    margin:1em 0;
+    padding:0 10px;
+    border:1px solid #666;
+    background:#fff;
+}
+.cbb p{
+    text-align:center;
+}
+
+.cbb h1 {
+    margin:0 -10px;
+    padding:0.3em 10px;
+    background:#efece6;
+    font:bold 1.2em/1 Arial, Helvetica, sans-serif;
+}
+/* Normal styling */
+.cb {margin:0.5em 0;}
+/* Top corners and border */
+.cb h2{font-size:14px;}
+.bt {
+    height:17px;
+    margin:0 0 0 18px;
+    background:url(../img/box/box.png) no-repeat 100% 0;
+}
+.bt div {
+    position:relative;
+    left:-18px;
+    width:18px;
+    height:17px;
+    background:url(../img/box/box.png) no-repeat 0 0;
+    font-size:0;
+    line-height:0;
+}
+
+/* Bottom corners and border */
+.bb {
+    height:14px;
+    margin:0 0 0 12px;
+    background:url(../img/box/box.png) no-repeat 100% 100%;
+}
+.bb div {
+    position:relative;
+    left:-12px;
+    width:12px;
+    height:14px;
+    background:url(../img/box/box.png) no-repeat 0 100%;
+    font-size:0;
+    line-height:0;
+}
+
+/* Left border */
+.i1 {
+    padding:0 0 0 12px;
+    background:url(../img/box/borders.png) repeat-y 0 0;
+}
+/* Right border */
+.i2 {
+    padding:0 12px 0 0;
+    background:url(../img/box/borders.png) repeat-y 100% 0;
+}
+/* Wrapper for the content. Use it to set the background colour and insert some padding between the borders and the content. */
+.i3 {
+    display:block;
+    margin:0;
+    padding:1px 10px;
+    background:#fff;
+}
+/* Make the content wrapper auto clearing so it will contain floats (see http://positioniseverything.net/easyclearing.html). */
+.i3:after {
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+.i3 {display:inline-block;}
+.i3 {display:block;}
+/* Default CSS ends here */
+
+/* Custom CSS
+================================================*/
+/* You can use different borders for different ../img/box/boxes on the same page. Just adjust the CSS. Here are a few examples, one of which uses the GIF images instead of the PNG images. Note that you can also adjust borders, heights and paddings this way. Remember to adjust the IE CSS as well. */
+
+.one {
+    position:absolute;
+    top:0;
+    right:0;
+}
+.two {
+    float:left;
+    width:45%;
+}
+.two .i1,
+.two .i2 { background-image:url(../img/box/borders.gif); }
+.two .bt,
+.two .bt div,
+.two .bb,
+.two .bb div { background-image:url(../img/box/box.gif); }
+#three {
+    float:left;
+    clear:both;
+    width:80%;
+}
+#three .cb {
+    float:left;
+    width:40%;
+}
+.button {
+    float:left;
+    margin-top:0;
+}
+.button .bt {
+    height:8px;
+    margin:0 0 0 9px;
+    background-image:url(../img/box/button.png);
+}
+.button .bt div {
+    left:-9px;
+    width:9px;
+    height:8px;
+    background-image:url(../img/box/button.png);
+}
+.button .bb {
+    height:8px;
+    margin:0 0 0 8px;
+    background-image:url(../img/box/button.png);
+}
+.button .bb div {
+    left:-8px;
+    width:8px;
+    height:8px;
+    background-image:url(../img/box/button.png);
+}
+.button .i1 {
+    padding:0 0 0 3px;
+    background-image:url(../img/box/button-borders.png);
+}
+.button .i2 {
+    padding:0 3px 0 0;
+    background-image:url(button-borders.png);
+}
+.button .i3 {
+    padding:0 0.5em;
+    background:#3a3d40 url(../img/box/button.png) no-repeat -3px -8px;
+    font-weight:bold;
+    text-decoration:none;
+    text-align:center;
+}
+.button a:link,
+.button a:visited,
+.button a:hover {
+    border:none;
+    color:#fff;
+}
+
+/* Just a bit of styling for this demo page. Adjust as you wish. */
+#absolute-wrapper {
+    position:relative;
+    height:9em;
+}
+.cb li {margin-left:1em;}
+
+
+/* THIAGO DIGOO! */
+#pessoafisica #barraCentral{
+    color:#ccc;
+    float:left;
+    width:130px;
+    margin-top:50px
+}
+#pessoafisica #barraCentral ul{
+    margin:0;
+    padding:0;
+    width:130px;
+}
+#pessoafisica #barraCentral ul li{
+    padding:0px;
+    border-bottom:3px solid #fff;
+    width:130px;
+    list-type-style:none;
+    margin:0;
+}
+#pessoafisica #barraCentral ul li a{
+    display:block;
+    text-decoration:none;
+    padding-left:2px;
+}
+
+/* ===== MENSAGENS DO SISTEMA ===== */
+
+li{
+    list-style-type: none;
+}
+
+.msgerro {
+    color:#f00;
+    border:1px dotted #f00;
+    background-color:#fee;
+    padding:0.2em 0.8em;
+}
+.msginfo {
+    font-size: 1em;
+    font-weight: bold;
+    color: #272264;
+    border: 1px dotted #090;
+    background-color: #cfc;
+    padding:0.6em;
+    margin-top:1em;
+    width:80%;
+}
+#divAjuda {
+    border:1px dotted #cc9;
+    background-color:#ffc;
+    font-size: 1em;
+    display:none;
+    width:auto;
+    padding:0.6em;
+    margin-top:1%;
+    line-height:125%;
+}

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Debug tests">    
+    <test name="br.uff.ic.oceano suite">        
+        <classes>
+            <class name="br.uff.ic.oceano.StartUpDatabase"/>
+                <!--<class name="br.uff.ic.oceano.experiments.ostra.DataMiningNGTest"/>-->                
+                <class name="br.uff.ic.oceano.experiments.ostra.ExtractMetricsFromNeoPZ" />
+        </classes>
+    </test>
+
+</suite>

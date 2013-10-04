@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <!--
+        <ui:define name="menuPrincipal">
+            <ui:include src="/WEB-INF/includes/menu.xhtml" />
+        </ui:define>
+        -->
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="#{mensagens.lblCreatingAgents}" />
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            <h:outputText value="#{mensagens.lblCreatingAgents}" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="AmbienteAgenteBean" />
+            <h:form id="formAgente">
+                <fieldset>
+                    <legend>#{mensagens.requiredData}</legend>
+                    <div style="margin:10px">
+                        <h:panelGrid columns="1" cellpadding="5px">
+
+                            <h:column>
+                                #{mensagens.lblQualityAttributeExt}:<br/>
+                                <h:selectOneMenu id="comboMetrica" value="#{AmbienteAgenteBean.selectAtributo.selecao}" required="true">
+                                    <f:selectItems value="#{AmbienteAgenteBean.selectAtributo.listaSelecao}" />
+                                </h:selectOneMenu>
+                                <rich:message id="msgMetrica" styleClass="msgerro" for="comboMetrica" />
+                            </h:column>
+
+                            <h:column>
+                                #{mensagens.lblProject}:<br/>
+                                <div style="overflow-x:scroll;width:550px;overflow:-moz-scrollbars-horizontal" id="divScroll" >
+                                    <h:selectOneMenu id="comboConfig" value="#{AmbienteAgenteBean.selectProjeto.selecao}" required="true">
+                                        <f:selectItems value="#{AmbienteAgenteBean.selectProjeto.listaSelecao}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                #{mensagens.lblVersion}:(default HEAD)
+                                <rich:message id="msgConfig" styleClass="msgerro" for="comboConfig" />
+                            </h:column>
+
+                        </h:panelGrid>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>#{mensagens.lblActions}</legend>
+                    <h:commandButton id="btnCriar" action="#{AmbienteAgenteBean.cadastrarAgente}" value="#{mensagens.lblCreateAgent}" />
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

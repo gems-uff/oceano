@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:composition template="/WEB-INF/template/templategeral.xhtml">
+
+        <ui:define name="titleDaPagina">
+            Página Principal
+        </ui:define>
+
+        <ui:define name="nomePagina">
+            Autobranches
+        </ui:define>
+
+        <ui:define name="corpo">
+            <p>Below are the created autobranches.</p>
+            <br/>
+            <h:form id="iformLista">
+                <ui:include src="/privado/ourico/autobranch/includeListAutobranches.xhtml">
+                    <ui:param name="beanAutobranches" value="#{OuricoBean}"/>
+                </ui:include>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

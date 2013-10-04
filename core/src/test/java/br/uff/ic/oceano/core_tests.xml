@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="INDEPENDENT TEST SUITE" preserve-order="true">
+
+    <test name="Infrastructure tests" verbose="0" preserve-order="true">
+        <classes>
+            <class name="br.uff.ic.oceano.core.dao.controle.JPANGTest"/>
+        </classes>
+    </test>
+
+    <test name="Revision util classes tests" verbose="1" preserve-order="true">
+        <packages>
+            <package name="br.uff.ic.oceano.core.tools.revision"/>
+        </packages>
+    </test>
+    <test name="Tools tests" verbose="1" preserve-order="true">
+        <classes>
+            <class name="br.uff.ic.oceano.core.tools.compiler.CompilerServiceNGTest"/>
+            <class name="br.uff.ic.oceano.core.util.MavenUtilNGTest"/>
+        </classes>
+    </test>   
+    <test name="Datamining tests" verbose="1" preserve-order="true">
+        <packages>
+            <package name="br.uff.ic.oceano.tools.datamining.test"/>
+        </packages>
+    </test>
+
+</suite>
+

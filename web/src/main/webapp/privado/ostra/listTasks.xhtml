@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j" >
+
+    <ui:composition template="/WEB-INF/template/templateOstra.xhtml">
+
+        <ui:define name="titleDaPagina">
+            <h:outputText value="Tarefas" />
+        </ui:define>
+        <ui:define name="nomePagina">
+            <h:outputText value="Lista de Tarefas Executadas" />
+        </ui:define>
+
+        <ui:define name="corpo">
+            <a4j:keepAlive beanName="OstraBean" />
+
+            <a4j:form >
+                <br/>
+                <session-title>Tarefas</session-title>
+                <fieldset>
+                    <rich:dataTable id="tabelaTarefas"
+                                    style="font-size:10px" width="100%"
+                                    columnClasses="coluna-centralizada,coluna-centralizada,coluna-centralizada,coluna-centralizada, coluna-centralizada"
+                                    var="task"
+                                    rows="50"
+                                    value="#{OstraBean.tableTasks}">
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Tipo
+                            </f:facet>
+                            #{task.typeAsString}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Descrição
+                            </f:facet>
+                            #{task.description}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Alvo
+                            </f:facet>
+                            #{task.target}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Agendamento
+                            </f:facet>
+                            #{task.scheduleTime}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Inicio da Execução
+                            </f:facet>
+                            #{task.startTime}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Fim da execução
+                            </f:facet>
+                            #{task.finishTime}
+                        </rich:column>
+
+                        <rich:column>
+                            <f:facet name="header">
+                                Status
+                            </f:facet>
+                            #{task.status}
+                        </rich:column>
+
+                    </rich:dataTable>
+                </fieldset>
+
+                <br/><br/>
+
+                <fieldset><legend>Ações</legend>
+                    <h:commandButton action="#{OstraBean.newTask}" value="Nova tarefa" />
+                    <h:commandButton action="#{OstraBean.executeScheduledTasks}" value="Executar tarefas" />
+                </fieldset>
+
+            </a4j:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>
