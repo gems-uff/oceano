@@ -1,0 +1,1 @@
+mvn -e -f C:\Users\Gleiph\Documents\NetBeansProjects\hookPost\pom.xml exec:exec -Dexec.executable="C:\Program Files (x86)\Java\jdk1.6.0_20\bin\java.exe" -Dexec.classpathScope=runtime -Dexec.workingdir=C:\Users\Gleiph\Documents\NetBeansProjects\hookPost -Dmaven.repo.local=E:\Mestrado\repositorio\mvn -Dexec.args="-classpath %%classpath uff.org.br.eo.hookpost.App"

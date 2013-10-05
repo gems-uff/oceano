@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence     http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <!-- Desenvolvimento UFF -->
+  <persistence-unit name="DesenvolvimentoUFF">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <properties>
+      <!--PROPRIEDADES-->
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <!--Driver-->
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <!--Banco-->
+      <property name="hibernate.connection.url" value="jdbc:postgresql://desenvolvimento.uff.br:5432/peixe-espada"/>
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="tzzk7662"/>
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <!-- Pool de conexoes -->
+      <property name="hibernate.c3p0.min_size" value="5"/>
+      <property name="hibernate.c3p0.max_size" value="10"/>
+      <property name="hibernate.c3p0.timeout" value="300"/>
+      <property name="hibernate.c3p0.max_statements" value="50"/>
+      <property name="hibernate.c3p0.idle_test_period" value="300"/>
+      <!-- Atualização do BD-->
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+  </persistence-unit>
+  <!-- Teste Desenvolvimento -->
+  <persistence-unit name="Desenvolvimento">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <properties>
+      <!--PROPRIEDADES-->
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <!--Driver-->
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <!--Banco-->
+      <property name="hibernate.connection.url" value="jdbc:postgresql://gems.ic.uff.br:5432/peixe-espada-desenv"/>
+      <property name="hibernate.connection.username" value="peixe-espada"/>
+      <property name="hibernate.connection.password" value="predFohEj9"/>
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <!-- Pool de conexoes -->
+      <property name="hibernate.c3p0.min_size" value="5"/>
+      <property name="hibernate.c3p0.max_size" value="10"/>
+      <property name="hibernate.c3p0.timeout" value="300"/>
+      <property name="hibernate.c3p0.max_statements" value="50"/>
+      <property name="hibernate.c3p0.idle_test_period" value="300"/>
+      <!-- Atualização do BD-->
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+  </persistence-unit>
+  <!-- Teste PRODUÇÂO -->
+  <persistence-unit name="Producao">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <properties>
+      <!--PROPRIEDADES-->
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <!--Driver-->
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <!--Banco-->
+      <property name="hibernate.connection.url" value="jdbc:postgresql://gems.ic.uff.br:5432/peixe-espada"/>
+      <property name="hibernate.connection.username" value="peixe-espada"/>
+      <property name="hibernate.connection.password" value="predFohEj9"/>
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <!-- Pool de conexoes -->
+      <property name="hibernate.c3p0.min_size" value="5"/>
+      <property name="hibernate.c3p0.max_size" value="10"/>
+      <property name="hibernate.c3p0.timeout" value="300"/>
+      <property name="hibernate.c3p0.max_statements" value="50"/>
+      <property name="hibernate.c3p0.idle_test_period" value="300"/>
+    </properties>
+  </persistence-unit>
+  <!-- Teste Memória -->
+  <persistence-unit name="TesteMemoria">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+    <properties>
+      <!--PROPRIEDADES-->
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <!--Driver-->
+      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+      <!--Banco-->
+      <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:peixe-espada"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+  </persistence-unit>
+  <!-- Local -->
+  <persistence-unit name="Local">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.uff.ic.oceano.ourico.model.CheckOut</class>
+    <properties>
+      <!--PROPRIEDADES-->
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.format_sql" value="false"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <!--Driver-->
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <!--Banco-->
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ourico"/>
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="marapa"/>
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <!-- Pool de conexoes -->
+      <property name="hibernate.c3p0.min_size" value="1"/>
+      <property name="hibernate.c3p0.max_size" value="5"/>
+      <property name="hibernate.c3p0.timeout" value="300"/>
+      <property name="hibernate.c3p0.max_statements" value="50"/>
+      <property name="hibernate.c3p0.idle_test_period" value="300"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
+    </properties>
+  </persistence-unit>
+</persistence>

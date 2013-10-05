@@ -1,0 +1,53 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SUITE DE TESTE">
+    <test name="Testes de carga" verbose="1">
+
+        <classes>
+            <!--
+            <class name="br.uff.ic.oceano.ostra.TestDeltaMetricsDataBase"/>
+            -->
+            <!--<class name="br.uff.ic.oceano.bd.CargasDefault"/>-->
+
+<!--            <class name="uff.org.br.eo.hookpost.ManipulacaoAutobranch"/>-->
+<!--            <class name="uff.org.br.eo.hookpost.TestVerificacao"/>-->
+<!--            <class name="uff.org.br.eo.hookpost.TestSVNInfo"/>-->
+        </classes>
+<!--CARGAS DE BASE DE DADOS
+            <class name="br.uff.ic.oceano.bd.CargasDefault"/>
+            <class name="TesteJPA"/>
+-->
+
+    <!--Ostra
+            <class name="br.uff.ic.oceano.ostra.TesteOstra"/>
+    -->
+
+        <!--TESTES FORA DE EXECUÇÃO
+            <class name="br.uff.ic.oceano.teste.TesteSVN"/>
+            <class name="br.uff.ic.oceano.ostra.TestCompileMaven"/>
+            <class name="br.uff.ic.oceano.teste.metricas.TestExtractMetrics"/>
+            <class name="br.uff.ic.oceano.teste.TesteOstra"/>
+            <class name="br.uff.ic.oceano.teste.asf.TesteIntegracaoASF"/>
+            <class name="br.uff.ic.oceano.teste.TesteUsuario"/>
+            <class name="br.uff.ic.oceano.cargastub.CargasOstra"/>
+            <class name="br.uff.ic.oceano.teste.TestProject"/>
+            <class name="br.uff.ic.oceano.teste.asf.TesteContextos"/>
+            <class name="br.uff.ic.oceano.teste.TesteUsuario"/>
+            <class name="br.uff.ic.oceano.teste.metricas.TestSaveMetrics"/>
+            <class name="br.uff.ic.oceano.teste.metricas.TesteMetricas"/>
+
+            <class name="br.uff.ic.oceano.teste.TesteSvnKit"/>
+        -->
+
+    </test>
+</suite>
+
+<!-- TUTORIAL MUITO BOM DE TESTNG:
+    http://www.ibm.com/developerworks/java/library/j-testng/
+
+    http://testng.org/doc/documentation-main.html
+
+    http://testng.org/dtd/
+
+    http://www.ibm.com/developerworks/java/library/j-testng/
+-->

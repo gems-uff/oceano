@@ -1,0 +1,54 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SUITE DE TESTE">
+    <!--
+        This test must me executed firt in order to initialize the JPA framework.
+        Don't coment it unless you know what you're doing.
+    -->
+   
+    <!--
+        Here comes the tests you wanna run.
+        The tests in the same test suite doesn't have order.
+        But the <test> tags have order to execute.
+    -->
+    <test name="User test suite" verbose="1">
+        <classes>
+            <class name="sandbox.ouricoupdate.TesteMerge"/>
+        </classes>
+    </test>
+</suite>
+        <!--OSTRA
+            <class name="br.uff.ic.oceano.ostra.TestDeltaMetricsDataBase"/>
+        -->
+
+        <!--CARGAS DE BASE DE DADOS
+                    <class name="br.uff.ic.oceano.bd.CargasDefault"/>
+        -->
+
+        <!--TESTES FORA DE EXECUÇÃO
+            <class name="br.uff.ic.oceano.teste.TesteSVN"/>
+            <class name="br.uff.ic.oceano.ostra.TestCompileMaven"/>
+            <class name="br.uff.ic.oceano.teste.metricas.TestExtractMetrics"/>
+            <class name="br.uff.ic.oceano.teste.TesteOstra"/>
+            <class name="br.uff.ic.oceano.teste.asf.TesteIntegracaoASF"/>
+            <class name="br.uff.ic.oceano.teste.TesteUsuario"/>
+            <class name="br.uff.ic.oceano.cargastub.CargasOstra"/>
+            <class name="br.uff.ic.oceano.teste.TestProject"/>
+            <class name="br.uff.ic.oceano.teste.asf.TesteContextos"/>
+            <class name="br.uff.ic.oceano.teste.TesteUsuario"/>
+            <class name="br.uff.ic.oceano.teste.metricas.TestSaveMetrics"/>
+            <class name="br.uff.ic.oceano.teste.metricas.TesteMetricas"/>
+
+            <class name="br.uff.ic.oceano.teste.TesteSvnKit"/>
+        -->
+
+
+<!-- TUTORIAL MUITO BOM DE TESTNG:
+    http://www.ibm.com/developerworks/java/library/j-testng/
+
+    http://testng.org/doc/documentation-main.html
+
+    http://testng.org/dtd/
+
+    http://www.ibm.com/developerworks/java/library/j-testng/
+-->
