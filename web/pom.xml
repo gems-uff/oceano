@@ -25,10 +25,7 @@
     </properties>
     <profiles>
         <profile>
-            <id>MEMORY-GLASSFISH</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>MEMORY-GLASSFISH</id>            
             <properties>
                 <netbeans.hint.deploy.server>J2EE</netbeans.hint.deploy.server>
                 <persistence.name>TesteMemoria</persistence.name>
@@ -108,12 +105,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>EXPERIMENTO-GLASSFISH</id>
-            <activation>
-                <!--
-                <activeByDefault>true</activeByDefault>
-                -->
-            </activation>
+            <id>EXPERIMENTO-GLASSFISH</id>            
             <properties>
                 <netbeans.hint.deploy.server>J2EE</netbeans.hint.deploy.server>
                 <persistence.name>OuricoExperimento</persistence.name>
@@ -233,8 +225,12 @@
         </profile>
         <profile>
             <id>release-profile</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <persistence.name>Local</persistence.name>
+                <maven.test.skip>true</maven.test.skip>
             </properties>
             <build>
                 <plugins>

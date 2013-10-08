@@ -60,6 +60,9 @@
         </profile>
         <profile>
             <id>release-profile</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <maven.test.skip>true</maven.test.skip>
                 <persistence.name>Local</persistence.name>
