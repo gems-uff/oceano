@@ -4,7 +4,7 @@
     <name>${project.artifactId}</name>
     <groupId>br.uff.ic.gems</groupId>
     <artifactId>oceano-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <url>https://sel.ic.uff.br/redmine/projects/oceano-parent</url>
     <description>see https://sel.ic.uff.br/redmine/projects/oceano-parent/wiki</description>
