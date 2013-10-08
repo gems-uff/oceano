@@ -14,9 +14,10 @@
         <url>https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</url>
     </scm>
     <modules>
-        <module>oceano-core</module>
-        <module>oceano-web</module>		        
-        <module>oceano-util</module>
+        <module>core</module>
+        <module>web</module>		        
+        <module>util</module>
+        <module>tools</module>
     </modules>   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
