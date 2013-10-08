@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.uff.ic.gems</groupId>
-    <name>Oceano-Web</name>
-    <artifactId>oceano-web</artifactId>
+    <name>${project.artifactId}</name>
+    <artifactId>web</artifactId>
     <packaging>war</packaging>
     <version>3.0.0-SNAPSHOT</version>
     <url>https://sel.ic.uff.br/redmine/projects/oceano-web</url>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>br.uff.ic.gems</groupId>
         <artifactId>oceano-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent> 
     <properties>
         <richfaces.version>3.3.0.GA</richfaces.version>
@@ -428,7 +428,7 @@
         
         <dependency>
             <groupId>br.uff.ic.gems</groupId>
-            <artifactId>oceano-core</artifactId>
+            <artifactId>core</artifactId>
             <version>3.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
@@ -439,7 +439,7 @@
         </dependency>
         <dependency>
             <groupId>br.uff.ic.gems</groupId>
-            <artifactId>oceano-util</artifactId>
+            <artifactId>util</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
