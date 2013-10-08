@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.uff.ic.gems</groupId>
-    <name>Oceano-Core</name>
-    <artifactId>oceano-core</artifactId>
+    <name>${project.artifactId}</name>
+    <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <!-- PADRAO NUMERO-VERSAO -->
     <!-- VERSAO.FUNCIONALIDADE.BUG_CORRECAO_OU_MELHORIA -->
