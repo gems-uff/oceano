@@ -39,6 +39,9 @@
         </profile>
         <profile>
             <id>release-profile</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>memory-test</id>
