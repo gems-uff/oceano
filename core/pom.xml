@@ -59,10 +59,7 @@
             </build>
         </profile>
         <profile>
-            <id>release-profile</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>release-profile</id>            
             <properties>
                 <maven.test.skip>true</maven.test.skip>
                 <persistence.name>Local</persistence.name>
@@ -145,10 +142,7 @@
             </build>
         </profile>
         <profile>
-            <id>memory-debug</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>memory-debug</id>            
             <properties>
                 <maven.test.skip>false</maven.test.skip>
                 <persistence.name>TesteMemoria</persistence.name>
