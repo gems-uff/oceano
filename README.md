@@ -36,21 +36,22 @@ This project was proposed by professor **Leonardo Murta** and implemented allong
 
 #Papers
 
-RIBEIRO, W. S. ; RIBEIRO, D. D. C. ; PLASTINO, A. ; MURTA, L. G. P. . Acompanhamento da Evolução de Software via Métricas. In: Workshop de Manutenção de Software Moderna (WMSWM), 2012, Fortaleza. Anais..., 2012. 
-Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários; Homepage: http://www.ic.uff.br/~leomurta/papers/ribeiro2012.pdf.
-
 MENEZES, G. G. L. ; MURTA, L. G. P. . Ouriço: Uma Abordagem para Manutenção da Consistência em Repositórios de Gerência de Configuração. In: Concurso de Teses e Dissertações em Qualidade de Software (CTDQS), Simpósio Brasileiro de Qualidade de Software (SBQS), 2012, Fortaleza. Anais..., 2012. p. 460-474. 
 Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários; Homepage: http://www.ic.uff.br/~leomurta/papers/menezes2012.pdf.
 
-SANTOS, R. S. ; MURTA, L. G. P. . Evaluating the Branch Merging Effort in Version Control Systems. In: Simpósio Brasileiro de Engenharia de Software (SBES), 2012, Natal. Anais..., 2012. p. 151-160. 
-Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários.
+RIBEIRO, W. S. ; RIBEIRO, D. D. C. ; PLASTINO, A. ; MURTA, L. G. P. . Acompanhamento da Evolução de Software via Métricas. In: Workshop de Manutenção de Software Moderna (WMSWM), 2012, Fortaleza. Anais..., 2012. 
+Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários; Homepage: http://www.ic.uff.br/~leomurta/papers/ribeiro2012.pdf.
 
 SANTOS, H. K. R. ; MURTA, L. G. P. ; SILVA, V. T. . Uma Abordagem distribuída para Refatoração Automática de Código Fonte guiada por Atributos de Qualidade. In: Workshop de Teses e Dissertações em Qualidade de Software (WTDQS), 2010, Belém. Anais..., 2010. 
 Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Homepage: http://www.ic.uff.br/~leomurta/papers/santos2010.pdf.
 
+SANTOS, R. S. ; MURTA, L. G. P. . Evaluating the Branch Merging Effort in Version Control Systems. In: Simpósio Brasileiro de Engenharia de Software (SBES), 2012, Natal. Anais..., 2012. p. 151-160. 
+Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários.
+
+
 #Development
 
-* [Guidelines](guidelines)
+* [Guidelines](https://github.com/gems-uff/oceano/wiki/Guidelines)
 * [Source Code](https://github.com/gems-uff/oceano)
 * [Issue Tracking](https://github.com/gems-uff/oceano/issues)
 
