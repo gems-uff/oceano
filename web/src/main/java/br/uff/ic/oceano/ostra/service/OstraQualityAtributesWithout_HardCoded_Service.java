@@ -8,6 +8,7 @@ import br.uff.ic.oceano.core.tools.metrics.MetricException;
 import br.uff.ic.oceano.core.exception.ObjetoNaoEncontradoException;
 import br.uff.ic.oceano.core.exception.ServiceException;
 import br.uff.ic.oceano.core.factory.MetricManagerFactory;
+import br.uff.ic.oceano.core.model.Metric;
 import br.uff.ic.oceano.core.model.MetricValue;
 import br.uff.ic.oceano.core.model.Revision;
 import br.uff.ic.oceano.core.model.SoftwareProject;
@@ -28,18 +29,19 @@ import java.util.Map;
 public class OstraQualityAtributesWithout_HardCoded_Service extends OstraMetricService {
 
     private static final boolean STOP_WITH_ERRORS = false;
-    List<MetricManager> qualityAttribytes;
-    List<MetricManager> qmoodMetrics;
-    Map<String, Double> firstValues;
+    List<MetricManager> qualityAttributes;    
+    List<MetricManager> qmoodMetrics;    
 
     public OstraQualityAtributesWithout_HardCoded_Service() {
         super();
+        
+        qmoodMetrics = MetricManagerFactory.getQmoodMetrics();
+        qualityAttributes = MetricManagerFactory.getQmoodQualityAttributes();
     }
 
     public void calculateQualityAttributes(SoftwareProject project) throws MetricException, ServiceException {
-        qualityAttribytes = MetricManagerFactory.getQmoodQualityAttributes();
-        qmoodMetrics = MetricManagerFactory.getQmoodMetrics();
-        firstValues = new HashMap<String, Double>();
+               
+        Map<String, Double> firstValues = new HashMap<String, Double>();
         System.out.print("Calculating Quality Attributes for project " + project);
 
         // I - get all revisions on time order
@@ -102,7 +104,7 @@ public class OstraQualityAtributesWithout_HardCoded_Service extends OstraMetricS
 
             //III - calculate and save the quality attributes
             System.out.println("    Calculating Quality Attributes");
-            for (MetricManager qualityAttribute : MetricManagerFactory.getQmoodQualityAttributes()) {
+            for (MetricManager qualityAttribute : qualityAttributes) {
                 // III.a calculate quality atribute value
                 Double calculatedQualityAttribute = calculateQualityAttribute(qualityAttribute.getMetric().getName(), mapMetricValuesNormalized);
                 // III.b save it
