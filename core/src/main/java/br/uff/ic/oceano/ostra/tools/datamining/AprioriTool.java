@@ -48,14 +48,13 @@ public class AprioriTool implements DataMiningTool {
             dmr.setRuleMetricName(dataMiningControl.getReadableMetricType());
             dmr.setMinConfidence(dataMiningControl.getMinMetric());
             dmr.setMinSupport(dataMiningControl.getMinSup());
-
-            StringReader arffReader = new StringReader(arffContent);
-            if (arffReader == null) {
+            if (arffContent == null) {
                 dmr.setResultData("Não foram minerados padrões.");
                 dmr.setArff("Não houve arff de entrada. A base deve estar vazia.");
                 return dmr;
             }
-
+            
+            StringReader arffReader = new StringReader(arffContent);            
             final Instances transacoes = new Instances(arffReader);
             apriori.buildAssociations(transacoes);
 
