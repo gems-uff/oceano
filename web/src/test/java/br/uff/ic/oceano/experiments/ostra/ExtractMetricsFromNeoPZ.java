@@ -10,6 +10,7 @@ import br.uff.ic.oceano.core.factory.MetricManagerFactory;
 import br.uff.ic.oceano.core.factory.ObjectFactory;
 import br.uff.ic.oceano.core.model.Metric;
 import br.uff.ic.oceano.core.model.OceanoUser;
+import br.uff.ic.oceano.core.model.Revision;
 import br.uff.ic.oceano.core.model.SoftwareProject;
 import br.uff.ic.oceano.core.model.transiente.Language;
 import br.uff.ic.oceano.core.tools.metrics.MetricManager;
@@ -27,11 +28,13 @@ import br.uff.ic.oceano.ostra.service.DeltaMetricsRevisionDataBaseService;
 import br.uff.ic.oceano.ostra.service.OstraMetricService;
 import br.uff.ic.oceano.ostra.service.OstraQualityAtributesWithout_HardCoded_Service;
 import br.uff.ic.oceano.util.CargaDefaultWeb;
+import br.uff.ic.oceano.util.NumberUtil;
 import br.uff.ic.oceano.util.test.AbstractNGTest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -41,7 +44,7 @@ import org.testng.annotations.Test;
  *
  * @author Dheraclio
  */
-public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
+public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
 
     private OstraQualityAtributesWithout_HardCoded_Service ostraQualityAtributesService;
     private DeltaMetricsRevisionDataBaseService deltaMetricsRevisionDataBaseService;
@@ -49,7 +52,6 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
     private List<MetricManager> metricManagers = new ArrayList<MetricManager>();
     private OceanoUser userDanielOceano;
     private OstraMetricService ostraMetricService;
-    
 
     @BeforeClass
     public void setUpClass() throws Exception {
@@ -78,29 +80,25 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
 
         OceanoUserDao oceanoUserDao = ObjectFactory.getObjectWithDataBaseDependencies(OceanoUserDaoImpl.class);
         this.userDanielOceano = oceanoUserDao.getByLogin("dheraclio");
+
+        initializeProjectList();
+        initializeMetricsList();
     }
 
     @Test
     public void executaExperimentos() throws Throwable {
-        initializeProjectList();
-        initializeMetricsList();
-        
-        final boolean updateMetrics = true;
-        if (updateMetrics) {
-            updateMetrics();
-        }
 
         final boolean EXTRAI_METRICAS = true;
         if (EXTRAI_METRICAS) {
             extractMetrics();
         }
-        
+
         final boolean CALCULA_METRIC_VALUES = true;
         if (CALCULA_METRIC_VALUES) {
             calculateRevisionMetricValues();
         }
-        
-        final boolean CALCULA_ATRIBUTOS_DE_QUALIDADE = true;        
+
+        final boolean CALCULA_ATRIBUTOS_DE_QUALIDADE = true;
         if (CALCULA_ATRIBUTOS_DE_QUALIDADE) {
             extractQualityAttributes();
         }
@@ -119,7 +117,7 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
         discretizers.add(DiscretizerFactory.getDiscretizer("rRound", RoundOfDayDiscretizer.class));
         for (Metric metric : getMetrics(metricManagers)) {
             discretizers.add(DiscretizerFactory.getDiscretizer(Constantes.PREFIX_DELTA_METRIC_AVARAGE + metric.getName(), NegativePositiveDiscretizer.class));
-            
+
             discretizers.add(DiscretizerFactory.getDiscretizer(Constantes.PREFIX_DELTA_METRIC_STANDARD_DEVIATON + metric.getName(), NegativePositiveDiscretizer.class));
         }
         return discretizers;
@@ -135,7 +133,7 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
         }
     }
 
-    public void extractMetrics() throws Throwable {
+    private void extractMetrics() throws Throwable {
         for (SoftwareProject project : projects) {
             try {
                 System.out.println("======================================================");
@@ -149,7 +147,7 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
 
     }
 
-    public void calculateRevisionMetricValues() throws Throwable {
+    private void calculateRevisionMetricValues() throws Throwable {
 //        measure projects
         for (SoftwareProject project : projects) {
             try {
@@ -164,7 +162,7 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
         }
     }
 
-    public void extractQualityAttributes() throws Throwable {
+    private void extractQualityAttributes() throws Throwable {
 //        measure projects
         for (SoftwareProject project : projects) {
             try {
@@ -179,12 +177,12 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
     }
 
     private void initializeMetricsList() throws ServiceException {
-        MetricManagerFactory fact = MetricManagerFactory.getInstance();        
+        MetricManagerFactory fact = MetricManagerFactory.getInstance();
         Collection<MetricManager> metricManagrs = fact.getMetricManagers();
         for (MetricManager mng : metricManagrs) {
             if (!mng.isLanguageSupported(Language.CPP)) {
                 continue;
-            }            
+            }
             metricManagers.add(mng);
         }
         println("Metrics to consider = " + metricManagers);
@@ -197,22 +195,4 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest{
         }
         return metrics;
     }
-
-    private void updateMetrics() throws Throwable {
-        for (SoftwareProject project : projects) {
-            try {
-                System.out.println("======================================================");
-                System.out.println("UPDATING REVISION METRIC VALUES FROM PROJECT " + project);
-//                this.ostraMetricService.updateMetricsFromAllFilesInProjectRevisions(project);
-//                this.ostraMetricService.updateRevisionMetricValuesFromVersionedItemMetricValues(project);
-//                this.ostraMetricService.updateQualityAttributes(project);
-                System.out.println("======================================================\n");
-
-            } catch (Throwable t) {
-                println(t.getMessage());
-            }
-        }
-    }
-
-    
 }
