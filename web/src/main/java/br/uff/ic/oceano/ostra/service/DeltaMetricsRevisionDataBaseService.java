@@ -107,9 +107,7 @@ public class DeltaMetricsRevisionDataBaseService {
     }
 
     private void buildDeltaMetricsDataBase(Set<Revision> revisions, boolean calculateDeltaMetrics) throws ServiceException {
-
-        //to make sure its on the correct order
-        assert JPAUtil.getEntityManager().isOpen();
+        
         List<Revision> revisionsList = new ArrayList<Revision>(revisions);
         Collections.sort(revisionsList);
 
@@ -304,22 +302,23 @@ public class DeltaMetricsRevisionDataBaseService {
      * the missing value, otherwise put the respective metric value.
      */
     private void populateDataBaseSnapshotWithInstances() {
+        Output.println("Populating database snapshot");
         for (Revision revision : instanceAttributes.keySet()) {
-
+            Output.println("Revision: " + revision);
             final StringBuilder sb = new StringBuilder();
             for (Iterator<String> it = attributeNames.iterator(); it.hasNext();) {
                 final String attributeName = it.next();
-
                 final String attributeValue = instanceAttributes.get(revision).get(attributeName);
+                
                 if (attributeValue == null) {
                     sb.append(Constantes.ATTRIBUTE_NOT_KNOWN_SYMBOL);
 
                 } else {
-                    if (useDiscretizers && discretizersMap.get(attributeName) != null) {
-//                        System.out.println("Aplicando " + discretizersMap.get(attributeName).getClass().getCanonicalName() + " ao atributo " + attributeName + " = " + attributeValue);
-
-                        sb.append(discretizersMap.get(attributeName).discretize(attributeValue));
-
+                    final Discretizer discret = discretizersMap.get(attributeName);
+                    if (useDiscretizers && discret != null) {                        
+                        final String result = discret.discretize(attributeValue);
+                        sb.append(result);                        
+                        Output.println(attributeName + ": " +attributeValue + "=>" + result);  
                     } else {
                         sb.append(attributeValue);
                     }
@@ -330,7 +329,7 @@ public class DeltaMetricsRevisionDataBaseService {
                 }
             }
 
-//            System.out.println(">> Instance: " + sb.toString());
+            Output.println(">> Instance: " + sb.toString());
             dataBaseSnapshot.getInstances().add(sb.toString());
         }
     }
