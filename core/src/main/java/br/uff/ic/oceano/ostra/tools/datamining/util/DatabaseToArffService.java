@@ -200,7 +200,7 @@ public class DatabaseToArffService {
             //validate
             if (!dbs.getAttributes().contains(discretizer.getAttributeTarget())) {
                 final String msg = "Attribute target not known " + discretizer.getAttributeTarget() + " of " + discretizer.getClass().getCanonicalName();
-                Logger.getLogger(DatabaseToArffService.class.getName()).log(Level.WARNING, null);
+                Logger.getLogger(DatabaseToArffService.class.getName()).log(Level.WARNING, msg);
             }
             //insert into map
             discretizersMap.put(discretizer.getAttributeTarget(), discretizer);
