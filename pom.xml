@@ -38,7 +38,7 @@
             <id>deploy</id>
         </profile>
         <profile>
-            <id>release-profile</id>
+            <id>release</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>

@@ -59,7 +59,7 @@
             </build>
         </profile>
         <profile>
-            <id>release-profile</id>            
+            <id>release</id>            
             <properties>
                 <maven.test.skip>true</maven.test.skip>
                 <persistence.name>Local</persistence.name>

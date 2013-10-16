@@ -224,10 +224,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>release-profile</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>release</id>
             <properties>
                 <persistence.name>Local</persistence.name>
                 <maven.test.skip>true</maven.test.skip>

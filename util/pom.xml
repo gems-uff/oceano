@@ -50,10 +50,7 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>release-profile</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>release</id>
             <properties>
                 <maven.test.skip>true</maven.test.skip>
             </properties>
