@@ -7,4 +7,12 @@
                 <goal>help:active-profiles</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-InstallNoModules</actionName>
+            <displayName>InstallNoModules</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>install</goal>
+            </goals>           
+        </action>
     </actions>
