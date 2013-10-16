@@ -33,10 +33,10 @@
     <profiles>
 
         <profile>
+            <id>Desenvolvimento</id>			
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <id>Desenvolvimento</id>
             <properties>
                 <urlProject>http://localhost:8080</urlProject>
                 <contexto>oceano</contexto>
