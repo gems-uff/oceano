@@ -185,13 +185,13 @@
                                     var="rule"
                                     rows="25"
                                     value="#{DataMiningBean.filteredMinedPatterns}">
-                        <rich:column sortBy="#{rule.pattern.precedent}">
+                        <rich:column sortBy="#{rule.precedent}">
                             <f:facet name="header">
                                 Precedent
                             </f:facet>
                             #{rule.precedent}                            
                         </rich:column>
-                        <rich:column sortBy="#{rule.pattern.consequent}">
+                        <rich:column sortBy="#{rule.consequent}">
                             <f:facet name="header">
                                 Consequent
                             </f:facet>
@@ -215,32 +215,8 @@
                             #{rule.liftAsString}
                             <rich:toolTip>Lift</rich:toolTip>
                         </rich:column>
-
-<!--                        <rich:column sortBy="#{rule.conviction}">
-                            <f:facet name="header"> Conv. </f:facet>
-                            #{rule.convictionAsString}
-                            <rich:toolTip>Conviction</rich:toolTip>
-                        </rich:column>
-
-                        <rich:column sortBy="#{rule.leverage}">
-                            <f:facet name="header"> Lev. </f:facet>
-                            #{rule.leverageAsString}
-                            <rich:toolTip>Leverage</rich:toolTip>
-                        </rich:column>
-
-                        <rich:column sortBy="#{rule.size}">
-                            <f:facet name="header">
-                                Size
-                            </f:facet>
-                            #{rule.size}
-                            <rich:toolTip>
-                                <li><b>Rule Size =</b> #{rule.size}</li>
-                                <li><b>Precedent Size =</b> #{rule.precedentSize}</li>
-                                <li><b>Consequent Size =</b> #{rule.consequentSize}</li>
-                            </rich:toolTip>
-                        </rich:column>-->
-
                     </rich:dataTable>
+                    
                     <rich:datascroller for="tabelaPatterns" maxPages="30">
                         <f:facet name="first">
                             <h:outputText value="First"/>
