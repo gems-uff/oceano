@@ -19,7 +19,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent> 
     <properties>
-        <richfaces.version>3.3.0.GA</richfaces.version>
+        <richfaces.version>3.3.4.Final</richfaces.version>
         <context>oceano</context>
         <netbeans.hint.deploy.server>J2EE</netbeans.hint.deploy.server>
     </properties>
