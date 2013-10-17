@@ -417,16 +417,11 @@
             <artifactId>checkstyle</artifactId>
             <version>5.0</version>
         </dependency>
-<!--        <dependency>
-            <groupId>weka</groupId>
-            <artifactId>weka</artifactId>
-            <version>3.4.1</version>
-        </dependency>-->
         <dependency>
-	<groupId>nz.ac.waikato.cms.weka</groupId>
-	<artifactId>weka-stable</artifactId>
-	<version>3.6.10</version>
-</dependency>
+            <groupId>nz.ac.waikato.cms.weka</groupId>
+            <artifactId>weka-stable</artifactId>
+            <version>3.6.10</version>
+        </dependency>
             
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
