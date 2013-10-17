@@ -4,7 +4,6 @@
  */
 package br.uff.ic.oceano.ostra.service;
 
-import br.uff.ic.oceano.core.dao.controle.JPAUtil;
 import br.uff.ic.oceano.core.exception.ServiceException;
 import br.uff.ic.oceano.core.factory.ObjectFactory;
 import br.uff.ic.oceano.core.model.Metric;
@@ -71,12 +70,10 @@ public class DeltaMetricsRevisionDataBaseService {
     private List<Metric> metricsList;
 
     public DeltaMetricsRevisionDataBaseService() {
-//        ostraMetricService = ObjectFactory.getObj(OstraMetricService.class);
         revisionService = ObjectFactory.getObjectWithDataBaseDependencies(RevisionService.class);
         metricValueService = ObjectFactory.getObjectWithDataBaseDependencies(MetricValueService.class);
     }
 
-    
     public synchronized DataBaseSnapshot buildDeltaMetricsDataBase(List<SoftwareProject> projects, List<Discretizer> discretizers, boolean calculateStandardDeviation, boolean usesOnlyCompilingRevisions, List<Metric> metricsListToConsider, boolean calculateDeltaMetrics) throws ServiceException {
         this.calculateStandardDeviation = calculateStandardDeviation;
         this.usesOnlyCompilingRevisions = usesOnlyCompilingRevisions;
@@ -89,7 +86,7 @@ public class DeltaMetricsRevisionDataBaseService {
             buildDeltaMetricsDataBase(project.getRevisions(), calculateDeltaMetrics);
         }
 
-        savaMetricValuesForRevisions();
+        saveMetricValuesForRevisions();
 
 //        System.out.println("--------------------------------------------------");
 //        System.out.println("attributeNames = " + attributeNames);
@@ -107,7 +104,7 @@ public class DeltaMetricsRevisionDataBaseService {
     }
 
     private void buildDeltaMetricsDataBase(Set<Revision> revisions, boolean calculateDeltaMetrics) throws ServiceException {
-        
+
         List<Revision> revisionsList = new ArrayList<Revision>(revisions);
         Collections.sort(revisionsList);
 
@@ -116,7 +113,7 @@ public class DeltaMetricsRevisionDataBaseService {
 
         for (Revision revision : revisionsList) {
             //skips revisions that doesnt compile
-            boolean cannotCompile = revision.getCannotCompile()==null?true:revision.getCannotCompile();
+            boolean cannotCompile = revision.getCannotCompile() == null ? true : revision.getCannotCompile();
             if (usesOnlyCompilingRevisions && cannotCompile) {
                 continue;
             }
@@ -309,16 +306,16 @@ public class DeltaMetricsRevisionDataBaseService {
             for (Iterator<String> it = attributeNames.iterator(); it.hasNext();) {
                 final String attributeName = it.next();
                 final String attributeValue = instanceAttributes.get(revision).get(attributeName);
-                
+
                 if (attributeValue == null) {
                     sb.append(Constantes.ATTRIBUTE_NOT_KNOWN_SYMBOL);
 
                 } else {
                     final Discretizer discret = discretizersMap.get(attributeName);
-                    if (useDiscretizers && discret != null) {                        
+                    if (useDiscretizers && discret != null) {
                         final String result = discret.discretize(attributeValue);
-                        sb.append(result);                        
-                        Output.println(attributeName + ": " +attributeValue + "=>" + result);  
+                        sb.append(result);
+                        Output.println(attributeName + ": " + attributeValue + "=>" + result);
                     } else {
                         sb.append(attributeValue);
                     }
@@ -335,7 +332,7 @@ public class DeltaMetricsRevisionDataBaseService {
     }
 
     @Transacional
-    private void savaMetricValuesForRevisions() {
+    private void saveMetricValuesForRevisions() {
         for (MetricValue metricValue : metricValuesToPersist) {
 //            if (metricValue.getMetric().getExtratcsFrom() == Metric.EXTRACTS_FROM_PROJECT) {
 //                continue;
@@ -362,38 +359,14 @@ public class DeltaMetricsRevisionDataBaseService {
      */
     private void initializeDiscretizers(List<Discretizer> discretizers) throws ServiceException {
         useDiscretizers = discretizers != null && !discretizers.isEmpty();
-
-        if (useDiscretizers) {
-
-            this.discretizersMap = new HashMap<String, Discretizer>();
-            validateDiscretizers(discretizers);
-
-            for (Discretizer discretizer : discretizers) {
-//                System.out.println("Inserindo discretizador = " + discretizer);
-                this.discretizersMap.put(discretizer.getAttributeTarget(), discretizer);
-//                updateAttributeReferencedName(discretizer);
-            }
-
+        if (!useDiscretizers) {
+            return;
         }
-    }
+        validateDiscretizers(discretizers);
 
-    /**
-     * This method updates the references to the attribute name to the new name.
-     * The new attribute name uses the discretizer prefix before the attribute
-     * name.
-     *
-     * @param discretizer
-     */
-    private void updateAttributeReferencedName(Discretizer discretizer) {
-        //rename the attribute and replace the old referenced names
-        final String oldAttributeName = discretizer.getAttributeTarget();
-        final String newAttributeName = discretizer.getPrefix() + discretizer.getAttributeTarget();
-        this.attributeNames.remove(oldAttributeName);
-        this.attributeNames.add(newAttributeName);
-
-        for (Revision revision : instanceAttributes.keySet()) {
-            instanceAttributes.get(revision).put(newAttributeName, instanceAttributes.get(revision).get(oldAttributeName));
-            instanceAttributes.get(revision).remove(oldAttributeName);
+        this.discretizersMap = new HashMap<String, Discretizer>();
+        for (Discretizer discretizer : discretizers) {
+            this.discretizersMap.put(discretizer.getAttributeTarget(), discretizer);
         }
     }
 
@@ -445,14 +418,21 @@ public class DeltaMetricsRevisionDataBaseService {
                 if (hasADeltaMetricValue) {
                     continue;
                 }
-                final Double lastValue = mapWithLastValueForEachMetric.get(metricValue.getMetric());
 
-                if (lastValue == null) {
-                    deltaValue = metricValue.getDoubleValue();
+                final Double lastValue = mapWithLastValueForEachMetric.get(metricValue.getMetric());
+                final Double currentValue = metricValue.getDoubleValue();
+                if (lastValue == null || NumberUtil.isNAN(lastValue)) {
+                    //last value for metric not know, so new value is the delta.
+                    deltaValue = currentValue;
+                } else if (currentValue == null || NumberUtil.isNAN(currentValue)) {
+                    //no new value for metric, so no changes.
+                    deltaValue = 0.0;
                 } else {
-                    deltaValue = metricValue.getDoubleValue() - lastValue;
+                    //last and current values known.
+                    deltaValue = currentValue - lastValue;
                 }
-                mapWithLastValueForEachMetric.put(metricValue.getMetric(), metricValue.getDoubleValue());
+
+                mapWithLastValueForEachMetric.put(metricValue.getMetric(), currentValue);
             }
 
             addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metricValue.getMetric().getName(), String.valueOf(deltaValue), revision);
