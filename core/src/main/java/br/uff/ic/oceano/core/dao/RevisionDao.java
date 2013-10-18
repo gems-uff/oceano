@@ -16,11 +16,6 @@ import java.util.Set;
  *
  * @author Heliomar
  */
-//@NamedQueries({
-//
-//    @NamedQuery(name="ConfiguracaoDao.getByUsuario",query="select c from Configuracao c where c.usuario= ? order by c.dataCriacao")
-//
-//})
 public interface RevisionDao extends DaoGenerico<Revision, Long> {
 
     public Revision getByCaminhoLocal(String caminhoLocal) throws ObjetoNaoEncontradoException;
