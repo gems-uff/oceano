@@ -215,6 +215,11 @@
                             #{rule.liftAsString}
                             <rich:toolTip>Lift</rich:toolTip>
                         </rich:column>
+                        <rich:column sortBy="#{rule.conviction}">
+                            <f:facet name="header"> Conv. </f:facet>
+                            #{rule.convictionAsString}
+                            <rich:toolTip>Conviction</rich:toolTip>
+                        </rich:column>
                     </rich:dataTable>
                     
                     <rich:datascroller for="tabelaPatterns" maxPages="30">
