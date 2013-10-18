@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<persistence version="1.0" 
- xmlns="http://java.sun.com/xml/ns/persistence" 
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- xsi:schemaLocation="http://java.sun.com/xml/ns/persistence     
-http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">-->
-<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+<persistence version="2.0" 
+             xmlns="http://java.sun.com/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
     <!--TesteMemoria-->
     <persistence-unit name="TesteMemoria">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <!--PROPRIEDADES-->
-            <property name="hibernate.show_sql" value="false"/>
+            
             <property name="hibernate.format_sql" value="true"/>      
+            <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.use_sql_comments" value="false" />
             
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>            
             <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-            <property name="hibernate.connection.autocommit" value="true"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>               
             
-            <!-- Connection pool -->
             <property name="hibernate.c3p0.min_size" value="10"/>
             <property name="hibernate.c3p0.max_size" value="50"/>
             <property name="hibernate.c3p0.timeout" value="300"/>
@@ -42,27 +39,18 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">-->
             <property name="hibernate.format_sql" value="false"/>      
             <property name="hibernate.use_sql_comments" value="false" />
 
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.connection.autocommit" value="false"/>            
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-      
-            <!--Banco-->
-                  <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>            
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.archive.autodetection" value="class"/>      
       
-            <!-- Connection pool -->
-<!--                  <property name="hibernate.connection.pool_size" value="5"/>            -->
             <property name="hibernate.c3p0.min_size" value="10"/>
             <property name="hibernate.c3p0.max_size" value="50"/>
             <property name="hibernate.c3p0.timeout" value="300"/>
             <property name="hibernate.c3p0.max_statements" value="50"/>
             <property name="hibernate.c3p0.idle_test_period" value="300"/>
       
-            <!--Connection-->    
-<!--            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/oceano"/>
-            <property name="hibernate.connection.username" value="postgres"/>
-            <property name="hibernate.connection.password" value="postgres"/>
-            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>-->
-            
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/oceano"/>
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
@@ -73,27 +61,23 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">-->
     <persistence-unit name="LocalTemp"   >
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <!--PROPRIEDADES-->
         <properties>      
             <property name="hibernate.show_sql" value="false"/>
-            <property name="hibernate.format_sql" value="true"/>      
+            <property name="hibernate.format_sql" value="false"/>
             <property name="hibernate.use_sql_comments" value="false" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       
-            <!--Banco-->
-            <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.archive.autodetection" value="class"/>      
+            <property name="hibernate.connection.autocommit" value="false"/>             
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>      
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
       
-            <!-- Connection pool -->
-<!--                  <property name="hibernate.connection.pool_size" value="5"/>            -->
             <property name="hibernate.c3p0.min_size" value="10"/>
             <property name="hibernate.c3p0.max_size" value="50"/>
             <property name="hibernate.c3p0.timeout" value="0"/>
             <property name="hibernate.c3p0.max_statements" value="50"/>
-            <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+            <property name="hibernate.c3p0.idle_test_period" value="300"/> 
       
-            <!--Connection-->                
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/oceanotemp"/>
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>

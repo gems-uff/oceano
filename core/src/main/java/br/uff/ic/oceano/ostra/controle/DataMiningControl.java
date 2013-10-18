@@ -71,6 +71,13 @@ public class DataMiningControl {
             throw new RuntimeException(readableMetricType + " not known. Readable Metric type must be one of: " + getPossibleMetricTypes());
         }
     }
+    
+    public String getMetricType(){
+        if (getSelectedTag() == null || getSelectedTag().getSelectedTag() == null) {
+            return null;
+        }
+        return getSelectedTag().getSelectedTag().getIDStr();
+    }
 
     /**
      * @return the verboseMode

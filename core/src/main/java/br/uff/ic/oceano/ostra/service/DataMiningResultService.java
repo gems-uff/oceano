@@ -74,6 +74,11 @@ public class DataMiningResultService implements PersistenceService {
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
+    @Transacional
     public List<DataMiningResult> getAll() {
         return dataMiningResultDao.getAll();
     }
