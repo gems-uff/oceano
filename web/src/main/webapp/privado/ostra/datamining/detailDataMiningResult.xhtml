@@ -200,7 +200,7 @@
 
                         <rich:column sortBy="#{rule.support}">
                             <f:facet name="header"> Sup. </f:facet>
-                            #{rule.supportAsString} (#{rule.count})
+                            #{rule.supportAsString}
                             <rich:toolTip>Support</rich:toolTip>
                         </rich:column>
 
@@ -219,6 +219,11 @@
                             <f:facet name="header"> Conv. </f:facet>
                             #{rule.convictionAsString}
                             <rich:toolTip>Conviction</rich:toolTip>
+                        </rich:column>
+                        <rich:column sortBy="#{rule.count}">
+                            <f:facet name="header"> Count </f:facet>
+                            #{rule.countAsString}
+                            <rich:toolTip>Count</rich:toolTip>
                         </rich:column>
                     </rich:dataTable>
                     

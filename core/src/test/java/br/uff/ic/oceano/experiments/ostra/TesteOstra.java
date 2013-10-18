@@ -7,12 +7,9 @@ package br.uff.ic.oceano.experiments.ostra;
 import br.uff.ic.oceano.core.factory.MetricManagerFactory;
 import br.uff.ic.oceano.core.factory.ObjectFactory;
 import br.uff.ic.oceano.core.tools.metrics.service.MetricService;
-import br.uff.ic.oceano.ostra.model.DataMiningPattern;
 import br.uff.ic.oceano.ostra.model.DataMiningResult;
-import br.uff.ic.oceano.ostra.service.DataMiningPatternService;
 import br.uff.ic.oceano.ostra.service.DataMiningResultService;
 import junit.framework.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -111,15 +108,8 @@ public class TesteOstra {
         desiredResultString.append("Size of set of large itemsets L(2): 6\n");
         desiredResultString.append("\n");
         desiredResultString.append("Size of set of large itemsets L(3): 2");
-    }
-//    @Test
-    public void getDataMiningPatternFromString() {
-        DataMiningPattern dmp = DataMiningPatternService.getDataminingPaternFromOutputStringLineRule("   7. dAvg-Cyclomatic Complexity=+ 16 ==> dAvg-Method Lines Of Code=+ 16    conf:(1)", null);
-        Assert.assertEquals(01d, dmp.getConfidence());
-        Assert.assertEquals(16d, dmp.getSupport());
-        Assert.assertEquals("dAvg-Cyclomatic Complexity=+ 16 ==> dAvg-Method Lines Of Code=+ 16", dmp.getPattern());
-    }
-
+    }    
+    
 //    @Test
     public void cleanMiningResultsResultString() {
         DataMiningResult dmr = new DataMiningResult();

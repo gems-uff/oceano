@@ -56,7 +56,7 @@ public class MyApriori extends Apriori {
             pattern = ((ItemSet) m_allTheRules[0].elementAt(i)).toString(m_instances) + " ==> " + ((ItemSet) m_allTheRules[1].elementAt(i)).toString(m_instances);
 
             rule.setPattern(pattern);
-            rule.setSupport(new Double(((ItemSet) m_allTheRules[1].elementAt(i)).support()));
+            rule.setCount(new Double(((ItemSet) m_allTheRules[1].elementAt(i)).support()));
             rule.setConfidence((Double) m_allTheRules[2].elementAt(i));
 
             if (m_metricType != CONFIDENCE || m_significanceLevel != -1) {

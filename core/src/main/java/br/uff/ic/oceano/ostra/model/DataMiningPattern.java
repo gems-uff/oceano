@@ -39,7 +39,7 @@ public class DataMiningPattern implements Serializable {
     private Long id;
     @Lob
     private String pattern;
-    private Double support;
+    private Double count;
     private Double confidence;
     private Double conviction;
     private Double lift;
@@ -50,7 +50,7 @@ public class DataMiningPattern implements Serializable {
 
     @Override
     public String toString() {
-        return pattern + " Suport=" + support + ", Conf=" + NumberUtil.format(confidence) + ", Conv=" + NumberUtil.format(conviction) + ", Lift=" + NumberUtil.format(lift) + ", Lev=" + NumberUtil.format(leverage);
+        return pattern + " Count=" + getCountAsString() + ", Support=" + getSupportAsString() + ", Conf=" + getConfidenceAsString() + ", Conv=" + getConvictionAsString() + ", Lift=" + getLiftAsString() + ", Lev=" + getLeverageAsString();
     }
 
     public int getSize() {
@@ -147,18 +147,22 @@ public class DataMiningPattern implements Serializable {
     }
 
     /**
-     * @return the support
+     * @return the count
      */
     public Double getCount() {
-        return support;
+        return count;
+    }
+    
+    public String getCountAsString() {
+        return NumberUtil.format(getCount());
     }
 
     /**
-     * //TODO find out why it is considering the number of results.
+     * 
      * @return the support
      */
     public Double getSupport() {
-        return NumberUtil.ratio(support,dataMiningResult.getNumberOfInstances());
+        return NumberUtil.ratio(getCount(),dataMiningResult.getNumberOfInstances());
     }
 
     public String getSupportAsString() {
@@ -168,8 +172,8 @@ public class DataMiningPattern implements Serializable {
     /**
      * @param support the support to set
      */
-    public void setSupport(Double support) {
-        this.support = support;
+    public void setCount(Double support) {
+        this.count = support;
     }
 
     /**
@@ -284,5 +288,9 @@ public class DataMiningPattern implements Serializable {
         }
 
         return Double.NaN;
+    }
+
+    public void setCount(double ruleSupport) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
