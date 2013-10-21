@@ -28,35 +28,35 @@
                                     rows="50"
                                     value="#{DataMiningBean.tableDataMiningResults}">
 
-                        <rich:column >
+                        <rich:column sortBy="#{dmr.description}" >
                             <f:facet name="header">
                                 Details
                             </f:facet>
                             <h:commandLink action="#{DataMiningBean.detailDataMiningResult}" value="#{dmr.description}" />
                         </rich:column>
 
-                        <rich:column >
+                        <rich:column sortBy="#{dmr.usedAlgorithmName}" >
                             <f:facet name="header">
-                                Algoritmo
+                                Algorithm
                             </f:facet>
                             #{dmr.usedAlgorithmName}
                         </rich:column>
 
-                        <rich:column >
+                        <rich:column sortBy="#{dmr.minSupport}">
                             <f:facet name="header">
                                 Min. Support
                             </f:facet>
                             #{dmr.minSupport}
                         </rich:column>
 
-                        <rich:column >
+                        <rich:column sortBy="#{dmr.minConfidence}">
                             <f:facet name="header">
                                 Min. Metric
                             </f:facet>
                             #{dmr.minConfidence}
                         </rich:column>
 
-                        <rich:column >
+                        <rich:column sortBy="#{dmr.formatedMinedInTime}">
                             <f:facet name="header">
                                 Mined at
                             </f:facet>
