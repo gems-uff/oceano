@@ -5,6 +5,7 @@
 package br.uff.ic.oceano.ostra.service.behaviortable;
 
 import br.uff.ic.oceano.core.factory.MetricManagerFactory;
+import br.uff.ic.oceano.core.model.Metric;
 import br.uff.ic.oceano.core.service.PersistenceService;
 import br.uff.ic.oceano.core.tools.metrics.MetricManager;
 import br.uff.ic.oceano.core.tools.metrics.expression.QMOOD;
@@ -72,8 +73,13 @@ public class BehaviorTableService implements PersistenceService {
                 continue;
             }
             final String pattern = dataMiningPattern.getPattern();
-            if (pattern.contains("project-revision") || pattern.contains("rdate") || pattern.contains("rcommiter") || pattern.contains("#files")
-                    || pattern.contains("rday") || pattern.contains("rhour") || pattern.contains("rcompile")) {
+            if (pattern.contains("project-revision") 
+                    || pattern.contains("rdate") 
+                    || pattern.contains("rcommiter") 
+                    || pattern.contains("#files")
+                    || pattern.contains("rday") 
+                    || pattern.contains("rhour") 
+                    || pattern.contains("rcompile")) {
                 continue;
             }
 
@@ -86,18 +92,15 @@ public class BehaviorTableService implements PersistenceService {
             if (precedentIndice == null || consequentIndice == null) {
                 continue;
             }
-
-            final String precedentValue = DataMiningPattern.getValue(dataMiningPattern.getPrecedent());
-            final String consequentValue = DataMiningPattern.getValue(dataMiningPattern.getConsequent());
-
-            behaviorTable[precedentIndice][consequentIndice].getRules().add(dataMiningPattern);
-            behaviorTable[precedentIndice][consequentIndice].setValue(verifyBehaviors(behaviorTable[precedentIndice][consequentIndice].getRules()));
+            Behavior behavior = behaviorTable[precedentIndice][consequentIndice];
+            behavior.getRules().add(dataMiningPattern);
+            behavior.setValue(verifyBehaviors(behavior.getRules()));
 
             //update max rule metric value
-            final Double highestValue = behaviorTable[precedentIndice][consequentIndice].getHighestConfidence();
+            final Double highestValue = behavior.getHighestConfidence();
             final Double actualValue = getRuleMetric(ruleMetricName, dataMiningPattern);
             if (highestValue == null || actualValue > highestValue) {
-                behaviorTable[precedentIndice][consequentIndice].setHighestConfidence(actualValue);
+                behavior.setHighestConfidence(actualValue);
             }
         }
 
