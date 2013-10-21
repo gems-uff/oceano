@@ -260,7 +260,7 @@ public class Behavior {
     public String getAverageSuport() {
         double sum = 0;
         for (DataMiningPattern rule : rules) {
-            sum += rule.getSupport();
+            sum += rule.getSupport()!=null?rule.getSupport():0.0;
         }
         return NumberUtil.format((rules != null && !rules.isEmpty()) ? sum / rules.size() : sum);
     }
@@ -268,7 +268,7 @@ public class Behavior {
     public String getAverageConfidence() {
         double sum = 0;
         for (DataMiningPattern rule : rules) {
-            sum += rule.getConfidence();
+            sum += rule.getConfidence()!=null?rule.getConfidence():0.0;
         }
         return NumberUtil.format((rules != null && !rules.isEmpty()) ? sum / rules.size() : sum);
     }
@@ -276,9 +276,7 @@ public class Behavior {
     public String getAverageLift() {
         double sum = 0;
         for (DataMiningPattern rule : rules) {
-            if (rule.getLift() != null) {
-                sum += rule.getLift();
-            }
+            sum += rule.getLift()!=null?rule.getLift():0.0;
         }
         return NumberUtil.format((rules != null && !rules.isEmpty()) ? sum / rules.size() : sum);
     }
