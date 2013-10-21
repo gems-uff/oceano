@@ -4,6 +4,8 @@
  */
 package br.uff.ic.oceano.util;
 
+import br.uff.ic.oceano.util.file.Archive;
+
 /**
  *
  */
@@ -41,6 +43,11 @@ public class Output {
         }
         append(str);
         append(BREAK_LINE);
+    }
+    
+     public static void logToDatedTxtFile(final String fileName){        
+        Archive arc = new Archive(fileName + " " + DateUtil.currentFile()+".txt");
+        arc.openAppendAndClose(getLog());        
     }
 
     /**
