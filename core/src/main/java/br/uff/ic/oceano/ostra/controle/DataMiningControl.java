@@ -76,7 +76,7 @@ public class DataMiningControl {
         if (getSelectedTag() == null || getSelectedTag().getSelectedTag() == null) {
             return null;
         }
-        return getSelectedTag().getSelectedTag().getIDStr();
+        return getSelectedTag().getSelectedTag().getReadable();
     }
 
     /**

@@ -20,7 +20,10 @@ import br.uff.ic.oceano.ostra.model.DataBaseSnapshot;
 import br.uff.ic.oceano.ostra.model.DataMiningResult;
 import br.uff.ic.oceano.ostra.service.DataMiningResultService;
 import br.uff.ic.oceano.ostra.service.OstraMetricService;
+import br.uff.ic.oceano.util.DateUtil;
 import br.uff.ic.oceano.util.NumberUtil;
+import br.uff.ic.oceano.util.Output;
+import br.uff.ic.oceano.util.file.Archive;
 import br.uff.ic.oceano.util.test.AbstractNGTest;
 import br.uff.ic.oceano.view.SelectableItem;
 import java.util.Collections;
@@ -40,25 +43,27 @@ import org.testng.annotations.BeforeClass;
  */
 public class DataMiningNGTest extends AbstractNGTest {
 
-    private int maxRules = 100;
-    private double minSupport = 0.01;
-    private boolean clearOldResults = true;
+    private int maxRules = 1000;
+    private double minSupport = 0.01;    
     private int maxBadResults = 2;
-    private DataMiningBean dataMiningBean;
-    private double percentOfRevisionsToMine = 100.0; //0.25 ~ 10, 1% - 49
+    private DataMiningBean dataMiningBean;    
     private SoftwareProject neoPz;
 
     @BeforeClass
     @Override
     public void beforeClass() {
         try {
+            boolean clearOldResults = false;
             if (clearOldResults) {
                 cleanOldResults();
             }
 
             startTimer();
             neoPz = CppProjectsHelper.getDBNeoPZProject();
+            
+            double percentOfRevisionsToMine = 100.0; //0.25 ~ 10, 1% - 49
             dataMiningBean = createBean(neoPz, percentOfRevisionsToMine);
+            
             dataMiningBean.configureDataMining();
             endTimer("Preparing database time cost");
             print(dataMiningBean.getDataBaseSnapshot());
@@ -133,7 +138,11 @@ public class DataMiningNGTest extends AbstractNGTest {
 //        runDatamining(assocRuleMetric, bean);
 //    }
 //------------------------------------------------------------------------------    
-    @Test
+    /**
+     * ~1 minutes/result
+     * @throws Exception 
+     */
+    //@Test
     public void testNeoPzDataMiningConvictionLoop() throws Exception {
         //chances of the rule is wrong
         //low is better
@@ -143,9 +152,8 @@ public class DataMiningNGTest extends AbstractNGTest {
 
         DataMiningResult result;
         List<DataMiningResult> mined = new LinkedList<DataMiningResult>();
-        //go from high to low to avoid memory problems
-        //Start from 0.5% chance of being wrong
-        double conviction = 10;
+        //go from low to high, since highest isn't known
+        double conviction = 1;
         do {
             //remove bad results
             removeBadResults(mined);
@@ -160,11 +168,15 @@ public class DataMiningNGTest extends AbstractNGTest {
                 mined.add(result);
             }
 
-            conviction -= 0.5;
+            conviction += 0.5;
             
-        } while (result.getNumberOfMinedPatterns() == 0 || conviction > 1);
+        } while (result != null && result.getNumberOfMinedPatterns() != 0);
     }
 
+    /**
+     * ~15 minutes/result
+     * @throws Exception 
+     */
     @Test
     public void testNeoPzDataMiningLiftLoop() throws Exception {
         String assocRuleMetric = "Lift";
@@ -173,7 +185,7 @@ public class DataMiningNGTest extends AbstractNGTest {
         DataMiningResult result;
         //1.0 means that the rule is invalid. A does not interfere with B
         //go from high to low to avoid memory problems
-        double lift = 7.0;
+        double lift = 1.1;
         do {
             //remove bad results
             removeBadResults(mined);
@@ -187,23 +199,27 @@ public class DataMiningNGTest extends AbstractNGTest {
                 mined.add(result);
             }
 
-            lift -= 0.1;
-        } while (result.getNumberOfMinedPatterns() == 0 || lift > 1.0);
+            lift += 0.1;
+        } while (result != null && result.getNumberOfMinedPatterns() != 0);
     }
 
-    @Test
+    /**
+     * Takes too long
+     * @throws Exception 
+     */
+    //@Test
     public void testNeoPzDataMiningConfidenceLoop() throws Exception {
         String assocRuleMetric = "Confidence";
 
         List<DataMiningResult> mined = new LinkedList<DataMiningResult>();
         //Confidence of 100% is the highest
         //range 0-100
-        double confidence = 100.0;
+        double confidence = 1.0;
         DataMiningResult result;
         do {
             //remove bad results
             removeBadResults(mined);
-
+            
             //setup mining        
             setAssociationRuleMetric(assocRuleMetric, dataMiningBean);
             setMiningControl(confidence, dataMiningBean);
@@ -212,12 +228,16 @@ public class DataMiningNGTest extends AbstractNGTest {
             if(result != null){
                 mined.add(result);
             }
-            confidence -= 1.0;
+            confidence += 0.5;
             
-        } while (result.getNumberOfMinedPatterns() == 0 || confidence > 5);
+        } while (result != null && result.getNumberOfMinedPatterns() != 0 && confidence <= 100.0);
     }
 
-    @Test
+    /**
+     * Leverage metric is takes too long (http://michael.hahsler.net/research/association_rules/measures.html#leverage)
+     * @throws Exception 
+     */    
+    //@Test
     public void testNeoPzDataMiningLeverageLoop() throws Exception {
         String assocRuleMetric = "Leverage";
         //Difference between support and expected support if rule head 
@@ -225,7 +245,7 @@ public class DataMiningNGTest extends AbstractNGTest {
         //leverage is a lower bound for support
         List<DataMiningResult> mined = new LinkedList<DataMiningResult>();
         DataMiningResult result;
-        double leverage = 100.0;
+        double leverage = 1.0;
         do {
             //remove bad results
             removeBadResults(mined);
@@ -239,8 +259,8 @@ public class DataMiningNGTest extends AbstractNGTest {
                 mined.add(result);
             }
             
-            leverage -= 1.0;            
-        } while (result.getNumberOfMinedPatterns() == 0 || leverage > 0);
+            leverage += 1.0;            
+        } while (result != null && result.getNumberOfMinedPatterns() != 0 && leverage <= 100.0);
     }
 
     private ListDataModel getSelectedMetrics() throws ServiceException {
@@ -270,7 +290,7 @@ public class DataMiningNGTest extends AbstractNGTest {
                 continue;
             }
 
-            metrics.add(new SelectableItem(metric, true));
+            //metrics.add(new SelectableItem(metric, true));
         }
 
         println("Metrics selected: " + metrics.size());
@@ -330,14 +350,25 @@ public class DataMiningNGTest extends AbstractNGTest {
         return bean;
     }
 
-    private void print(DataMiningResult result) {
-        println("Data mining result");
-        println("Time: " + result.getFormatedMinedInTime());
+    private String toString(DataMiningResult result) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Data mining result\n");
+        sb.append("Time: ").append(result.getFormatedMinedInTime()).append("\n");
 
-        println("Description");
-        println(result.getDescription());
+        sb.append("Description\n").append(result.getDescription());
 
-        toOutput("result", result.getResultAsStringList());
+        sb.append("result").append("\n");
+        List<String> results = result.getResultAsStringList();
+        if(results == null){
+            sb.append("Null collection").append("\n");
+        } else if(results.isEmpty()){
+            sb.append("Collection empty").append("\n");
+        } else{
+            for (String string : results) {
+                sb.append(string).append("\n");
+            }
+        }
+        return sb.toString();
     }
 
     private void print(DataBaseSnapshot baseSnapshot) {
@@ -378,11 +409,11 @@ public class DataMiningNGTest extends AbstractNGTest {
     }
 
     private DataMiningResult runDatamining(String assocRuleMetric, DataMiningBean bean) {
-        println("Mining with " + assocRuleMetric);
-        println("Support:" + NumberUtil.format(bean.getMiningControl().getMinSup()));
-        println("Metric type:" + bean.getMiningControl().getMetricType());
-        println("Metric value:" + NumberUtil.format(bean.getMiningControl().getMinMetric()));
-
+        Output.clearLog();
+        Output.println("Mining with " + assocRuleMetric);
+        Output.println("Support:" + NumberUtil.format(bean.getMiningControl().getMinSup()));
+        Output.println("Metric type:" + bean.getMiningControl().getMetricType());
+        Output.println("Metric value:" + NumberUtil.format(bean.getMiningControl().getMinMetric()));
 
         try {
             //Mining
@@ -399,15 +430,13 @@ public class DataMiningNGTest extends AbstractNGTest {
         bean.saveDataMiningResult();
         endTimer("saveDataMiningResult time cost");
 
-        //Save result to file
-        startTimer();
-        toDatedTxtFile(".\\target\\miningResult-" + assocRuleMetric, bean.getDataBaseAsArff());
-        endTimer("Save datamining time cost");
-
         //print result
         DataMiningResult result = bean.getCurrentDataMiningResult();
-        print(result);
-
+        Output.println(toString(result));
+        String fileName = ".\\target\\assocRuleMetric_" + DateUtil.currentFile()+".txt";
+        Archive arc = new Archive(fileName);
+        arc.openAppendAndClose(Output.getLog());  
+        
         return result;
     }
 
@@ -429,7 +458,7 @@ public class DataMiningNGTest extends AbstractNGTest {
 
     private void removeBadResults(List<DataMiningResult> dataMiningResults) {
         DataMiningResultService dataMiningResultService = ObjectFactory.getObjectWithDataBaseDependencies(DataMiningResultService.class);
-        if (dataMiningResults.size() >= maxBadResults) {
+        if (dataMiningResults.size() > maxBadResults) {
             DataMiningResult dataMiningResult = dataMiningResults.remove(0); //remove worst
             try {
                 dataMiningResultService.delete(dataMiningResult);

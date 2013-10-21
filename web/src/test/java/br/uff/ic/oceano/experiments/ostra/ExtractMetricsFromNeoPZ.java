@@ -10,7 +10,6 @@ import br.uff.ic.oceano.core.factory.MetricManagerFactory;
 import br.uff.ic.oceano.core.factory.ObjectFactory;
 import br.uff.ic.oceano.core.model.Metric;
 import br.uff.ic.oceano.core.model.OceanoUser;
-import br.uff.ic.oceano.core.model.Revision;
 import br.uff.ic.oceano.core.model.SoftwareProject;
 import br.uff.ic.oceano.core.model.transiente.Language;
 import br.uff.ic.oceano.core.tools.metrics.MetricManager;
@@ -28,21 +27,17 @@ import br.uff.ic.oceano.ostra.service.DeltaMetricsRevisionDataBaseService;
 import br.uff.ic.oceano.ostra.service.OstraMetricService;
 import br.uff.ic.oceano.ostra.service.OstraQualityAtributesWithout_HardCoded_Service;
 import br.uff.ic.oceano.util.CargaDefaultWeb;
-import br.uff.ic.oceano.util.NumberUtil;
 import br.uff.ic.oceano.util.test.AbstractNGTest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
- * From Dancastellani TestOstra class.
- *
- * @author Dheraclio
+ * 
  */
 public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
 
@@ -88,25 +83,27 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
     @Test
     public void executaExperimentos() throws Throwable {
 
-        final boolean EXTRAI_METRICAS = true;
+        final boolean EXTRAI_METRICAS = false;
         if (EXTRAI_METRICAS) {
             extractMetrics();
         }
 
-        final boolean CALCULA_METRIC_VALUES = true;
+        final boolean CALCULA_METRIC_VALUES = false;
         if (CALCULA_METRIC_VALUES) {
             calculateRevisionMetricValues();
         }
 
-        final boolean CALCULA_ATRIBUTOS_DE_QUALIDADE = true;
+        final boolean CALCULA_ATRIBUTOS_DE_QUALIDADE = false;
         if (CALCULA_ATRIBUTOS_DE_QUALIDADE) {
             extractQualityAttributes();
         }
+        
+        final boolean calculateDeltas = true;
+        if (calculateDeltas) {
+            calculateDeltas();
+        }
 
-        //deltas            
-        List<Discretizer> discretizers = getDiscretizers();
-        List<Metric> metrics = getMetrics(metricManagers);
-        deltaMetricsRevisionDataBaseService.buildDeltaMetricsDataBase(projects, discretizers, true, false, metrics, true);
+        
     }
 
     private List<Discretizer> getDiscretizers() throws ServiceException {
@@ -194,5 +191,12 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
             metrics.add(metricManager.getMetric());
         }
         return metrics;
+    }
+
+    private void calculateDeltas() throws ServiceException {
+        //deltas            
+        List<Discretizer> discretizers = getDiscretizers();
+        List<Metric> metrics = getMetrics(metricManagers);
+        deltaMetricsRevisionDataBaseService.buildDeltaMetricsDataBase(projects, discretizers, true, false, metrics, true);
     }
 }

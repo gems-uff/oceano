@@ -4,8 +4,8 @@
     <test name="br.uff.ic.oceano suite" preserve-order="true">        
         <classes>
             <class name="br.uff.ic.oceano.StartUpDatabase"/>                
-            <class name="br.uff.ic.oceano.experiments.ostra.ExtractMetricsFromNeoPZ" />
-            <class name="br.uff.ic.oceano.experiments.ostra.DataMiningNGTest"/>                
+            <!--<class name="br.uff.ic.oceano.experiments.ostra.ExtractMetricsFromNeoPZ" />-->
+            <class name="br.uff.ic.oceano.experiments.ostra.DataMiningNGTest" preserve-order="true"/>                
         </classes>
     </test>
 
