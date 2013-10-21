@@ -50,7 +50,7 @@ public class DataMiningPattern implements Serializable {
 
     @Override
     public String toString() {
-        return pattern + " Count=" + getCountAsString() + ", Support=" + getSupportAsString() + ", Conf=" + getConfidenceAsString() + ", Conv=" + getConvictionAsString() + ", Lift=" + getLiftAsString() + ", Lev=" + getLeverageAsString();
+        return pattern + ", Support=" + getSupportAsString() + ", Conf=" + getConfidenceAsString() + ", Conv=" + getConvictionAsString() + ", Lift=" + getLiftAsString() + ", Lev=" + getLeverageAsString() +", Count=" + getCountAsString();
     }
 
     public int getSize() {
@@ -162,7 +162,14 @@ public class DataMiningPattern implements Serializable {
      * @return the support
      */
     public Double getSupport() {
-        return NumberUtil.ratio(getCount(),dataMiningResult.getNumberOfInstances());
+        if(dataMiningResult == null){
+            return null;
+        }
+        if(getCount() == null){
+            return null;
+        }
+        Double numInstances = new Double(dataMiningResult.getNumberOfInstances());
+        return NumberUtil.ratio(getCount(),numInstances);
     }
 
     public String getSupportAsString() {
