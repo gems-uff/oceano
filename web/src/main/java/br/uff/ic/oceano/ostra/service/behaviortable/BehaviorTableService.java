@@ -184,8 +184,14 @@ public class BehaviorTableService implements PersistenceService {
         final String arff = dataMiningResult.getArff();
         for (String line : arff.substring(0, arff.indexOf("@DATA")).split("\n")) {
             if (line.startsWith("@ATTRIBUTE")) {
-                if (line.contains("project-revision") || line.contains("rdate") || line.contains("rcommiter") || line.contains("#files")
-                        || line.contains("rday") || line.contains("rhour") || line.contains("rRound") || line.contains("rcompile")) {
+                if (line.contains("project-revision") 
+                        || line.contains("rdate") 
+                        || line.contains("rcommiter") 
+                        || line.contains("#files")
+                        || line.contains("rday") 
+                        || line.contains("rhour") 
+                        || line.contains("rRound") 
+                        || line.contains("rcompile")) {
                     continue;
                 }
                 String attributeName;
