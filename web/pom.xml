@@ -417,8 +417,7 @@
             </build>
         </profile>
     </profiles>
-    <dependencies>
-        
+    <dependencies>        
         <dependency>
             <groupId>br.uff.ic.gems</groupId>
             <artifactId>core</artifactId>
@@ -701,13 +700,10 @@
                     <scanIntervalSeconds>5</scanIntervalSeconds>
                     <stopKey>foo</stopKey>
                     <stopPort>9999</stopPort>
-                    <reload>automatic</reload>
-                    <!--OPCIONAL PARA MUDAR O CONTEXTO POR AQUI-->
-                    <!--<webAppConfig>
-                        <contextPath>/Contexto</contextPath>
-                    </webAppConfig>-->
-
-                    <!--AQUI VC CONFIGURA A PORTA QUE VAI RODAR NO LOCALHOST -->
+                    <reload>automatic</reload>                    
+                    <webAppConfig>
+                        <!--<contextPath>${context}</contextPath>-->
+                    </webAppConfig>
                     <connectors>
                         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
                             <port>9090</port>
@@ -721,10 +717,6 @@
                         <extended>false</extended>
                         <logTimeZone>GMT</logTimeZone>
                     </requestLog>
-
-                    <!-- OPCIONAL
-                    <webApp>${project.build.directory}/${project.build.finalName}-glassfish.war</webApp>
-                    -->
                 </configuration>
             </plugin>
         </plugins>
