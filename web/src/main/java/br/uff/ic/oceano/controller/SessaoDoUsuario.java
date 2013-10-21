@@ -21,6 +21,9 @@ public class SessaoDoUsuario {
     private String idiom;
 
     public SessaoDoUsuario() {
+        
+        idiom = "en_US";
+        changeIdiom();
     }
 
     public void changeIdiom() {
@@ -81,8 +84,7 @@ public class SessaoDoUsuario {
         if (idiomsList == null) {
             idiomsList = new ArrayList<SelectItem>();
             idiomsList.add(new SelectItem("pt_BR", "Português - Brasil"));
-            idiomsList.add(new SelectItem("en_US", "English - US"));
-            idiom = "pt_BR";
+            idiomsList.add(new SelectItem("en_US", "English - US"));            
         }
         changeIdiom();
         return idiomsList;
