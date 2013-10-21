@@ -30,7 +30,11 @@ public class SessaoDoUsuario {
         String[] split = null;
         split = idiom.split("_");
         Locale locale = new Locale(split[0], split[1]);
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+        
+        FacesContext instance = FacesContext.getCurrentInstance();
+        if(instance != null && instance.getViewRoot() != null){
+             instance.getViewRoot().setLocale(locale);
+        }
     }
 
     public void invalidar() {
