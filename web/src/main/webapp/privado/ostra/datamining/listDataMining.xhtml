@@ -35,13 +35,6 @@
                             <h:commandLink action="#{DataMiningBean.detailDataMiningResult}" value="#{dmr.description}" />
                         </rich:column>
 
-                        <rich:column sortBy="#{dmr.usedAlgorithmName}" >
-                            <f:facet name="header">
-                                Algorithm
-                            </f:facet>
-                            #{dmr.usedAlgorithmName}
-                        </rich:column>
-
                         <rich:column sortBy="#{dmr.minSupport}">
                             <f:facet name="header">
                                 Min. Support
@@ -49,11 +42,18 @@
                             #{dmr.minSupport}
                         </rich:column>
 
-                        <rich:column sortBy="#{dmr.minConfidence}">
+                        <rich:column sortBy="#{dmr.ruleMetricName}" >
+                            <f:facet name="header">
+                                Metric
+                            </f:facet>
+                            #{dmr.ruleMetricName}
+                        </rich:column>                        
+
+                        <rich:column sortBy="#{dmr.formatedMinConfidence}">
                             <f:facet name="header">
                                 Min. Metric
                             </f:facet>
-                            #{dmr.minConfidence}
+                            #{dmr.formatedMinConfidence}
                         </rich:column>
 
                         <rich:column sortBy="#{dmr.formatedMinedInTime}">

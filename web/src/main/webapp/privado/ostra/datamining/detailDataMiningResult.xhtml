@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <td  class="attributeName">Minimum Rule Metric</td>
-                            <td>#{DataMiningBean.currentDataMiningResult.minConfidence}</td>
+                            <td>#{DataMiningBean.currentDataMiningResult.formatedMinConfidence}</td>
                         </tr>
                         <tr>
                             <td  class="attributeName">Mining time:</td>
@@ -118,10 +118,16 @@
                         <legend>Filters</legend>
                         <fieldset style="height: 100%">
                             <legend>Size</legend>
-                            <h:panelGrid columns="2" style="border:gray;width:100%">
+                            <h:panelGrid columns="3" style="border:gray;width:100%">
+                                <h:column>
+                                    <b>Consider Limit Sizes </b>                                    
+                                    <h:selectBooleanCheckbox id="checkConsiderLimitSizes" value="#{DataMiningBean.considerLimitSizes}" disabled="false">
+                                        <a4j:support event="onchange" action="#{DataMiningBean.updateFilteredPatternList}" reRender="panelRules"/>
+                                    </h:selectBooleanCheckbox>    
+                                </h:column>
                                 <h:column>
                                     <b>Precedent Limit Size: </b>
-                                    <h:selectOneMenu id="comboPrecedentSize" value="#{DataMiningBean.comboPrecedentSize.selecao}">
+                                    <h:selectOneMenu id="comboPrecedentSize" value="#{DataMiningBean.comboPrecedentSize.selecao}" disabled="#{!DataMiningBean.considerLimitSizes}">
                                         <f:selectItems value="#{DataMiningBean.comboPrecedentSize.listaSelecao}"/>
                                         <a4j:support event="onchange" action="#{DataMiningBean.updateFilteredPatternList}" reRender="panelRules"/>
                                     </h:selectOneMenu>
@@ -129,13 +135,14 @@
                                 </h:column>
                                 <h:column>
                                     <b>Consequent Limit Size: </b>
-                                    <h:selectOneMenu id="comboConsequentSize" value="#{DataMiningBean.comboConsequentSize.selecao}">
+                                    <h:selectOneMenu id="comboConsequentSize" value="#{DataMiningBean.comboConsequentSize.selecao}" disabled="#{!DataMiningBean.considerLimitSizes}">
                                         <f:selectItems value="#{DataMiningBean.comboConsequentSize.listaSelecao}"/>
                                         <a4j:support event="onchange" action="#{DataMiningBean.updateFilteredPatternList}" reRender="panelRules"/>
                                     </h:selectOneMenu>
                                     <rich:message id="msgComboConsequentSize" styleClass="msgerro" for="comboConsequentSize" />
                                     <rich:spacer height="5"/>
                                 </h:column>
+                                
                             </h:panelGrid>
 
                         </fieldset>
@@ -200,33 +207,33 @@
 
                         <rich:column sortBy="#{rule.support}">
                             <f:facet name="header"> Sup. </f:facet>
-                            #{rule.supportAsString}
+                                #{rule.supportAsString}
                             <rich:toolTip>Support</rich:toolTip>
                         </rich:column>
 
                         <rich:column sortBy="#{rule.confidence}">
                             <f:facet name="header"> Conf. </f:facet>
-                            #{rule.confidenceAsString}
+                                #{rule.confidenceAsString}
                             <rich:toolTip>Confidence</rich:toolTip>
                         </rich:column>
 
                         <rich:column sortBy="#{rule.lift}">
                             <f:facet name="header"> Lift </f:facet>
-                            #{rule.liftAsString}
+                                #{rule.liftAsString}
                             <rich:toolTip>Lift</rich:toolTip>
                         </rich:column>
                         <rich:column sortBy="#{rule.conviction}">
                             <f:facet name="header"> Conv. </f:facet>
-                            #{rule.convictionAsString}
+                                #{rule.convictionAsString}
                             <rich:toolTip>Conviction</rich:toolTip>
                         </rich:column>
                         <rich:column sortBy="#{rule.count}">
                             <f:facet name="header"> Count </f:facet>
-                            #{rule.countAsString}
+                                #{rule.countAsString}
                             <rich:toolTip>Count</rich:toolTip>
                         </rich:column>
                     </rich:dataTable>
-                    
+
                     <rich:datascroller for="tabelaPatterns" maxPages="30">
                         <f:facet name="first">
                             <h:outputText value="First"/>

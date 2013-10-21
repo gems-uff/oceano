@@ -83,6 +83,7 @@ public class DataMiningBean extends BaseBean {
     private List<String> precedentAttributes;
     private List<String> consequentAttributes;
     private List<DataMiningPattern> filteredMinedPatterns;
+    private boolean considerLimitSizes;
     private SelectOneDataModel<Integer> comboPrecedentSize;
     private SelectOneDataModel<Integer> comboConsequentSize;
     //Services
@@ -559,6 +560,14 @@ public class DataMiningBean extends BaseBean {
                     validPattern = false;
                 }
             }
+            
+            if(!isConsiderLimitSizes() ){
+                if (validPattern) {
+                    newFilteredPatternList.add(dataMiningPattern);
+                }
+                continue;
+            }
+            
             //size verification
             Integer maxPrecedentSize = comboPrecedentSize.getObjetoSelecionado();
             if (maxPrecedentSize == null) {
@@ -773,5 +782,19 @@ public class DataMiningBean extends BaseBean {
      */
     public void setIgnoreRevisionsThatDontCompile(boolean ignoreRevisionsThatDontCompile) {
         this.ignoreRevisionsThatDontCompile = ignoreRevisionsThatDontCompile;
+    }
+
+    /**
+     * @return the considerLimitSizes
+     */
+    public boolean isConsiderLimitSizes() {
+        return considerLimitSizes;
+    }
+
+    /**
+     * @param considerLimitSizes the considerLimitSizes to set
+     */
+    public void setConsiderLimitSizes(boolean considerLimitSizes) {
+        this.considerLimitSizes = considerLimitSizes;
     }
 }

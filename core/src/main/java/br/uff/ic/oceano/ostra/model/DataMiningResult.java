@@ -8,6 +8,7 @@ import br.uff.ic.oceano.util.DateUtil;
 import br.uff.ic.oceano.ostra.controle.DataMiningControl;
 import br.uff.ic.oceano.ostra.service.DataMiningResultService;
 import br.uff.ic.oceano.ostra.tools.datamining.util.DataMiningPatternComparator;
+import br.uff.ic.oceano.util.NumberUtil;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
@@ -306,6 +307,14 @@ public class DataMiningResult implements Serializable {
      */
     public Double getMinConfidence() {
         return minConfidence;
+    }
+    
+    /**
+     * 
+     * @return formated string from getMinConfidence
+     */
+    public String getFormatedMinConfidence() {
+        return NumberUtil.format(getMinConfidence());
     }
 
     /**
