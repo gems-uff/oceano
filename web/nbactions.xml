@@ -19,10 +19,7 @@
         <properties>
             <jpda.listen>maven</jpda.listen>
             <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
-        </properties>
-        <activatedProfiles>
-            <activatedProfile>release</activatedProfile>
-        </activatedProfiles>
+        </properties>        
     </action>
     <action>
         <actionName>CUSTOM-jettyStop</actionName>
@@ -30,9 +27,6 @@
         <goals>
             <goal>jetty:stop</goal>
         </goals>
-        <activatedProfiles>
-            <activatedProfile>release</activatedProfile>
-        </activatedProfiles>
     </action>
     <action>
         <actionName>CUSTOM-install UpdateRepositories</actionName>
