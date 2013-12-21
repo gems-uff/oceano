@@ -43,7 +43,7 @@ public class MetricChartService {
     private MetricValueService metricValueService = ObjectFactory.getObjectWithDataBaseDependencies(MetricValueService.class);
     private OstraMetricValueService ostraMetricValueService = ObjectFactory.getObjectWithDataBaseDependencies(OstraMetricValueService.class);
     //---- control
-    private final boolean USE_RELATIVE_REVISION_NUMBER = false;
+    private final boolean USE_RELATIVE_REVISION_NUMBER = true;
     private final boolean USE_RELATIVE_COMMIT_DATE = !USE_RELATIVE_REVISION_NUMBER;
     //----
     //Buffers for charts
