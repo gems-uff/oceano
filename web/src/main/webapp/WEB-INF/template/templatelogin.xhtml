@@ -37,13 +37,6 @@
 
                 <div id="content" >
                     <div class="cbb" align="center" style="background-image: url('#{facesContext.externalContext.request.contextPath}/recurso/img/oceano.jpg')">
-
-                        <h:form id="formIdioms">
-                            <h:selectOneMenu id="comboIdiomas" value="#{SessaoDoUsuario.idiom}" required="true">
-                                <f:selectItems value="#{SessaoDoUsuario.idiomsList}" />
-                                <a4j:support action="#{SessaoDoUsuario.changeIdiom}" event="onchange" reRender="all" />
-                            </h:selectOneMenu>
-                        </h:form>
                         <br/>
                         <h2 style="color: white;font-size: 25px">Oceano</h2>
                         <br/>

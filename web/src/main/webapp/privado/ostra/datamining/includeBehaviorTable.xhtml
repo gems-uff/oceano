@@ -13,13 +13,15 @@
             <tr>
                 <td>
                     <table border="1px">
-                        <ui:repeat value="#{DataMiningBean.tableBehavior}" var="line" id="tableBehaviorLines">
+                        <ui:repeat value="#{DataMiningBean.updatedTableBehavior}" var="line" id="tableBehaviorLines">
                             <tr>
                                 <ui:repeat value="#{line}" var="cel" id="tableBehaviorLinesColumnsCel">
                                     <rich:column height="55px" width="55px" style="text-align:center" styleClass="#{cel.behaviorName}">
 
                                         <!--matrix headers-->
-                                        <b><h:outputText value="#{cel.shortValue}" rendered="#{cel.highestConfidence eq 0}"/></b>
+                                        <b>
+                                            <h:outputText value="#{cel.shortValue}" rendered="#{cel.highestConfidence eq 0}"/>
+                                        </b>
                                         <rich:toolTip rendered="#{cel.highestConfidence eq 0}">
                                             #{cel.value}
                                         </rich:toolTip>

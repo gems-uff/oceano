@@ -13,22 +13,20 @@ import javax.servlet.http.HttpSession;
  *
  * @author Kann
  */
-public class SessaoDoUsuario {
+public final class SessaoDoUsuario {
 
     private String identificador;
     private OceanoUser usuarioCorrente;
     private List<SelectItem> idiomsList;
     private String idiom;
 
-    public SessaoDoUsuario() {
-        
+    public SessaoDoUsuario() {        
         idiom = "en_US";
         changeIdiom();
     }
 
     public void changeIdiom() {
-        String[] split = null;
-        split = idiom.split("_");
+        String[] split = this.idiom.split("_");
         Locale locale = new Locale(split[0], split[1]);
         
         FacesContext instance = FacesContext.getCurrentInstance();
@@ -90,7 +88,6 @@ public class SessaoDoUsuario {
             idiomsList.add(new SelectItem("pt_BR", "Português - Brasil"));
             idiomsList.add(new SelectItem("en_US", "English - US"));            
         }
-        changeIdiom();
         return idiomsList;
     }
 

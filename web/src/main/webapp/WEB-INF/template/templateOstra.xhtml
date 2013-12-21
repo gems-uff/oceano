@@ -42,14 +42,13 @@
         <div id="containerOstra" >
             <div id="header">
                 <table width="90%">
-                    <tr>
-                        <!--<td><ui:insert name="imgLogo"> <img style="height:110px;width:230px" src="#{facesContext.externalContext.request.contextPath}/recurso/img/#{mensagens.imgInterna}"></img> </ui:insert></td>-->
+                    <tr>                        
                         <td><ui:insert name="imgLogo">
-                                <img alt="Gerência de Configuração Contínua"  style="height:110px;width:230px" src="#{facesContext.externalContext.request.contextPath}/recurso/img/#{SessaoDoUsuario.imgInterna}"/>
+                                <img alt="OCEANO"  style="height:110px;width:230px" src="#{facesContext.externalContext.request.contextPath}/recurso/img/#{SessaoDoUsuario.imgInterna}"/>
                             </ui:insert></td>
                         <td>
-                            <p style="color:white;font-size:14px;text-align:center">Olá, <b>#{SessaoDoUsuario.identificador}</b></p>
-                            <p style="font-size:9px; color:white;text-align:right">Versão: <b>#{mensagens.version}</b> <br/> Atualizado em: <b>#{mensagens.timeBuild}</b></p>
+                            <p style="color:white;font-size:14px;text-align:center">#{mensagens.hello}, <b>#{SessaoDoUsuario.identificador}</b></p>
+                            <p style="font-size:9px; color:white;text-align:right">#{mensagens.lblVersion}: <b>#{mensagens.version}</b> <br/> #{mensagens.lblUpdated}: <b>#{mensagens.timeBuild}</b></p>
                         </td>
                         <td><img style="height:50px;width:115px;" src="#{facesContext.externalContext.request.contextPath}/recurso/img/ic_logo.jpg" alt="IC- UFF" /></td>
                     </tr>
@@ -60,7 +59,7 @@
                 <a4j:status  startStyleClass="start" id="statusTemplate" >
                     <f:facet name="start">
                         <h:graphicImage  url="/recurso/img/carregando2.gif" style="text-align:center">
-                            <h:outputLabel value="Aguarde Carregando... " styleClass="texto-start" />
+                            <h:outputLabel value="Wait loading... " styleClass="texto-start" />
                         </h:graphicImage>
                     </f:facet>
                 </a4j:status>
@@ -84,7 +83,7 @@
                 </div>
             </div>
             <div id="footer">
-                <p>Um produto <a href="http://www.ic.uff.br" target="_blanck" >Instituto de Computação - UFF</a>.</p>
+                <p>#{mensagens.aProduct} <a href="http://www.ic.uff.br" target="_blanck" >Instituto de Computação - UFF</a>.</p>
             </div>
         </div>
 

@@ -15,8 +15,8 @@
         <Node id="privado/oceano/project/form.xhtml" x="400" y="900" zoom="true"/>
         <Node id="privado/oceano/project/includeListProjects.xhtml" x="400" y="750" zoom="true"/>
         <Node id="privado/polvo/visaoGeralProjeto.xhtml" x="150" y="1200" zoom="true"/>
-        <Node id="privado/ourico/autobranch/includeAutobranchDetail.xhtml" x="900" y="900" zoom="true"/>
         <Node id="privado/polvo/formConfigRamos.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="privado/ourico/autobranch/includeAutobranchDetail.xhtml" x="900" y="900" zoom="true"/>
         <Node id="privado/oceano/revision/formRevision.xhtml" x="150" y="900" zoom="true"/>
         <Node id="privado/peixeespada/refactoring/listRefactoring.xhtml" x="1400" y="750" zoom="true"/>
         <Node id="privado/ourico/autobranch/conflictDetail.xhtml" x="900" y="1050" zoom="true"/>
@@ -29,16 +29,16 @@
         <Node id="privado/ostra/datamining/detailDataMiningResult.xhtml" x="2150" y="150" zoom="true"/>
         <Node id="privado/ostra/listTasks.xhtml" x="650" y="300" zoom="true"/>
         <Node id="privado/ourico/ouricoUser/form.xhtml" x="2400" y="150" zoom="true"/>
-        <Node id="privado/oceano/metric/detail.xhtml" x="1650" y="150" zoom="true"/>
         <Node id="privado/oceano/project/list.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="privado/oceano/metric/detail.xhtml" x="1650" y="150" zoom="true"/>
         <Node id="index.jsp" x="150" y="300" zoom="true"/>
         <Node id="privado/principal.xhtml" x="900" y="450" zoom="true"/>
         <Node id="publico/erro/paginaNaoEncontrada.xhtml" x="400" y="300" zoom="true"/>
         <Node id="privado/polvo/visaoTemporalRamo.xhtml" x="400" y="1050" zoom="true"/>
         <Node id="privado/ostra/datamining/listDataMining.xhtml" x="900" y="750" zoom="true"/>
-        <Node id="privado/ourico/autobranch/includeListAutobranches.xhtml" x="1150" y="750" zoom="true"/>
         <Node id="testPrime.xhtml" x="1400" y="450" zoom="true"/>
         <Node id="privado/polvo/visaoDetalhadaRamo.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="privado/ourico/autobranch/includeListAutobranches.xhtml" x="1150" y="750" zoom="true"/>
         <Node id="privado/oceano/metric/list.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="privado/ourico/autobranch/autobranchesList.xhtml" x="1650" y="450" zoom="true"/>
         <Node id="privado/ostra/monitoring/list.xhtml" x="150" y="450" zoom="true"/>

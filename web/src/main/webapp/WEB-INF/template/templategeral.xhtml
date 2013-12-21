@@ -45,7 +45,7 @@
                         <tr>
                             <td>
                                 <ui:insert name="imgLogo">
-                                    <img alt="Gerência de Configuração Contínua"  title="Gerência de Configuração Contínua" style="height:110px;width:230px" src="#{facesContext.externalContext.request.contextPath}/recurso/img/#{SessaoDoUsuario.imgInterna}"/>
+                                    <img alt="OCEANO"  title="OCEANO" style="height:110px;width:230px" src="#{facesContext.externalContext.request.contextPath}/recurso/img/#{SessaoDoUsuario.imgInterna}"/>
                                 </ui:insert>
                             </td>
                             <td>
@@ -55,22 +55,6 @@
                             </td>
                             <td><img style="height:50px;width:115px;" src="#{facesContext.externalContext.request.contextPath}/recurso/img/ic_logo.jpg" alt="IC- UFF" /></td>
                         </tr>
-<!--                        <tr>
-                            <td style="width:230px;margin-top: -40px">&nbsp;
-                            </td>
-                            <td>
-                                <h:form id="formIdioms">
-                                    <h:outputLabel value=" #{mensagens.idioms}:"  style="margin-left: 50px;">
-                                        <h:selectOneMenu id="comboIdiomas" value="#{SessaoDoUsuario.idiom}" required="true">
-                                            <f:selectItems value="#{SessaoDoUsuario.idiomsList}" />
-                                            <a4j:support action="#{SessaoDoUsuario.changeIdiom}" event="onchange" reRender="all" oncomplete="cbb.init();"/>
-                                        </h:selectOneMenu>
-                                    </h:outputLabel>
-                                </h:form>
-                            </td>
-                            <td>&nbsp;
-                            </td>
-                        </tr>-->
                     </table>
 
                 </div>
@@ -78,7 +62,7 @@
                     <a4j:status  startStyleClass="start" id="statusTemplate" >
                         <f:facet name="start">
                             <h:graphicImage  url="/recurso/img/carregando2.gif" style="text-align:center">
-                                <h:outputLabel value="Aguarde Carregando... " styleClass="texto-start" />
+                                <h:outputLabel value="Wait loading... " styleClass="texto-start" />
                             </h:graphicImage>
                         </f:facet>
                     </a4j:status>
