@@ -216,6 +216,7 @@ public class NeoPZHelper {
     }
 
     private static Element addModule(String moduleName, String packageName, Element config) {
+        //use package name as subsystem name
         return addModule(moduleName, packageName, packageName, config);
     }
 
@@ -227,11 +228,9 @@ public class NeoPZHelper {
      * @param config
      */
     private static Element addModule(String moduleName, String subsystemName, String packageName, Element config) {
-        Element layerEl = ConfigurationHelper.addLayer(config, moduleName);
-        //use package name as subsystem name
+        Element layerEl = ConfigurationHelper.addLayer(config, moduleName);        
         Element subsystemEl = ConfigurationHelper.addSubsystem(layerEl, subsystemName);
         ConfigurationHelper.addIncludePackageFilter(subsystemEl, packageName);
-
         return layerEl;
     }
 }
