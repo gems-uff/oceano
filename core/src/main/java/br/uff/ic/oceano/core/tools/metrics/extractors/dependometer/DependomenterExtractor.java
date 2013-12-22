@@ -72,17 +72,13 @@ public class DependomenterExtractor extends AbstractMetricExtractor {
 
     private Double calculateMetric(Adapter service, Metric metric, String path) throws MetricException {
         try {
-            if (MetricEnumeration.DSC.same(metric)) {
-                MetricEnum dependometer = MetricHelper.getDependometerMetric(MetricEnumeration.DSC);
-                List<Double> values = service.getCompilationUnitValues(dependometer);
-                return NumberUtil.sum(values);
-            } else if (MetricEnumeration.ANA.same(metric)) {
+            if (MetricEnumeration.ANA.same(metric)) {
                 MetricEnum dependometer = MetricHelper.getDependometerMetric(MetricEnumeration.ANA);
-                List<Double> values = service.getTypeValues(dependometer);
+                final List<Double> values = service.getTypeValues(dependometer);
                 return NumberUtil.avg(values);
             } else if (MetricEnumeration.NOH.same(metric)) {
                 MetricEnum dependometer = MetricHelper.getDependometerMetric(MetricEnumeration.NOH);
-                List<Double> values = service.getTypeValues(dependometer);
+                final List<Double> values = service.getTypeValues(dependometer);
                 int numHierarchies = 0;
                 //count classes with DepthOfClassInheritance > 0
                 for (Double value : values) {
@@ -91,9 +87,7 @@ public class DependomenterExtractor extends AbstractMetricExtractor {
                     }
                 }
                 return new Double(numHierarchies);
-            } else if (MetricEnumeration.DCC.same(metric)) {
-                return service.getMetric(metric, path);
-            }
+            } 
         } catch (Exception ex) {
             throw new MetricException(ex);
         }
@@ -102,10 +96,8 @@ public class DependomenterExtractor extends AbstractMetricExtractor {
     }
 
     private boolean isCalculatedMetric(Metric metric) throws DependometerException {
-        return (MetricEnumeration.DSC.same(metric)
-                || MetricEnumeration.ANA.same(metric)
-                || MetricEnumeration.NOH.same(metric)
-                || MetricEnumeration.DCC.same(metric));
+        return (MetricEnumeration.ANA.same(metric)
+                || MetricEnumeration.NOH.same(metric));
     }
 
     private synchronized Adapter getService(Revision revision) {
