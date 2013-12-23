@@ -80,9 +80,9 @@ public class MonitoringChartBean extends BaseBean {
         List<Metric> projectExtractedMetrics = metricService.getMetricsByProject(this.currentProject);
         List<String> metricNames = new ArrayList<String>(projectExtractedMetrics.size());        
         for (Metric metric : projectExtractedMetrics) {
-//            if(!metric.isFromProject()){
-//                continue;
-//            }
+            if(!metric.isFromProject()){
+                continue;
+            }
             metricNames.add(metric.getName());
             Output.println("metric = " + metric);
         }        
