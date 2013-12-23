@@ -15,6 +15,7 @@ import br.uff.ic.oceano.core.model.MetricExtractor;
 import br.uff.ic.oceano.core.model.transiente.Language;
 import br.uff.ic.oceano.core.service.PersistenceService;
 import br.uff.ic.oceano.core.service.controletransacao.Transacional;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -65,6 +66,10 @@ public class MetricService implements PersistenceService {
                 metricsList.add(metric);
             }
         }
+        
+        //Sorting                
+        Collections.sort(metricsList);
+        
         return metricsList;
     }
 
