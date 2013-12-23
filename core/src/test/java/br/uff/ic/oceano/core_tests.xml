@@ -17,6 +17,8 @@
         <classes>
             <class name="br.uff.ic.oceano.core.tools.compiler.CompilerServiceNGTest"/>
             <class name="br.uff.ic.oceano.core.util.MavenUtilNGTest"/>
+            
+            <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.MetricsLoaderNGTest"/>
         </classes>
     </test>   
     <test name="Datamining tests" verbose="1" preserve-order="true">
