@@ -7,16 +7,17 @@ package br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.util;
 import br.uff.ic.oceano.core.tools.metrics.MetricEnumeration;
 import br.uff.ic.oceano.core.model.Metric;
 import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerException;
-import br.uff.ic.oceano.util.NumberUtil;
 import com.valtech.source.dependometer.app.core.common.MetricEnum;
 import com.valtech.source.dependometer.app.core.metrics.MetricDefinition;
 import static com.valtech.source.dependometer.app.core.provider.MetricDefinitionIf.TYPE_NUMBER;
 import com.valtech.source.dependometer.app.core.provider.MetricIf;
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Helper class to translate Dependometer metrics to/from Oceano.
@@ -698,8 +699,8 @@ public class MetricHelper {
         return metrics;
     }
 
-    private static List<MetricEnum> getAllMetric() {
-        List<MetricEnum> metrics = new LinkedList<MetricEnum>();
+    private static Set<MetricEnum> getAllMetric() {
+        Set<MetricEnum> metrics = new HashSet<MetricEnum>();
 
         metrics.addAll(projectMetrics);
         metrics.addAll(layerMetrics);

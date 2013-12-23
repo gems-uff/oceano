@@ -19,7 +19,7 @@
         <properties>
             <jpda.listen>maven</jpda.listen>
             <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
-        </properties>        
+        </properties>              
     </action>
     <action>
         <actionName>CUSTOM-jettyStop</actionName>

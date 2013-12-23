@@ -92,7 +92,7 @@ public class BehaviorTableService implements PersistenceService {
             if (precedentIndice == null || consequentIndice == null) {
                 continue;
             }
-            Behavior behavior = behaviorTable[precedentIndice][consequentIndice];
+            final Behavior behavior = behaviorTable[precedentIndice][consequentIndice];
             behavior.getRules().add(dataMiningPattern);
             behavior.setValue(verifyBehaviors(behavior.getRules()));
 
