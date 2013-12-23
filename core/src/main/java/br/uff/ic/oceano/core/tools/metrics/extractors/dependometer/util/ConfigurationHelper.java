@@ -17,6 +17,7 @@ public class ConfigurationHelper {
 
     public static final String skip = "skip";
     public static final String name = "name";
+    public static final String value = "value";
     public static final String layer = "layer";
     public static final String subsystem = "subsystem";
     public static final String includepackage = "include-package";
@@ -125,5 +126,22 @@ public class ConfigurationHelper {
         Element element = new Element(excludepackage);
         element.setAttribute(name, pathToSubsystem);
         return subsystem.addContent(element);
+    }
+
+    public static void addThresholds(Element project) {        
+        addElement(project,"lower-threshold","Project.PercentageOfPackagesWithRcNotLessThanOne",String.valueOf(70));
+        addElement(project,"lower-threshold","Project.AverageNumberOfAssertionsPerProjectInternalClass",String.valueOf(1));
+        addElement(project,"upper-threshold","Project.ACD",String.valueOf(20));
+        addElement(project,"upper-threshold","Project.PackageCyclesExist",String.valueOf(0));
+        addElement(project,"upper-threshold","Project.CompilationUnitCyclesExist",String.valueOf(0));
+        addElement(project,"upper-threshold","Project.TypeCyclesExist",String.valueOf(0));
+        addElement(project,"upper-threshold","Project.MaxDepthOfInheritance",String.valueOf(6));
+    }
+
+    private static Element addElement(Element rootNode, String elementName, String attributeName, String attributeValue) {
+        Element elementNode = new Element(elementName);
+        elementNode.setAttribute(name, attributeName);
+        elementNode.setAttribute(value, attributeValue);
+        return rootNode.addContent(elementNode);
     }
 }

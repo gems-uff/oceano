@@ -82,6 +82,8 @@ public class ConfigurationFactory {
             ConfigurationHelper.addComment(project, "ASSERTIONS");
             ConfigurationHelper.addAssertionPattern(project, "ASSERT");
 
+            ConfigurationHelper.addThresholds(project);
+            
             //Logical layers            
             if (NeoPZHelper.isNeoPZRevision(revision)) {
                 NeoPZHelper.addLogicalArchitecture(revision, project);
@@ -126,18 +128,18 @@ public class ConfigurationFactory {
         return project;
     }
 
-    private static Element addOutputListener(Element project, String outputPath) {
+    private static void addOutputListener(Element project, String outputPath) {
         ConfigurationHelper.addComment(project, "OUTPUT LISTENERS");
         Element listener = new Element("listener");
         listener.setAttribute("class", DependomenterListener.class.getName());
         listener.setAttribute("args", outputPath);
-        return project.addContent(listener);
+        project.addContent(listener);
     }
 
     private static Element addInputFilters(Element project) {
 
         ConfigurationHelper.addComment(project, "INPUT PACKAGE FILTER");
-        //ATTENTION: Analysis only happen if there is at least one package
+        //ATTENTION: Analysis only happen if there is at least one package filter
         //using always all packages
         return ConfigurationHelper.addIncludePackageFilter(project, ".*");
     }
