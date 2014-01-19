@@ -1,2 +1,3 @@
 *.log
 target
+/web/src/main/webapp/privado/ostra/chart/temp
