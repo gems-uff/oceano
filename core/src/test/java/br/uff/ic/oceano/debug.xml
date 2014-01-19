@@ -4,14 +4,14 @@
 
     <test name="LoadDefaultDatabase" verbose="0" preserve-order="true">
         <classes>
-            <class name="br.uff.ic.oceano.core.util.TestDefaultDatabaseLoader"/>
+            <class name="br.uff.ic.oceano.core.util.DefaultDatabaseLoaderNGTest"/>
         </classes>
     </test>
 
     <test name="Tests" verbose="1" preserve-order="true">
-        <classes>
+        <classes>                        
+            <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.MetricsLoaderNGTest"/>-->
             <class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerServiceNGTest"/>
-            <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerServiceNGTest"/>-->
             <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.NumberOfTypes_DependomenterExtractorCppNGTest"/>-->
             
             <!--<class name="br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics.Abstractness_DependomenterExtractorCppNGTest"/>-->
