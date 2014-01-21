@@ -416,6 +416,27 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>local-experiments</id>
+            <properties>
+                <maven.test.skip>false</maven.test.skip>
+                <persistence.name>Local</persistence.name>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.14</version>
+                        <configuration>
+                            <suiteXmlFiles>                                
+                                <suiteXmlFile>src/test/java/br/uff/ic/oceano/experiments.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <dependencies>        
         <dependency>
