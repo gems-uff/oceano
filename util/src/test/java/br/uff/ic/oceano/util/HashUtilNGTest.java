@@ -90,21 +90,4 @@ public class HashUtilNGTest {
         String result = HashUtil.getMD5(paths);
         assertEquals(result, expResult);
     }
-
-    @Test
-    public void testTempDirectoryMD5() {
-        try {
-            String m2 = System.getenv("M2");
-            assertNotNull(m2);
-            File tempDir = new File(m2);
-            Set<String> files = FileUtils.getAllFilesInFolderAndSubFolders(tempDir);
-            String result = HashUtil.getMD5(files);
-            String resultCheck = HashUtil.getMD5(files);
-
-            assertEquals(result, resultCheck);
-        } catch (Exception ex) {
-            fail(ex.getMessage());
-        }
-
-    }
 }
