@@ -8,11 +8,7 @@
     <version>3.0.0-SNAPSHOT</version>
     <url>https://sel.ic.uff.br/redmine/projects/oceano-web</url>
     <description>see https://sel.ic.uff.br/redmine/projects/oceano-web/wiki</description>
-    <scm>
-        <connection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/oceano-web/trunk</connection>
-        <developerConnection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/oceano-web/trunk</developerConnection>
-        <url>https://sel.ic.uff.br/gems/svn/oceano/oceano-web/trunk</url>
-    </scm>    
+    
     <parent>
         <groupId>br.uff.ic.gems</groupId>
         <artifactId>oceano-parent</artifactId>
