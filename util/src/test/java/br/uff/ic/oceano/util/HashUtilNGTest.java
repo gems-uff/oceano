@@ -4,10 +4,8 @@
  */
 package br.uff.ic.oceano.util;
 
-import br.uff.ic.oceano.util.file.FileUtils;
 import java.io.File;
 import java.util.Collection;
-import java.util.Set;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 

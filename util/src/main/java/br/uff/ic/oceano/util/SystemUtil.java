@@ -1,5 +1,6 @@
 package br.uff.ic.oceano.util;
 
+import java.security.AccessControlException;
 import java.util.Map;
 
 /**
@@ -11,15 +12,21 @@ public class SystemUtil {
     public static final String FILESEPARATOR = System.getProperty("file.separator");
 
 
-    public static String getTempDirectory(){
+    public static String getTempDirectory() throws Exception{
+        final String javaprop = "java.io.tmpdir";
+        final String soprop = "TEMP";
         try {
-            return System.getenv("TEMP");
-        } catch (java.security.AccessControlException ace) {
-            return null;
+            String path = System.getenv(javaprop);
+            if(path == null){
+                path = System.getenv(soprop);
+            }
+            return path;
+        } catch (AccessControlException ace) {
+            throw new Exception(ace);
         }
     }
 
-    public static String getUniqueTempDirectory() {
+    public static String getUniqueTempDirectory() throws Exception {
         return getTempDirectory()+ FILESEPARATOR + System.currentTimeMillis() + FILESEPARATOR;
     }
 
