@@ -27,13 +27,11 @@ import org.jdom.Document;
 public class Adapter {
 
     private final Revision revision;
-    private final String outputPath;
+    private String outputPath;
     private Document document;
 
     public Adapter(Revision revision) {
-        this.revision = revision;
-        //set temp path
-        this.outputPath = createOutputPath();
+        this.revision = revision;        
     }
 
     public Double getMetric(Metric metric, String path) throws DependometerException {        
@@ -113,15 +111,15 @@ public class Adapter {
         }
     }
 
-    private String getOutputXmlPath() {
+    private String getOutputXmlPath() throws Exception {
         return getOutputPath() + SystemUtil.FILESEPARATOR + "output.xml";
     }
 
-    private String getConfigXmlPath() {
+    private String getConfigXmlPath() throws Exception {
         return getOutputPath() + "config.xml";
     }
 
-    private String createOutputPath() {
+    private String createOutputPath() throws Exception {
         String path = SystemUtil.getTempDirectory();
 
         path += SystemUtil.FILESEPARATOR;
@@ -132,7 +130,10 @@ public class Adapter {
         return path;
     }
 
-    private String getOutputPath() {
+    private String getOutputPath() throws Exception {
+        if(this.outputPath == null){
+            this.outputPath = createOutputPath();
+        }
         return this.outputPath;
     }
 
@@ -172,7 +173,7 @@ public class Adapter {
      *
      * @param revision
      */
-    private void deleteOutputPath() {
+    private void deleteOutputPath() throws Exception {
         FileUtils.deleteDirectory(new File(getOutputPath()));
     }
 
