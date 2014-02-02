@@ -176,7 +176,7 @@ public class OstraMetricService1 extends MetricService {
         }
     }
 
-    private void unloadRevision(Revision revision, Request request) {
+    private void unloadRevision(Revision revision, Request request) throws Exception {
         Configuration config = request.getConfiguration();
         if (config.isUsingUpdateRevision()) {
             return;
@@ -187,7 +187,7 @@ public class OstraMetricService1 extends MetricService {
         FileUtils.deleteDirectory(path);
     }
 
-    private String getPath(Revision revision, Request request) {
+    private String getPath(Revision revision, Request request) throws Exception {
         Configuration config = request.getConfiguration();
         String projectName = revision.getProject().getConfigurationItem().getName().replace(" ", "_");
         String path = PathUtil.getWellFormedPath(SystemUtil.getTempDirectory(), projectName);
