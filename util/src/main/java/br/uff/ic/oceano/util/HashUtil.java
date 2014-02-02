@@ -1,8 +1,12 @@
 package br.uff.ic.oceano.util;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
@@ -86,7 +90,7 @@ public class HashUtil {
 
     /**
      * Create MD5 from files in path list
-     *
+     * Warning: Collection order affects result.
      * @param paths
      * @return
      */
@@ -98,11 +102,22 @@ public class HashUtil {
         MessageDigest complete = MessageDigest.getInstance("MD5");
         complete.reset();
 
-        for (String path : paths) {
-            if (!new File(path).isFile()) {
+        for (final String path : paths) {
+            File file = new File(path);
+            if (!file.isFile()) {            
                 throw new Exception("Not a file path: " + path);
+            } else if (!file.exists()) {          
+                continue;
+            } else if (!file.canRead()) {          
+                continue;
             }
-            InputStream fis = new FileInputStream(path);
+            InputStream fis = null;
+            try{
+                fis = new FileInputStream(path);
+            }catch(FileNotFoundException ex){
+                continue;
+            }
+            
             byte[] buffer = new byte[1024];
             int numRead;
             do {
@@ -116,10 +131,10 @@ public class HashUtil {
         }
 
         byte[] bytes = complete.digest();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
-            result += Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1);
+            result.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
-        return result;
+        return result.toString();
     }
 }

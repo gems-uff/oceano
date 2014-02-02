@@ -48,7 +48,7 @@ public class PathUtilNGTest extends AbstractNGTest {
             assertTrue(PathUtil.isEmpty(path));
             FileUtils.deleteDirectory(new File(path));
         } catch (Exception ex) {
-            fail(ex.getMessage());
+            fail(ex.getMessage(),ex);
         }
     }
 
