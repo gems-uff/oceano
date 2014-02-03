@@ -2,10 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Debug tests" preserve-order="true">    
     <test name="br.uff.ic.oceano suite" preserve-order="true">        
-        <classes>
+        <classes preserve-order="true">
             <class name="br.uff.ic.oceano.StartUpDatabase" preserve-order="true"/>                
-            <!--<class name="br.uff.ic.oceano.experiments.ostra.ExtractMetricsFromNeoPZ" preserve-order="true"/>-->
-            <class name="br.uff.ic.oceano.experiments.ostra.DataMiningNGTest" preserve-order="true"/>                
+            <class name="br.uff.ic.oceano.experiments.ostra.ExtractMetricsFromNeoPZ" preserve-order="true"/>
+<!--            <class name="br.uff.ic.oceano.experiments.ostra.DataMiningNGTest" preserve-order="true"/>                -->
+
+            <!--<class name="br.uff.ic.oceano.ostra.service.DeltaMetricsRevisionDataBaseServiceNGTest"/>-->
         </classes>
     </test>
 

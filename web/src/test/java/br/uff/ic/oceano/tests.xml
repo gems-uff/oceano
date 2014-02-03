@@ -2,9 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="All tests">    
     <test name="all" preserve-order="true">
-        <classes>
-            <class name="br.uff.ic.oceano.StartUpDatabase"/>           
+        <classes preserve-order="true">
+            <class name="br.uff.ic.oceano.StartUpDatabase"/> 
             
+                      
+            <class name="br.uff.ic.oceano.ostra.service.DeltaMetricsRevisionDataBaseServiceNGTest"/>
         </classes>
     </test>
 </suite>
