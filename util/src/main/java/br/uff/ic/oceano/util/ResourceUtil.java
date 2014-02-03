@@ -5,6 +5,9 @@
 
 package br.uff.ic.oceano.util;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -17,12 +20,39 @@ import java.util.ResourceBundle;
 
 public class ResourceUtil {
 
-    protected static ClassLoader getCurrentClassLoader(Object defaultObject) {
+    protected static ClassLoader getClassLoader(final Object defaultObject) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         if (loader == null) {
             loader = defaultObject.getClass().getClassLoader();
         }
         return loader;
+    }
+    
+    protected static ClassLoader getClassLoader() {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        if (loader == null) {
+            loader = ResourceUtil.class.getClass().getClassLoader();
+        }
+        return loader;
+    }
+    
+    /**
+     * 
+     * @param name name of the file
+     * @param refObject instance of a calling project class, used to recover its context.
+     * @return 
+     */
+    public static File getResourceAsFile(final String name, final Object refObject){
+        try{
+        ClassLoader loader = getClassLoader(refObject);
+        final URL url = loader.getResource(name);
+        if(url == null){
+            return null;
+        }        
+        return new File(url.toURI());
+        }catch (Exception ex){
+            return null;
+        }
     }
 
     public static String getMessageResourceString(
@@ -35,7 +65,7 @@ public class ResourceUtil {
 
         ResourceBundle bundle =
                 ResourceBundle.getBundle(bundleName, locale,
-                getCurrentClassLoader(params));
+                getClassLoader(params));
 
         try {
             text = bundle.getString(key);
@@ -53,7 +83,7 @@ public class ResourceUtil {
 
     public static ResourceBundle getResourceBundle(String bundleName) {
         return ResourceBundle.getBundle(bundleName,Locale.ROOT,
-                getCurrentClassLoader(new Object[]{}));
+                getClassLoader(new Object[]{}));
     }
 
     public static String getStringBundleProperties(String properties, String keyBundle){

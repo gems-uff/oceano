@@ -1,9 +1,11 @@
 package br.uff.ic.oceano.util.test;
 
 import br.uff.ic.oceano.util.DateUtil;
+import br.uff.ic.oceano.util.ResourceUtil;
 import br.uff.ic.oceano.util.file.PathUtil;
 import br.uff.ic.oceano.util.SystemUtil;
 import br.uff.ic.oceano.util.file.Archive;
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
@@ -60,13 +62,18 @@ public abstract class AbstractNGTest {
         if(coll == null){
             println("Null collection");
         } else if(coll.isEmpty()){
-            println("Collectino empty");
+            println("Collection empty");
         } else{
             for (String string : coll) {
                 println(string);
             }
         }
     }
+    
+    protected final File getTestFile(final String name){
+        return ResourceUtil.getResourceAsFile(name,this);
+    }
+
 
     protected final String getCurrentPath(){
         String path = PathUtil.getCurrentAbsolutePath();

@@ -1,0 +1,308 @@
+1;"ANA";FALSE;"Indica o número médio de classes que cada classe do projeto herda informações.";"";FALSE;2;"Average Number Of Ancestors";TRUE;1
+2;"RMA";FALSE;"This metric extract the Abstractness of a given configuration.";"";FALSE;1;"Abstractness";TRUE;0
+3;"CIS";FALSE;"Indica o número de métodos públicos em uma classe.";"";FALSE;0;"Class Interface Size";TRUE;0
+4;"CAM";FALSE;"Indicates the cohesion among methods in class.";"";FALSE;0;"Cohesion Among Methods In Class";TRUE;0
+5;"ACC";FALSE;"This metric returns the Cyclomatic Complexity Number.";"";TRUE;0;"Cyclomatic Complexity";TRUE;1
+6;"DAM";FALSE;"Indica a razão entre os atributos privados (e protegidos) e o número total de atributos.";"";FALSE;0;"Data Access";TRUE;0
+7;"DSC";FALSE;"Indica o número de classes de um projeto.";"";FALSE;2;"Design Size In Classes";TRUE;0
+8;"DCC";FALSE;"Indica o número de classes diferentes com que uma classe se relaciona.";"";FALSE;0;"Direct Class Coupling";TRUE;0
+9;"LCOM";FALSE;"This metric returns the Lack Of Cohesion Of Methods.";"";FALSE;0;"Lack Of Cohesion Of Methods";TRUE;0
+10;"LOC";FALSE;"This metric returns the Lines Of Code of a file.";"";TRUE;0;"Lines Of Code";TRUE;0
+11;"MOA";FALSE;"Indica o número de declarações de dados, cujos dados são definidos pelo usuário.";"";FALSE;2;"Measure Of Aggregation";TRUE;0
+12;"MFA";FALSE;"Indica a razão entre os métodos herdados e todos os métodos acessíveis de uma classe.";"";FALSE;2;"Measure Of Functional Abstraction";TRUE;1
+13;"MLOC";FALSE;"This metric returns the Method Lines Of Code.";"";FALSE;0;"Method Lines Of Code";TRUE;0
+14;"NOA";FALSE;"This metric returns the Number of Attributes.";"";FALSE;0;"Number Of Attributes";TRUE;0
+15;"NOH";FALSE;"This metric extract the number of hierarchies of a project.";"";FALSE;2;"Number Of Hierarchies";TRUE;0
+16;"NOI";FALSE;"This metric extract the number of interfaces of a given configuration.";"";TRUE;1;"Number of Interfaces";TRUE;0
+17;"NOM";FALSE;"This metric extract the number of methods of a class.";"";FALSE;0;"Number Of Methods";TRUE;0
+18;"NORM";FALSE;"This metric returns the number of Overriden Methods.";"";FALSE;2;"Number of Overridden Methods";TRUE;0
+19;"NOP";FALSE;"This metric returns the number of polymorphic methods.";"";FALSE;2;"Number Of Polymorphic Methods";TRUE;0
+20;"NSF";FALSE;"Indica o numero de atributos estáticos.";"";FALSE;0;"Number Of Static Attributes";TRUE;0
+21;"NSM";FALSE;"This metric returns the Number Of Static Methods.";"";FALSE;0;"Number Of Static Methods";TRUE;0
+22;"TCC";FALSE;"This metric returns the Weighted Methods Per Class (Sum of the McCabe Cyclomatic Complexity for all methods in a class).";"";TRUE;0;"Total Cyclomatic Complexity";TRUE;0
+23;"NPA";FALSE;"This metric returns the Number of Public Attributes.";"";TRUE;0;"Number of Public Attributes";TRUE;0
+24;"NOAM";FALSE;"This metric returns the Number of Accessor Methods.";"";TRUE;0;"Number of Accessor Methods";TRUE;0
+25;"TLOC";FALSE;"This metric returns the Lines of Code of a project.";"";TRUE;2;"Lines of Code Total";TRUE;0
+26;"average component dependency (ACD)";FALSE;"
+			Described in 'Large-Scale C++ Software Design, John Lakos, Addison-Wesley 1996'.
+
+			Expresses the average component (equivalent to 'compilation unit') coupling.
+			It is the sum of all
+			component depedencies divided by the number of components (SIZE).
+
+			An ACD of 20 means:
+			On an average a component depends directly and indirectly (transitively) upon 19 other components +1 for itself.
+
+			IMPORTANT: Only project internal compilation units are considered.
+		";"";TRUE;2;"AverageComponentDependency";FALSE;1
+27;"cumulative component dependency (CCD)";FALSE;"
+			Described in 'Large-Scale C++ Software Design, John Lakos, Addison-Wesley 1996'.
+
+			The cumulative component dependency (CCD) is the sum of all component dependencies.
+			A component is
+			equivalent to 'compilation unit'.
+		";"";TRUE;2;"CumulativeComponentDependency";FALSE;1
+28;"cumulative component dependency for balanced binary tree";FALSE;"
+			Described in 'Large-Scale C++ Software Design, John Lakos, Addison-Wesley 1996'.
+
+			The cumulated component dependency of a dependency structure of a balanced binary tree
+			based on the SIZE
+			of the project. Used to compare the CCD's. 
+		";"";TRUE;2;"CumulativeComponentDependencyForBalancedBinaryTree";FALSE;1
+29;"cumulative component dependency for cyclically dependent graph";FALSE;"
+			Described in 'Large-Scale C++ Software Design, John Lakos, Addison-Wesley 1996'.
+
+			The cumulated component dependency of a dependency structure where every element depends upon all others.
+			If n is the number of elements the CCD is n*n. The worst case calculation based on the SIZE of the project.
+			Used to compare the CCD's.
+		";"";TRUE;2;"CumulativeComponentDependencyForCyclicallyDependentGraph";FALSE;1
+30;"normalized cumulative component dependency (NCCD)";FALSE;"
+			Described in 'Large-Scale C++ Software Design, John Lakos, Addison-Wesley 1996'.
+
+			The normalized cumulative component dependency (NCCD) is the CCD divided by the
+			CCD for a balanced binary
+			tree like dependency structure.
+
+			A value greater than 1 indicates a more vertical design.
+			A value less than 1 indicates a more horizontal design. 
+		";"";TRUE;2;"NormalizedCumulativeComponentDependency";FALSE;1
+31;"number of project external compilation units";FALSE;"
+			Number of project external compilation units.
+		";"";TRUE;2;"NumberOfProjectExternalCompilationUnits";FALSE;1
+32;"number of project internal compilation units";FALSE;"
+			Number of project internal compilation units.
+		";"";TRUE;2;"NumberOfProjectInternalCompilationUnits";FALSE;1
+33;"number of components";FALSE;"
+			Described in 'Large-Scale C++ Software Design, John Lakos, Addison-Wesley 1996'.
+
+			The number of components (SIZE) is equivalent to the 'number of project internal compilation units'.
+		";"";TRUE;2;"NumberOfComponents";FALSE;1
+34;"percentage of project internal layers with a relational cohesion >= 1.0";FALSE;"
+			Percentage of layers that have at least a relational cohesion of 1.0. 
+		";"";TRUE;2;"PercentageOfProjectInternalLayersWithARelationalCohesionGreaterThanOne";FALSE;1
+35;"percentage of project internal packages with a relational cohesion >= 1.0";FALSE;"
+			Percentage of packages that have at least a relational cohesion of 1.0. 
+		";"";TRUE;2;"PercentageOfProjectInternalPackagesWithARelationalCohesionGreaterThanOne";FALSE;1
+36;"percentage of project internal subsystems with a relational cohesion >= 1.0";FALSE;"
+			Percentage of subsystems that have at least a relational cohesion of 1.0. 
+		";"";TRUE;2;"PercentageOfProjectInternalSubsystemsWithARelationalCohesionGreaterThanOne";FALSE;1
+37;"percentage of project internal vertical slices with a relational cohesion >= 1.0";FALSE;"
+			Percentage of vertical slices that have at least a relational cohesion of 1.0. 
+		";"";TRUE;2;"PercentageOfProjectInternalVerticalSlicesWithARelationalCohesionGreaterThanOne";FALSE;1
+38;"number of assertions";FALSE;"
+			Number of recognized assertion statements in project internal classes - only classes may have method implementations.
+
+			HINT: Assertions are only analyzed if source files are provided.
+		";"";TRUE;2;"NumberOfAssertions";FALSE;1
+39;"average usage of assertions per class";FALSE;"
+			Average usage of assertions per project internal class - only classes my have method implementations. 
+		";"";TRUE;2;"AverageUsageOfAssertionsPerClass";FALSE;1
+40;"number of outgoing dependencies";FALSE;"
+			Only outgoing dependencies to project internal elements are considered.
+		";"";TRUE;2;"NumberOfOutgoingDependencies";FALSE;1
+41;"number of forbidden outgoing dependencies";FALSE;"
+			Number of dependencies that violate the imposed dependencies from the logical architecture description. 
+		";"";TRUE;2;"NumberOfForbiddenOutgoingDependencies";FALSE;1
+42;"number of outgoing dependencies to project external";FALSE;"
+			Only outgoing dependencies to project external elements are considered.
+			Which project internal elements have the highest coupling to project external elements? 
+		";"";TRUE;2;"NumberOfOutgoingDependenciesToProjectExternal";FALSE;1
+43;"number of project internal packages";FALSE;"
+			Number of project internal packages.
+		";"";TRUE;2;"NumberOfProjectInternalPackages";FALSE;1
+44;"number of project internal subsystems";FALSE;"
+			Number of project internal subsystems.
+		";"";TRUE;2;"NumberOfProjectInternalSubsystems";FALSE;1
+45;"number of project internal types";FALSE;"
+			Number of project internal types.
+		";"";TRUE;2;"NumberOfProjectInternalTypes";FALSE;1
+46;"number of project internal vertical slices";FALSE;"
+			Number of project internal vertical slices.
+		";"";TRUE;2;"NumberOfProjectInternalVerticalSlices";FALSE;1
+47;"number of project external packages";FALSE;"
+			Number of project external packages.
+		";"";TRUE;2;"NumberOfProjectExternalPackages";FALSE;1
+48;"number of project external subsystems";FALSE;"
+			Number of project external subsystems.
+		";"";TRUE;2;"NumberOfProjectExternalSubsystems";FALSE;1
+49;"number of project external types";FALSE;"
+			Number of project external types.
+		";"";TRUE;2;"NumberOfProjectExternalTypes";FALSE;1
+50;"max depth of package hierarchy";FALSE;"
+			Longest path in the physical package hierarchy considering all packages.
+		";"";TRUE;2;"MaxDepthOfPackageHierarchy";FALSE;1
+51;"max depth of type inheritance";FALSE;"
+			Longest path in the type inheritance tree considering all classes and interfaces - excluding 'java.lang.Object'.
+		";"";TRUE;2;"MaxDepthOfTypeInheritance";FALSE;1
+52;"number of allowed outgoing package dependencies";FALSE;"
+			Total number of allowed outgoing package dependencies.
+		";"";TRUE;2;"NumberOfAllowedOutgoingPackageDependencies";FALSE;1
+53;"number of allowed outgoing subsystem dependencies";FALSE;"
+			Number of outgoing subsystem dependencies.
+		";"";TRUE;2;"NumberOfAllowedOutgoingSubsystemDependencies";FALSE;1
+54;"number of compilation unit cycles";FALSE;"
+			Number of compilation unit cycles.
+		";"";TRUE;2;"NumberOfCompilationUnitCycles";FALSE;1
+55;"afferent (incoming) coupling (Ca) - project external";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			Number of types outside the container that depend upon types inside (i.e. incoming dependencies).
+		";"";TRUE;2;"AfferentIncomingCouplingProjectExternal";FALSE;1
+56;"number of forbidden outgoing compilation unit dependencies";FALSE;"
+			Total number of forbidden outgoing compilation unit dependencies.
+
+			Total number of outgoing compilation unit dependencies that are not conform to the allowed outgoing dependencies of
+			layers, subsystems and packages. 
+		";"";TRUE;2;"NumberOfForbiddenOutgoingCompilationUnitDependencies";FALSE;1
+57;"number of forbidden outgoing package dependencies";FALSE;"
+			Total number of forbidden outgoing package dependencies.
+
+			Total number of outgoing package dependencies that are not conform to the allowed outgoing dependencies of
+			layers, subsystems and
+			packages. 
+		";"";TRUE;2;"NumberOfForbiddenOutgoingPackageDependencies";FALSE;1
+58;"number of forbidden outgoing subsystem dependencies";FALSE;"
+			Total number of forbidden outgoing subsystem dependencies.
+
+			Total number of outgoing subsystem dependencies that are not conform to the allowed outgoing dependencies of
+			layers and
+			subsystems. 
+		";"";TRUE;2;"NumberOfForbiddenOutgoingSubsystemDependencies";FALSE;1
+59;"number of forbidden outgoing type dependencies";FALSE;"
+			Total number of forbidden outgoing type dependencies.
+
+			Total number of outgoing type dependencies that are not conform to the allowed outgoing dependencies of
+			layers, subsystems and
+			packages. 
+		";"";TRUE;2;"NumberOfForbiddenOutgoingTypeDependencies";FALSE;1
+60;"number of not assigned packages";FALSE;"
+			Number of packages not assigned to a subsystem.
+		";"";TRUE;2;"NumberOfNotAssignedPackages";FALSE;1
+61;"number of not implemented subsystems";FALSE;"
+			Total number of not implemented subsystems (i.e. without assigned packages) - project internal and external.
+		";"";TRUE;2;"NumberOfNotImplementedSubsystems";FALSE;1
+62;"number of outgoing compilation unit dependencies";FALSE;"
+			Total number of outgoing compilation unit dependencies.
+		";"";TRUE;2;"NumberOfOutgoingCompilationUnitDependencies";FALSE;1
+63;"number of outgoing layer dependencies";FALSE;"
+			Total number of outgoing layer dependencies.
+		";"";TRUE;2;"NumberOfOutgoingLayerDependencies";FALSE;1
+64;"number of outgoing package dependencies";FALSE;"
+			Total number of outgoing package dependencies - project internal and external.
+		";"";TRUE;2;"NumberOfOutgoingPackageDependencies";FALSE;1
+65;"number of outgoing subsystem dependencies";FALSE;"
+			Total number of outgoing subsystem dependencies.
+		";"";TRUE;2;"NumberOfOutgoingSubsystemDependencies";FALSE;1
+66;"number of outgoing type dependencies";FALSE;"
+			Total number of outgoing type dependencies.
+		";"";TRUE;2;"NumberOfOutgoingTypeDependencies";FALSE;1
+67;"number of outgoing vertical slice dependencies";FALSE;"
+			Total number of outgoing vertical slice dependencies.
+		";"";TRUE;2;"NumberOfOutgoingVerticalSliceDependencies";FALSE;1
+68;"number of package cycles";FALSE;"
+			Number of package cycles.
+		";"";TRUE;2;"NumberOfPackageCycles";FALSE;1
+69;"number of type cycles";FALSE;"
+			Number of type cycles.
+		";"";TRUE;2;"NumberOfTypeCycles";FALSE;1
+70;"number of subsystem cycles";FALSE;"
+			Number of subsystem cycles.
+		";"";TRUE;2;"NumberOfSubsystemCycles";FALSE;1
+71;"number of layer cycles";FALSE;"
+			Number of layer cycles.
+		";"";TRUE;2;"NumberOfLayerCycles";FALSE;1
+72;"number of type tangles";FALSE;"
+			Number of type tangles.
+		";"";TRUE;2;"NumberOfTypeTangles";FALSE;1
+73;"number of compilation unit tangles";FALSE;"
+			Number of compilation unit tangles.
+		";"";TRUE;2;"NumberOfCompilationUnitTangles";FALSE;1
+74;"number of subsystem tangles";FALSE;"
+			Number of subsystem tangles.
+		";"";TRUE;2;"NumberOfSubsystemTangles";FALSE;1
+75;"number of package tangles";FALSE;"
+			Number of package tangles.
+		";"";TRUE;2;"NumberOfPackageTangles";FALSE;1
+76;"number of layer tangles";FALSE;"
+			Number of layer tangles.
+		";"";TRUE;2;"NumberOfLayerTangles";FALSE;1
+77;"number of abstract types (Na)";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			Number of contained abstract types (interfaces and abstract classes).
+		";"";TRUE;1;"NumberOfAbstractTypes";FALSE;1
+78;"number of accessible types";FALSE;"
+			Number of accessible types in a specific type container (vertical slice , layer, subsystem, package,
+			compilation unit).  
+		";"";TRUE;1;"NumberOfAccessibleTypes";FALSE;1
+79;"number of incoming dependencies";FALSE;"
+			Only incoming dependencies to project internal elements are considered.
+		";"";TRUE;1;"NumberOfIncomingDependencies";FALSE;1
+80;"afferent (incoming) coupling (Ca)";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			Number of types outside the container that depend upon types inside (i.e. incoming dependencies).
+		";"";TRUE;1;"AfferentIncomingCoupling";FALSE;1
+81;"distance (D)";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			D = A + I - 1 (slightly modified! Robert C. Martin described uses this formula: D = |A + I - 1|).
+			The
+			metric has a range of [-1,1].
+			Negative means 'zone of pain' and positive means 'zone of uselessness'.
+		";"";TRUE;1;"Distance";FALSE;1
+82;"efferent (outgoing) coupling (Ce)";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			Number of types outside the container that types inside depend upon (i.e. outgoing dependencies).
+		";"";TRUE;1;"EfferentOutgoingCoupling";FALSE;1
+83;"number of external type relations";FALSE;"
+			Number of external type relations of types in a specific container (layer, subsystem, ...).
+			Uses, extends, implements to/from types not contained in the specific container.
+		";"";TRUE;1;"NumberOfExternalTypeRelations";FALSE;1
+84;"instability (I)";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			I = Ce/(Ca+Ce)
+			The metric has a range of [0,1]. If there are no outgoing dependencies, then I will be zero
+			and the container is stable. If there are no incoming dependencies then I will be one and the
+			container is instable.
+
+			Stable means 'not so easy to change'.
+			Instable means 'easier to change'.
+		";"";TRUE;1;"Instability";FALSE;1
+85;"number of internal type relations";FALSE;"
+			Number of internal type relations (uses, extends, implements) of the types in a specific
+			type container (vertical slice , layer, subsystem, package). 
+		";"";TRUE;1;"NumberOfInternalTypeRelations";FALSE;1
+86;"relational cohesion (RC)";FALSE;"
+			Described in 'Applying UML and Patterns, C. Larman, Addison-Wesley 2002'.
+
+			RC = Number of internal type relations / number of types
+		";"";TRUE;1;"RelationalCohesion";FALSE;1
+87;"depth of package hierarchy";FALSE;"
+			Longest path in the physical package hierarchy.
+
+			Example: The package 'de.valtech.dependometer.app.core.metrics' has a 'depth of package hierarchy' of 6.
+		";"";TRUE;1;"DepthOfPackageHierarchy";FALSE;1
+88;"number of concrete types";FALSE;"
+			Described in 'Agile Software Development, Robert C. Martin, Prentice Hall 2003'.
+
+			Number of contained concrete types (concrete classes).
+		";"";TRUE;0;"NumberOfConcreteTypes";FALSE;1
+89;"number of package external relations";FALSE;"
+			Number of package external relations. 
+		";"";TRUE;0;"NumberOfPackageExternalRelations";FALSE;1
+90;"number of package internal relations";FALSE;"
+			Number of package internal relations. 
+		";"";TRUE;0;"NumberOfPackageInternalRelations";FALSE;1
+91;"number of incoming dependencies - project external";FALSE;"
+			Only incoming dependencies to project external elements are considered.
+			Which project external elements have the highest coupling to project internal elements? 
+		";"";TRUE;0;"NumberOfIncomingDependenciesProjectExternal";FALSE;1
+92;"Effectiveness";TRUE;"Effectiveness";"0.2*ANA+0.2*DAM+0.2*MOA+0.2*MFA+0.2*NOP";FALSE;2;"Effectiveness";TRUE;1
+93;"Extendability";TRUE;"Extendability";"0.5*ANA-0.5*DCC+0.5*MFA+0.5*NOP";FALSE;2;"Extendability";TRUE;1
+94;"Flexibility";TRUE;"Flexibility";"0.25*DAM-0.25*DCC+0.5*MOA+0.5*NOP";FALSE;2;"Flexibility";TRUE;1
+95;"Functionality";TRUE;"Functionality";"0.12*CAM+0.22*NOP+0.22*CIS+0.22*DSC+0.22*NOM";FALSE;2;"Functionality";TRUE;1
+96;"Reusability";TRUE;"Reusability";"-0.25*DCC+0.25*CAM+0.5*CIS+0.5*DSC";FALSE;2;"Reusability";TRUE;1
+97;"Understandability";TRUE;"Understandability";"-0.33*ANA+0.33*DAM-0.33*DCC+0.33*CAM-0.33*NOP-0.33*NOM-0.33*DSC";FALSE;2;"Understandability";TRUE;1
