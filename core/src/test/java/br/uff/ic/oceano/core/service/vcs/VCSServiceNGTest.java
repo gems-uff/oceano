@@ -74,11 +74,9 @@ public class VCSServiceNGTest extends AbstractNGTest {
 
             tempPath = SystemUtil.getTempDirectory();
             assertNotNull(tempPath);
-        } catch (ServiceException ex) {
+        } catch (Exception ex) {
             fail(ex.getMessage());
-        } catch (ObjetoNaoEncontradoException ex) {
-            fail(ex.getMessage());
-        }
+        } 
     }
 
     @Test

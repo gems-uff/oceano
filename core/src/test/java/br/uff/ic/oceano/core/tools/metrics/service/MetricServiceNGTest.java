@@ -4,7 +4,6 @@
  */
 package br.uff.ic.oceano.core.tools.metrics.service;
 
-import br.uff.ic.oceano.core.dao.controle.JPAUtil;
 import br.uff.ic.oceano.core.exception.InfraestruturaException;
 import br.uff.ic.oceano.core.exception.ObjetoNaoEncontradoException;
 import br.uff.ic.oceano.core.exception.ServiceException;
@@ -18,8 +17,6 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.RollbackException;
 import org.hibernate.exception.ConstraintViolationException;
 import static org.testng.Assert.*;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**

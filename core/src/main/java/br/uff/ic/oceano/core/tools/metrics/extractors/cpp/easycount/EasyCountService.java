@@ -42,7 +42,7 @@ public class EasyCountService {
         long parenthesis_opened = 0;
         long preprocessing = 0;
 
-        String fileText;
+        final String fileText;
         try {
             fileText = FileUtils.readFile(path);
         } catch (Exception ex) {
@@ -55,7 +55,7 @@ public class EasyCountService {
 
         int position = 0;
         do {
-            char message = fileText.charAt(position);
+            final char message = fileText.charAt(position);
 
             if ((state != STRING) && (state != CHAR)
                     && (state != STRING_SPECIAL) && (state != CHAR_SPECIAL)
