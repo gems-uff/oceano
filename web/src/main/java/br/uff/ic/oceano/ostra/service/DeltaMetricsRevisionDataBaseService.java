@@ -19,6 +19,11 @@ import br.uff.ic.oceano.ostra.discretizer.Discretizer;
 import br.uff.ic.oceano.core.service.MetricValueService;
 import br.uff.ic.oceano.core.service.RevisionService;
 import br.uff.ic.oceano.core.service.controletransacao.Transacional;
+import br.uff.ic.oceano.ostra.discretizer.DayOfWeekDiscretizer;
+import static br.uff.ic.oceano.ostra.discretizer.DiscretizerFactory.getDiscretizer;
+import br.uff.ic.oceano.ostra.discretizer.HourOfDayDiscretizer;
+import br.uff.ic.oceano.ostra.discretizer.NumberOfFilesDiscretizer;
+import br.uff.ic.oceano.ostra.discretizer.RoundOfDayDiscretizer;
 import br.uff.ic.oceano.util.DateUtil;
 import br.uff.ic.oceano.util.NumberUtil;
 import br.uff.ic.oceano.util.Output;
@@ -67,7 +72,7 @@ public class DeltaMetricsRevisionDataBaseService {
     //
     private Map<String, Discretizer> discretizersMap;
     private boolean useDiscretizers = false;
-    private List<Metric> metricsList;
+    private List<Metric> metricsToConsider;
 
     public DeltaMetricsRevisionDataBaseService() {
         revisionService = ObjectFactory.getObjectWithDataBaseDependencies(RevisionService.class);
@@ -77,7 +82,7 @@ public class DeltaMetricsRevisionDataBaseService {
     public synchronized DataBaseSnapshot buildDeltaMetricsDataBase(List<SoftwareProject> projects, List<Discretizer> discretizers, boolean calculateStandardDeviation, boolean usesOnlyCompilingRevisions, List<Metric> metricsListToConsider, boolean calculateDeltaMetrics) throws ServiceException {
         this.calculateStandardDeviation = calculateStandardDeviation;
         this.usesOnlyCompilingRevisions = usesOnlyCompilingRevisions;
-        this.metricsList = metricsListToConsider;
+        this.metricsToConsider = metricsListToConsider;
 
         initialize();
         dataBaseSnapshot = new DataBaseSnapshot();
@@ -105,8 +110,11 @@ public class DeltaMetricsRevisionDataBaseService {
 
     private void buildDeltaMetricsDataBase(Set<Revision> revisions, boolean calculateDeltaMetrics) throws ServiceException {
 
-        List<Revision> revisionsList = new ArrayList<Revision>(revisions);
+        List<Revision> revisionsList = new ArrayList<Revision>(revisions);        
         Collections.sort(revisionsList);
+        //>debuging
+        revisionsList = revisionsList.subList(0, 30);
+        //<debuging
 
         mapWithLastMetricValueForItem = new HashMap<Item, Map<Metric, Double>>();
         mapWithLastValueForEachMetric = new HashMap<Metric, Double>();
@@ -117,7 +125,7 @@ public class DeltaMetricsRevisionDataBaseService {
             if (usesOnlyCompilingRevisions && cannotCompile) {
                 continue;
             }
-            Output.println(">>>>>>>>> Processando revisão: " + revision);
+            //Output.println(">>>>>>>>> Processando revisão: " + revision);
 
             if (calculateDeltaMetrics) {
                 revision = revisionService.getWithVersionedItemsAndItemsAndMetricValues(revision);
@@ -127,12 +135,13 @@ public class DeltaMetricsRevisionDataBaseService {
 
             //instance id
             addAttributeValue(ATTRIBUTE_INSTANCE_ID, revision.getProject().getConfigurationItem().getName() + "-r" + revision.getNumber(), revision);
-            //revision date
-            addAttributeValue(ATTRIBUTE_REVISION_DATE, DateUtil.format(revision.getCommitDate()), revision);
-            //revision date
-            addAttributeValue(ATTRIBUTE_REVISION_DATE_DAY_OF_WEEK, DateUtil.format(revision.getCommitDate()), revision);
-            addAttributeValue(ATTRIBUTE_REVISION_DATE_HOUR, DateUtil.format(revision.getCommitDate()), revision);
-            addAttributeValue(ATTRIBUTE_REVISION_DATE_ROUND, DateUtil.format(revision.getCommitDate()), revision);
+            
+            final String commitDate = DateUtil.format(revision.getCommitDate());
+            addAttributeValue(ATTRIBUTE_REVISION_DATE, commitDate, revision);            
+            addAttributeValue(ATTRIBUTE_REVISION_DATE_DAY_OF_WEEK, commitDate, revision);
+            addAttributeValue(ATTRIBUTE_REVISION_DATE_HOUR, commitDate, revision);
+            addAttributeValue(ATTRIBUTE_REVISION_DATE_ROUND, commitDate, revision);
+            
             //revision commiter
             addAttributeValue(ATTRIBUTE_REVISION_COMMITER, revision.getCommiter(), revision);
             //does it compiles
@@ -147,17 +156,14 @@ public class DeltaMetricsRevisionDataBaseService {
                 addAttributeValue(ATTRIBUTE_NUMBER_OF_CHANGED_FILES, Constantes.ATTRIBUTE_NOT_KNOWN_SYMBOL, revision);
             }
 
-            Output.print(">>>>>>>>>>>>>>>>>>>> gerando delta values");
+            Output.println(">>>>>>>>>>>>>>>>>>>> gerando delta values for r-" + revision.getNumber()+"(" +revision+") #files "+ revision.getChangedFiles().size());
+            
             //delta metrics
             if (calculateDeltaMetrics) {
                 calculateAndAddDeltaMetricValuesForMetricsOfVersionedItems(revision);
             }
-
             calculateDeltaForProjectMetrics(revision);
-
         }
-
-
     }
 
     private Double getLastItemMetricValue(final Item actualItem, Metric metricToCalculateDelta) {
@@ -189,6 +195,8 @@ public class DeltaMetricsRevisionDataBaseService {
     }
 
     private void calculateAndAddDeltaMetricValuesForMetricsOfVersionedItems(Revision revision) throws ServiceException {
+        //Output.println("\nCalculating delta for revision: " + revision);
+
         Set<Metric> setOfMetricsToCalculatedTheDelta = new HashSet<Metric>();
         Map<Metric, Set<VersionedItemMetricValue>> mapWithMetricValuesForEachMetricOfThisRevision = new HashMap<Metric, Set<VersionedItemMetricValue>>();
 
@@ -196,7 +204,7 @@ public class DeltaMetricsRevisionDataBaseService {
         for (VersionedItem versionedItem : revision.getChangedFiles()) {
             for (VersionedItemMetricValue versionedItemMetricValue : versionedItem.getMetricValues()) {
                 Metric extractedMetric = versionedItemMetricValue.getMetric();
-                if (!metricsList.contains(extractedMetric)) {
+                if (!this.metricsToConsider.contains(extractedMetric)) {
                     continue;
                 }
                 setOfMetricsToCalculatedTheDelta.add(extractedMetric);
@@ -243,7 +251,36 @@ public class DeltaMetricsRevisionDataBaseService {
                 markToSaveDeltaMetricAndAddItsAttribute(revision, metricToCalculateDelta, sdValue, true);
             }
         }
-        System.out.println();
+
+        //>Debugging
+//        Output.println("Metrics values of revision");
+//        for (Map.Entry<Metric, Set<VersionedItemMetricValue>> entry : mapWithMetricValuesForEachMetricOfThisRevision.entrySet()) {
+//            Metric metric = entry.getKey();
+//            Output.println("Metric: " + metric.getName());
+//
+//            Set<VersionedItemMetricValue> set = entry.getValue();
+//            for (VersionedItemMetricValue versionedItemMetricValue : set) {
+//                Output.println("Vers. item: " + versionedItemMetricValue.getDoubleValue() + "(" + NumberUtil.format(versionedItemMetricValue.getDoubleValue()) + ")");
+//            }
+//        }
+//        Output.println("Delta last value mapping result");
+//        for (Map.Entry<Item, Map<Metric, Double>> entry : mapWithLastMetricValueForItem.entrySet()) {
+//            Output.print("Item: " + entry.getKey()+ "\t");
+//            for (Map.Entry<Metric, Double> entry2 : entry.getValue().entrySet()) {
+//                Output.print(entry2.getKey() + ": " +entry2.getValue()+ "\t");
+//            }
+//        }
+//        
+//        Output.println("Delta mapping result");
+//        for (Map.Entry<Revision, Map<String, String>> entry : instanceAttributes.entrySet()) {
+//            Output.print("Revision: " + entry.getKey()+ "\t");
+//            final Map<String, String> mapAtt2Valu = entry.getValue();
+//            for (Map.Entry<String, String> entry2 : mapAtt2Valu.entrySet()) {
+//                Output.print(entry2.getKey() + ": " +entry2.getValue() + "\t");
+//            }
+//            Output.println("");
+//        }
+        //<Debugging
     }
 
     private void updateLastMetricValueForActualItemAndMetric(final Item actualItem, Metric metricToCalculateDelta, Double actualItemMetricValue) {
@@ -334,10 +371,6 @@ public class DeltaMetricsRevisionDataBaseService {
     @Transacional
     private void saveMetricValuesForRevisions() {
         for (MetricValue metricValue : metricValuesToPersist) {
-//            if (metricValue.getMetric().getExtratcsFrom() == Metric.EXTRACTS_FROM_PROJECT) {
-//                continue;
-//            }
-
             try {
                 metricValue.setId(metricValueService.getMetricValueId(metricValue));
             } catch (ServiceException ex) {
@@ -394,17 +427,21 @@ public class DeltaMetricsRevisionDataBaseService {
     }
 
     private void calculateDeltaForProjectMetrics(Revision revision) {
-        List<MetricValue> metricValuesOfTheCurrentRevision = metricValueService.getByRevision(revision);
+        //Output.println("\nCalculating Delta for Project Metrics of revision: "+revision);
+        
+        final List<MetricValue> metricValuesOfTheCurrentRevision = metricValueService.getByRevision(revision);
 
         for (MetricValue metricValue : metricValuesOfTheCurrentRevision) {
-            if (!metricsList.contains(metricValue.getMetric())) {
+            final Metric metric = metricValue.getMetric();
+            if (!this.metricsToConsider.contains(metric)) {
                 continue;
-            }
-
-            double deltaValue;
+            }///
+            Output.print(metric.getName()+":");
+            Double deltaValue;
             if (metricValue.isDelta()) {
+                //already is a delta value                
                 deltaValue = metricValue.getDoubleValue();
-
+                Output.print( "delta" + deltaValue);
             } else {
                 //verifica se existe um mv que seja delta para a mesma métrica.
                 //caso exista, continue para a proxima metrica.
@@ -416,11 +453,16 @@ public class DeltaMetricsRevisionDataBaseService {
                     }
                 }
                 if (hasADeltaMetricValue) {
+                    //Output.println("Metric already has delta value, continuing.");
+                    Output.println("delta exists");
                     continue;
                 }
 
                 final Double lastValue = mapWithLastValueForEachMetric.get(metricValue.getMetric());
+                //Output.println("Metric previous value:"+lastValue);
+                Output.print("previous:"+lastValue);
                 final Double currentValue = metricValue.getDoubleValue();
+                Output.print(" current:"+currentValue);
                 if (lastValue == null || NumberUtil.isNAN(lastValue)) {
                     //last value for metric not know, so new value is the delta.
                     deltaValue = currentValue;
@@ -431,11 +473,26 @@ public class DeltaMetricsRevisionDataBaseService {
                     //last and current values known.
                     deltaValue = currentValue - lastValue;
                 }
-
+                
                 mapWithLastValueForEachMetric.put(metricValue.getMetric(), currentValue);
             }
-
-            addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metricValue.getMetric().getName(), String.valueOf(deltaValue), revision);
+            
+            final String strValue = String.valueOf(deltaValue);
+            //Output.println("Metric delta value:"+deltaValue + "("+strValue+")");
+            Output.println(" delta:"+deltaValue + "("+strValue+")");
+            addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metricValue.getMetric().getName(), strValue, revision);
         }
+        
+    }
+
+    public static List<Discretizer> getDefaultDiscretizers() throws ServiceException {
+        List<Discretizer> discretizers = new ArrayList<Discretizer>();
+
+        discretizers.add(getDiscretizer(ATTRIBUTE_NUMBER_OF_CHANGED_FILES, NumberOfFilesDiscretizer.class));
+        discretizers.add(getDiscretizer(ATTRIBUTE_REVISION_DATE_DAY_OF_WEEK, DayOfWeekDiscretizer.class));
+        discretizers.add(getDiscretizer(ATTRIBUTE_REVISION_DATE_HOUR, HourOfDayDiscretizer.class));
+        discretizers.add(getDiscretizer(ATTRIBUTE_REVISION_DATE_ROUND, RoundOfDayDiscretizer.class));
+
+        return discretizers;
     }
 }
