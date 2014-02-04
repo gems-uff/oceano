@@ -83,27 +83,25 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
     @Test
     public void executaExperimentos() throws Throwable {
 
-        final boolean EXTRAI_METRICAS = false;
+        final boolean EXTRAI_METRICAS = true;
         if (EXTRAI_METRICAS) {
             extractMetrics();
         }
 
-        final boolean CALCULA_METRIC_VALUES = false;
+        final boolean CALCULA_METRIC_VALUES = true;
         if (CALCULA_METRIC_VALUES) {
             calculateRevisionMetricValues();
         }
 
-        final boolean CALCULA_ATRIBUTOS_DE_QUALIDADE = false;
+        final boolean CALCULA_ATRIBUTOS_DE_QUALIDADE = true;
         if (CALCULA_ATRIBUTOS_DE_QUALIDADE) {
             extractQualityAttributes();
         }
         
-        final boolean calculateDeltas = true;
+        final boolean calculateDeltas = false;
         if (calculateDeltas) {
             calculateDeltas();
-        }
-
-        
+        }        
     }
 
     private List<Discretizer> getDiscretizers() throws ServiceException {
@@ -111,7 +109,8 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
         discretizers.add(DiscretizerFactory.getDiscretizer("#files", NumberOfFilesDiscretizer.class));
         discretizers.add(DiscretizerFactory.getDiscretizer("rday", DayOfWeekDiscretizer.class));
         discretizers.add(DiscretizerFactory.getDiscretizer("rhour", HourOfDayDiscretizer.class));
-        discretizers.add(DiscretizerFactory.getDiscretizer("rRound", RoundOfDayDiscretizer.class));
+        discretizers.add(DiscretizerFactory.getDiscretizer("rRound", RoundOfDayDiscretizer.class));        
+        
         for (Metric metric : getMetrics(metricManagers)) {
             discretizers.add(DiscretizerFactory.getDiscretizer(Constantes.PREFIX_DELTA_METRIC_AVARAGE + metric.getName(), NegativePositiveDiscretizer.class));
 
@@ -133,10 +132,10 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
     private void extractMetrics() throws Throwable {
         for (SoftwareProject project : projects) {
             try {
-                System.out.println("======================================================");
-                System.out.println("EXTRACTING METRICS FROM PROJECT " + project);
+                println("======================================================");
+                println("EXTRACTING METRICS FROM PROJECT " + project);
                 ostraMetricService.extractAndSaveMetricsFromAllFilesInProjectRevisions(project, userDanielOceano, metricManagers);
-                System.out.println("======================================================\n");
+                println("======================================================\n");
             } catch (Throwable t) {
                 println(t.getMessage());
             }
@@ -148,10 +147,10 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
 //        measure projects
         for (SoftwareProject project : projects) {
             try {
-                System.out.println("======================================================");
-                System.out.println("CALCULATING REVISION METRIC VALUES FROM PROJECT " + project);
+                println("======================================================");
+                println("CALCULATING REVISION METRIC VALUES FROM PROJECT " + project);
                 ostraMetricService.calculateRevisionMetricValuesFromVersionedItemMetricValues(project, getMetrics(metricManagers));
-                System.out.println("======================================================\n");
+                println("======================================================\n");
 
             } catch (Throwable t) {
                 println(t.getMessage());
@@ -163,10 +162,10 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
 //        measure projects
         for (SoftwareProject project : projects) {
             try {
-                System.out.println("======================================================");
-                System.out.println("CALCULATING QUALITY ATTRIBUTES FOR PROJECT " + project);
+                println("======================================================");
+                println("CALCULATING QUALITY ATTRIBUTES FOR PROJECT " + project);
                 ostraQualityAtributesService.calculateQualityAttributes(project);
-                System.out.println("======================================================\n");
+                println("======================================================\n");
             } catch (Throwable t) {
                 println(t.getMessage());
             }
@@ -186,7 +185,7 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
     }
 
     private List<Metric> getMetrics(List<MetricManager> metricManagers) {
-        List<Metric> metrics = new ArrayList(metricManagers.size());
+        final List<Metric> metrics = new ArrayList(metricManagers.size());
         for (MetricManager metricManager : metricManagers) {
             metrics.add(metricManager.getMetric());
         }
@@ -195,8 +194,8 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
 
     private void calculateDeltas() throws ServiceException {
         //deltas            
-        List<Discretizer> discretizers = getDiscretizers();
-        List<Metric> metrics = getMetrics(metricManagers);
+        final List<Discretizer> discretizers = getDiscretizers();
+        final List<Metric> metrics = getMetrics(metricManagers);
         deltaMetricsRevisionDataBaseService.buildDeltaMetricsDataBase(projects, discretizers, true, false, metrics, true);
     }
 }

@@ -28,6 +28,11 @@ public class RevisionUtil implements RevisionTool {
         return self;
     }
 
+    public boolean hasSourceFileInChangedFiles(final Revision revision) throws Exception {
+        final Set<VersionedItem> sourceFieles = getRevisionTool(revision).getSourceFilesFromChangedFiles(revision);
+        return sourceFieles !=null && !sourceFieles.isEmpty();
+    }
+    
     public Set<VersionedItem> getSourceFilesFromChangedFiles(Revision revision) throws Exception {
         return getRevisionTool(revision).getSourceFilesFromChangedFiles(revision);
     }
@@ -56,7 +61,7 @@ public class RevisionUtil implements RevisionTool {
         return getRevisionTool(revision).getSourceClassPaths(revision);
     }
 
-    private RevisionTool getRevisionTool(Revision revision) throws Exception {
+    private RevisionTool getRevisionTool(final Revision revision) throws Exception {
 
         if (revision == null) {
             throw new Exception("Revision is null");
@@ -74,4 +79,6 @@ public class RevisionUtil implements RevisionTool {
             throw new Exception("Unsupported language: " + lang);
         }
     }
+
+    
 }

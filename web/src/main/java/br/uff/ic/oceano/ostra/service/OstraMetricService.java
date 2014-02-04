@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.uff.ic.oceano.ostra.service;
 
 import br.uff.ic.oceano.core.control.ApplicationConstants;
@@ -23,7 +19,6 @@ import br.uff.ic.oceano.core.tools.metrics.service.MetricService;
 import br.uff.ic.oceano.core.tools.revision.RevisionUtil;
 import br.uff.ic.oceano.util.DateUtil;
 import br.uff.ic.oceano.util.file.FileUtils;
-import br.uff.ic.oceano.util.Logger;
 import br.uff.ic.oceano.util.file.PathUtil;
 import br.uff.ic.oceano.ostra.exception.CompilerException;
 import br.uff.ic.oceano.ostra.model.Item;
@@ -107,9 +102,14 @@ public class OstraMetricService extends MetricService {
                 count++;
                 Output.clearLog();
 
+                //Dont save revisions without alterations at source files
+                if (!RevisionUtil.get().hasSourceFileInChangedFiles(revision)){
+                    Output.println("    Revision has no changed source files");
+                    continue;
+                }
+                
                 processRevision(revision);
-
-                //temp solution until issue #107 be closed 
+                
                 if (hasMeasuredMetrics(revision)) {
                     Output.println("    Metrics extracted. Skipping to next revision.");
                     continue;
@@ -213,9 +213,7 @@ public class OstraMetricService extends MetricService {
                 lastRevisionPath = revision.getLocalPath();
             }
 
-        } catch (IOException ex) {
-            throw new ServiceException(ex);
-        } catch (VCSException ex) {
+        } catch (Exception ex) {
             throw new ServiceException(ex);
         }
 
@@ -580,14 +578,10 @@ public class OstraMetricService extends MetricService {
         Output.println("Revision " + revision.getNumber());
         Output.println("Comitted files: " + (revision.getChangedFiles() != null ? revision.getChangedFiles().size() : 0));
 
-        try {
-            Output.print("    Compiling...");
+        try {            
             CompilerService.compile(revision);
-            revision.setCannotCompile(false);
-            Output.println("    ok.");
-        } catch (CompilerException ex) {
-            Output.println("    >> COMPILATION ERROR << ");
-            Logger.error(ex.getMessage());
+            revision.setCannotCompile(false);            
+        } catch (CompilerException ex) {            
             revision.setCannotCompile(true);
         }
 
@@ -599,4 +593,6 @@ public class OstraMetricService extends MetricService {
             revisionService.save(revision);
         }
     }
+
+    
 }
