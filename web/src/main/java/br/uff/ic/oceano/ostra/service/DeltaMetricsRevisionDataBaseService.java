@@ -113,6 +113,7 @@ public class DeltaMetricsRevisionDataBaseService {
         List<Revision> revisionsList = new ArrayList<Revision>(revisions);        
         Collections.sort(revisionsList);
         //>debuging
+        //TODO remove after testing
         revisionsList = revisionsList.subList(0, 30);
         //<debuging
 
@@ -290,19 +291,18 @@ public class DeltaMetricsRevisionDataBaseService {
         mapWithLastMetricValueForItem.get(actualItem).put(metricToCalculateDelta, actualItemMetricValue);
     }
 
-    private void markToSaveDeltaMetricAndAddItsAttribute(Revision revision, Metric metricToCalculateDelta, double value, boolean standartDeviation) {
+    private void markToSaveDeltaMetricAndAddItsAttribute(final Revision revision, final Metric metric, final double value, final boolean standartDeviation) {
         if (standartDeviation) {
-            addAttributeValue(ATTRIBUTE_PREFIX_DELTA_SD + metricToCalculateDelta.getName(), NumberUtil.format(value), revision);
-
+            addAttributeValue(ATTRIBUTE_PREFIX_DELTA_SD + metric.getName(), NumberUtil.format(value), revision);
         } else {
             final MetricValue deltaMetricValue = new MetricValue();
             deltaMetricValue.setRevision(revision);
-            deltaMetricValue.setMetric(metricToCalculateDelta);
+            deltaMetricValue.setMetric(metric);
             deltaMetricValue.setDoubleValue(value);
             deltaMetricValue.setDelta(true);
             metricValuesToPersist.add(deltaMetricValue);
 
-            addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metricToCalculateDelta.getName(), NumberUtil.format(value), revision);
+            addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metric.getName(), NumberUtil.format(value), revision);
         }
     }
 
@@ -376,7 +376,7 @@ public class DeltaMetricsRevisionDataBaseService {
             } catch (ServiceException ex) {
                 //nice! It's a new metricValue! =D
             }
-            System.out.println("metricValue = " + metricValue);
+            Output.println("metricValue = " + metricValue);
 
             metricValue.setDelta(true);
             metricValueService.save(metricValue);
@@ -441,12 +441,12 @@ public class DeltaMetricsRevisionDataBaseService {
             if (metricValue.isDelta()) {
                 //already is a delta value                
                 deltaValue = metricValue.getDoubleValue();
-                Output.print( "delta" + deltaValue);
+                Output.println( "delta" + deltaValue);
             } else {
                 //verifica se existe um mv que seja delta para a mesma métrica.
                 //caso exista, continue para a proxima metrica.
                 boolean hasADeltaMetricValue = false;
-                for (MetricValue mvo : metricValuesOfTheCurrentRevision) {
+                for (final MetricValue mvo : metricValuesOfTheCurrentRevision) {
                     if (mvo.isDelta() && mvo.getMetric().equals(metricValue.getMetric())) {
                         hasADeltaMetricValue = true;
                         break;
@@ -475,12 +475,14 @@ public class DeltaMetricsRevisionDataBaseService {
                 }
                 
                 mapWithLastValueForEachMetric.put(metricValue.getMetric(), currentValue);
+                markToSaveDeltaMetricAndAddItsAttribute(revision, metric, deltaValue, false);
             }
             
             final String strValue = String.valueOf(deltaValue);
             //Output.println("Metric delta value:"+deltaValue + "("+strValue+")");
-            Output.println(" delta:"+deltaValue + "("+strValue+")");
+            Output.println(" delta:"+deltaValue);
             addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metricValue.getMetric().getName(), strValue, revision);
+            
         }
         
     }

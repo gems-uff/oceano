@@ -25,12 +25,19 @@ import br.uff.ic.oceano.ostra.model.Item;
 import br.uff.ic.oceano.ostra.model.VersionedItem;
 import br.uff.ic.oceano.ostra.model.VersionedItemMetricValue;
 import br.uff.ic.oceano.util.Output;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
- * @author DanCastellani
+ * //TODO Should be moved to core, since web is a front end.
  */
 public class OstraMetricService extends MetricService {
 
@@ -101,22 +108,27 @@ public class OstraMetricService extends MetricService {
             for (Revision revision : revisions) {
                 count++;
                 Output.clearLog();
+                Output.println("Revision " + revision.getNumber());
+                Output.println("Comitted files: " + (revision.getChangedFiles() != null ? revision.getChangedFiles().size() : 0));
 
+                Output.println("WARNING: stopping at 20 revisions");
+                if(count==20)break;
+                
                 //Dont save revisions without alterations at source files
-                if (!RevisionUtil.get().hasSourceFileInChangedFiles(revision)){
+                if (!RevisionUtil.get().hasSourceFileInChangedFiles(revision)) {
                     Output.println("    Revision has no changed source files");
                     continue;
                 }
-                
+
                 processRevision(revision);
-                
+
                 if (hasMeasuredMetrics(revision)) {
                     Output.println("    Metrics extracted. Skipping to next revision.");
                     continue;
                 }
 
                 try {
-                    Output.print(DateUtil.format(Calendar.getInstance()) + " [" + count + "/" + revisions.size() + "]>>Checking revision " + revision + "... ");
+                    Output.println(DateUtil.format(Calendar.getInstance()) + " [" + count + "/" + revisions.size() + "]>>Checking revision " + revision + "... ");
 
                     Output.println("Identifying metrics to extract...");
 
@@ -136,6 +148,7 @@ public class OstraMetricService extends MetricService {
                     Output.println("");
 
                     ////////////////////////////////////////////////////////////////
+                    //TODO preparing the workspace should be a method, not this.
                     boolean tryAgain = false;
                     boolean failToTryAgain = false;
                     int timesTrying = 0;
@@ -145,7 +158,7 @@ public class OstraMetricService extends MetricService {
                         try {
                             if (firstRevision) {
                                 String path = revision.getProject().getConfigurationItem().getName().replace(" ", "_");
-                                path = PathUtil.getWellFormedPath(ApplicationConstants.DIR_BASE_CHECKOUTS,path);
+                                path = PathUtil.getWellFormedPath(ApplicationConstants.DIR_BASE_CHECKOUTS, path);
                                 revision.setLocalPath(path);
                                 PathUtil.mkDirs(path);
                                 vCSService.doCheckout(revision, projectUser, false);
@@ -159,12 +172,14 @@ public class OstraMetricService extends MetricService {
                                     vCSService.doUpdate(revision, projectUser, false);
                                 } else {
                                     FileUtils.deleteDirectory(lastRevisionPath);
-                                    String path = PathUtil.getWellFormedPath(ApplicationConstants.DIR_BASE_CHECKOUTS, revision.getProject().getConfigurationItem().getName().replace(" ", "_") + "-r" + revision.getNumber());
-                                    revision.setLocalPath(path);
+                                    //TODO path shoulb the same always
+                                    //TODO not saving the path for new loop to delete
+                                    String path = revision.getProject().getConfigurationItem().getName().replace(" ", "_") + "-r" + revision.getNumber();
+                                    path = PathUtil.getWellFormedPath(ApplicationConstants.DIR_BASE_CHECKOUTS, path);
+                                    revision.setLocalPath(path);                                    
                                     vCSService.doCheckout(revision, projectUser, false);
                                 }
                             }
-
                         } catch (VCSException ex) {
                             Output.println("");
                             if (timesTrying < 2) {
@@ -186,6 +201,7 @@ public class OstraMetricService extends MetricService {
                     if (failToTryAgain) {
                         continue;
                     }
+                    //finished preparing workspace
                     ////////////////////////////////////////////////////////////////
 
                     extractAndSaveMetricsForRevision(revision, fontMetricsToExtract, compiledMetricsToExtract);
@@ -341,16 +357,22 @@ public class OstraMetricService extends MetricService {
     }
 
     private void prepareMetricsToExtract(Revision revision, Set<MetricManager> fontMetricsToExtract, Set<MetricManager> compiledMetricsToExtract) throws ServiceException {
-
+        //TODO clean up after tests
+        Output.println("WARNING: ignoring several metrics");
         for (MetricManager metricManager : fontMetrics) {
             if (!measurementService.isMeasured(metricManager, revision)) {
-                fontMetricsToExtract.add(metricManager);
+                //TODO remove this if after tests
+                if(metricManager.getMetric().getName().equals(MetricEnumeration.TLOC.getName())){
+                    fontMetricsToExtract.add(metricManager);
+                }
             }
         }
 
+        Output.println("WARNING: ignoring compiled metrics");
         for (MetricManager metricManager : compiledMetrics) {
             if (!measurementService.isMeasured(metricManager, revision)) {
-                compiledMetricsToExtract.add(metricManager);
+                //TODO uncomment this if after tests
+                //compiledMetricsToExtract.add(metricManager);
             }
         }
     }
@@ -575,13 +597,10 @@ public class OstraMetricService extends MetricService {
     }
 
     private void processRevision(Revision revision) throws CompilerException {
-        Output.println("Revision " + revision.getNumber());
-        Output.println("Comitted files: " + (revision.getChangedFiles() != null ? revision.getChangedFiles().size() : 0));
-
-        try {            
+        try {
             CompilerService.compile(revision);
-            revision.setCannotCompile(false);            
-        } catch (CompilerException ex) {            
+            revision.setCannotCompile(false);
+        } catch (CompilerException ex) {
             revision.setCannotCompile(true);
         }
 
@@ -593,6 +612,4 @@ public class OstraMetricService extends MetricService {
             revisionService.save(revision);
         }
     }
-
-    
 }
