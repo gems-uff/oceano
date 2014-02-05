@@ -336,14 +336,14 @@
             <version>1.6.1</version>
         </dependency>
         <dependency>
-            <groupId>hsqldb</groupId>
+            <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>2.2.8</version>
         </dependency>
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-902.jdbc4</version>
+            <version>9.1-901.jdbc4</version>
             <type>jar</type>
         </dependency>
         <dependency>
