@@ -5,8 +5,6 @@
 package br.uff.ic.oceano.ostra.discretizer;
 
 import br.uff.ic.oceano.ostra.controle.Constantes;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  *
@@ -20,7 +18,7 @@ public class RoundOfDayDiscretizer extends Discretizer {
     private static final String MADRUGADA = "Madrugada";
     private HourOfDayDiscretizer hourOfDayDiscretizer;
 
-    RoundOfDayDiscretizer(String attributeTarget) {
+    public RoundOfDayDiscretizer(final String attributeTarget) {
         super(attributeTarget);
         hourOfDayDiscretizer = new HourOfDayDiscretizer(attributeTarget);
     }

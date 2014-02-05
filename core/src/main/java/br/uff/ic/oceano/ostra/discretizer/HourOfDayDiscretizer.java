@@ -13,10 +13,7 @@ import java.util.GregorianCalendar;
  * @author daniel
  */
 public class HourOfDayDiscretizer extends Discretizer {
-
-    private static final boolean english = false;
-
-    HourOfDayDiscretizer(String attributeTarget) {
+    public HourOfDayDiscretizer(final String attributeTarget) {
         super(attributeTarget);
     }
 

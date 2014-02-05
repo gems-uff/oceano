@@ -18,7 +18,7 @@ public class NumberOfFilesDiscretizer extends Discretizer {
     private static final String FIVE_TO_EIGHT = "5-8";
     private static final String NINE_OR_MORE = "9+";
 
-    NumberOfFilesDiscretizer(String attributeTarget) {
+    public NumberOfFilesDiscretizer(final String attributeTarget) {
         super(attributeTarget);
     }
 

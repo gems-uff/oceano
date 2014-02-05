@@ -13,7 +13,7 @@ import br.uff.ic.oceano.ostra.controle.Constantes;
  */
 public class DoubleDecimalCaseDiscretizer extends Discretizer {
 
-    DoubleDecimalCaseDiscretizer(String attributeTarget) {
+    public DoubleDecimalCaseDiscretizer(final String attributeTarget) {
         super(attributeTarget);
     }
 

@@ -12,7 +12,7 @@ public abstract class Discretizer {
 
     protected String attributeTarget;
 
-    Discretizer(String attributeTarget) {
+    protected Discretizer(final String attributeTarget) {
         this.attributeTarget = attributeTarget;
     }
 

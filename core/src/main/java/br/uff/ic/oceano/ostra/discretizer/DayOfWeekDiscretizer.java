@@ -16,7 +16,7 @@ public class DayOfWeekDiscretizer extends Discretizer {
 
     private static final boolean english = false;
 
-    DayOfWeekDiscretizer(String attributeTarget) {
+    public DayOfWeekDiscretizer(final String attributeTarget) {
         super(attributeTarget);
     }
 

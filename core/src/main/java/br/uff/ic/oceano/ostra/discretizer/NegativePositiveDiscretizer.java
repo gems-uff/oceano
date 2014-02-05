@@ -17,7 +17,7 @@ public class NegativePositiveDiscretizer extends Discretizer {
     private static final String POSITIVE = "+";
     private static final String NEGATIVE = "-";
 
-    NegativePositiveDiscretizer(String attributeTarget) {
+    public NegativePositiveDiscretizer(final String attributeTarget) {
         super(attributeTarget);
     }
 

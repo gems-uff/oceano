@@ -15,12 +15,11 @@ public class DiscretizerFactory {
             throw new ServiceException("Attribute name cannot be empty.");
         }
         
-        if ( !discretizerClass.isAssignableFrom(Discretizer.class)){
+        if ( !Discretizer.class.isAssignableFrom(discretizerClass)){
             throw new ServiceException(discretizerClass.getCanonicalName() + " is not a "+ Discretizer.class.getCanonicalName() + " subclass!");
         }
         try {
-            Discretizer newDiscretizer = (Discretizer)discretizerClass.newInstance();
-            newDiscretizer.setAttributeTarget(attributeTargetName);
+            Discretizer newDiscretizer = (Discretizer)discretizerClass.getConstructor(String.class).newInstance(attributeTargetName);
             return newDiscretizer;
         } catch (Exception ex) {
             throw new ServiceException(ex);
