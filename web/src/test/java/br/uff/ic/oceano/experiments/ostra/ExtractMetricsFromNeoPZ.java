@@ -105,11 +105,7 @@ public class ExtractMetricsFromNeoPZ extends AbstractNGTest {
     }
 
     private List<Discretizer> getDiscretizers() throws ServiceException {
-        List<Discretizer> discretizers = new ArrayList<Discretizer>();
-        discretizers.add(DiscretizerFactory.getDiscretizer("#files", NumberOfFilesDiscretizer.class));
-        discretizers.add(DiscretizerFactory.getDiscretizer("rday", DayOfWeekDiscretizer.class));
-        discretizers.add(DiscretizerFactory.getDiscretizer("rhour", HourOfDayDiscretizer.class));
-        discretizers.add(DiscretizerFactory.getDiscretizer("rRound", RoundOfDayDiscretizer.class));        
+        final List<Discretizer> discretizers = DeltaMetricsRevisionDataBaseService.getDefaultDiscretizers();
         
         for (Metric metric : getMetrics(metricManagers)) {
             discretizers.add(DiscretizerFactory.getDiscretizer(Constantes.PREFIX_DELTA_METRIC_AVARAGE + metric.getName(), NegativePositiveDiscretizer.class));
