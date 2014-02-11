@@ -5,14 +5,7 @@
     <groupId>br.uff.ic.gems</groupId>
     <artifactId>oceano-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <url>https://sel.ic.uff.br/redmine/projects/oceano-parent</url>
-    <description>see https://sel.ic.uff.br/redmine/projects/oceano-parent/wiki</description>
-    <scm>
-        <connection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</connection>
-        <developerConnection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</developerConnection>
-        <url>https://sel.ic.uff.br/gems/svn/oceano/oceano-parent/trunk</url>
-    </scm>
+    <packaging>pom</packaging> 
     <modules>
         <module>core</module>
         <module>web</module>		        
