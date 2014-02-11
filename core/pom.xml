@@ -5,9 +5,7 @@
     <name>${project.artifactId}</name>
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.0-SNAPSHOT</version>
-    <url>https://sel.ic.uff.br/redmine/projects/oceano-core</url>
-    <description>see https://sel.ic.uff.br/redmine/projects/oceano-core/wiki</description>      
+    <version>3.0.0-SNAPSHOT</version>       
     <parent>
         <groupId>br.uff.ic.gems</groupId>
         <artifactId>oceano-parent</artifactId>
