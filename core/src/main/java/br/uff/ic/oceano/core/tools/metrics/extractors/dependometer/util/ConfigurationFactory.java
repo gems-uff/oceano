@@ -4,14 +4,14 @@ import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.cpp.NeoPZHelp
 import br.uff.ic.oceano.core.model.Revision;
 import br.uff.ic.oceano.core.model.transiente.Language;
 import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerException;
-import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.util.ConfigurationHelper;
 import br.uff.ic.oceano.core.tools.metrics.util.XMLUtil;
 import br.uff.ic.oceano.core.tools.revision.JavaRevisionTool;
 import java.io.File;
 import java.io.IOException;
-import org.jdom.DocType;
-import org.jdom.Document;
-import org.jdom.Element;
+import org.jdom2.DocType;
+import org.jdom2.Document;
+import org.jdom2.Element;
+
 
 /**
  *

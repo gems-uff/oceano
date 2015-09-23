@@ -10,7 +10,7 @@ import br.uff.ic.oceano.core.tools.revision.RevisionUtil;
 import java.util.Set;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

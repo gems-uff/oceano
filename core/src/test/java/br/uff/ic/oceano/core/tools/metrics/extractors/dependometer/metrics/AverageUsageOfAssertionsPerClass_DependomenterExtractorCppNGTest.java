@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class AverageUsageOfAssertionsPerClass_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public AverageUsageOfAssertionsPerClass_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.AverageUsageOfAssertionsPerClass,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.AVERAGE_USAGE_OF_ASSERTIONS_PER_CLASS,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

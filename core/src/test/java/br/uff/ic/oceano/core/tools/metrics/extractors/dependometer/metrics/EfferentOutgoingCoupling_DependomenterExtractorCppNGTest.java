@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class EfferentOutgoingCoupling_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public EfferentOutgoingCoupling_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.EfferentOutgoingCoupling,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.EFFERENT_OUTGOING_COUPLING,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

@@ -95,9 +95,9 @@ import com.valtech.source.dependometer.app.core.provider.ProjectIf;
 import com.valtech.source.dependometer.ui.console.Dependometer;
 import java.io.IOException;
 import java.util.List;
-import org.jdom.DocType;
-import org.jdom.Document;
-import org.jdom.Element;
+import org.jdom2.DocType;
+import org.jdom2.Document;
+import org.jdom2.Element;
 
 /**
  * Based on com.valtech.source.dependometer.ui.console.output.XMLWriter class
@@ -293,31 +293,31 @@ public class DependomenterListener implements HandleProjectInfoCollectedEventIf,
     }
     
     public void handleEvent(SingleCompilationUnitTypeCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.Type.name(), event);
+        writeCycleEvent(EntityTypeEnum.TYPE.name(), event);
     }
 
     public void handleEvent(SinglePackageTypeCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.Type.name(), event);
+        writeCycleEvent(EntityTypeEnum.TYPE.name(), event);
     }
 
     public void handleEvent(MultiplePackageTypeCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.Type.name(), event);
+        writeCycleEvent(EntityTypeEnum.TYPE.name(), event);
     }
 
     public void handleEvent(SinglePackageCompilationUnitCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.CompilationUnit.name(), event);
+        writeCycleEvent(EntityTypeEnum.COMPILATION_UNIT.name(), event);
     }
 
     public void handleEvent(MultiplePackageCompilationUnitCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.CompilationUnit.name(), event);
+        writeCycleEvent(EntityTypeEnum.COMPILATION_UNIT.name(), event);
     }
 
     public void handleEvent(PackageCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.Package.name(), event);
+        writeCycleEvent(EntityTypeEnum.PACKAGE.name(), event);
     }
 
     public void handleEvent(SubsystemCycleCollectedEvent event) {
-        writeCycleEvent(EntityTypeEnum.Subsystem.name(), event);
+        writeCycleEvent(EntityTypeEnum.SUBSYSTEM.name(), event);
     }
     
     /**
@@ -329,9 +329,9 @@ public class DependomenterListener implements HandleProjectInfoCollectedEventIf,
         try {
             ProjectIf projectIf = event.getProject();
             writeProjectMetrics(projectIf);
-            writeMetrics(projectIf.getTypes(), EntityTypeEnum.Type);
-            writeMetrics(projectIf.getCompilationUnits(), EntityTypeEnum.CompilationUnit);
-            writeMetrics(projectIf.getPackages(), EntityTypeEnum.Package);
+            writeMetrics(projectIf.getTypes(), EntityTypeEnum.TYPE);
+            writeMetrics(projectIf.getCompilationUnits(), EntityTypeEnum.COMPILATION_UNIT);
+            writeMetrics(projectIf.getPackages(), EntityTypeEnum.PACKAGE);
             
             writeXML();
         } catch (Exception ex) {
@@ -348,9 +348,9 @@ public class DependomenterListener implements HandleProjectInfoCollectedEventIf,
         try {
             ProjectIf projectIf = event.getProject();
             writeProjectMetrics(projectIf);
-            writeMetrics(projectIf.getTypes(), EntityTypeEnum.Type);
-            writeMetrics(projectIf.getCompilationUnits(), EntityTypeEnum.CompilationUnit);
-            writeMetrics(projectIf.getPackages(), EntityTypeEnum.Package);
+            writeMetrics(projectIf.getTypes(), EntityTypeEnum.TYPE);
+            writeMetrics(projectIf.getCompilationUnits(), EntityTypeEnum.COMPILATION_UNIT);
+            writeMetrics(projectIf.getPackages(), EntityTypeEnum.PACKAGE);
             
         } catch (Exception ex) {
             throw new RuntimeException(ex);

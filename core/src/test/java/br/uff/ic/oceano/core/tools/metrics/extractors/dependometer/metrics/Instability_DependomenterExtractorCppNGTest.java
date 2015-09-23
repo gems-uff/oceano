@@ -4,7 +4,6 @@
  */
 package br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.metrics;
 
-import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependomenterExtractor;
 import br.uff.ic.oceano.core.model.transiente.Language;
 import br.uff.ic.oceano.core.tools.metrics.extractors.BaseMetricTest;
 import br.uff.ic.oceano.core.tools.metrics.extractors.TestScenario;
@@ -19,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class Instability_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public Instability_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.Instability,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.INSTABILITY,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

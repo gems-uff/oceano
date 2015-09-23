@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class NumberOfAbstractTypes_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public NumberOfAbstractTypes_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.NumberOfAbstractTypes,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.NUMBER_OF_ABSTRACT_TYPES,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

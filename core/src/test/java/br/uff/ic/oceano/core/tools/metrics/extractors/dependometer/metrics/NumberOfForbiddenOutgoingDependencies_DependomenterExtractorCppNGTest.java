@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class NumberOfForbiddenOutgoingDependencies_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public NumberOfForbiddenOutgoingDependencies_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.NumberOfForbiddenOutgoingDependencies.name(),Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES.name(),Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

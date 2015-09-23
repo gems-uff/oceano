@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.uff.ic.oceano.core.util;
 
 import br.uff.ic.oceano.util.CommandLineIinterfaceUtils;
@@ -44,30 +40,30 @@ import org.apache.maven.execution.MavenExecutionResult;
  *
  * @author Heliomar
  */
-public class MavenUtil {    
+public class MavenUtil {
     private static final String MVN_COMMAND_DEPENDENCY_CLASSPATH = " dependency:build-classpath -f ";
     private static final String MVN_COMMAND_DEPENDENCY_CLASSPATH_RESULT_INITIAL_DELIMITER = "[INFO] Dependencies classpath:\n";
     private static final String MVN_COMMAND_DEPENDENCY_CLASSPATH_RESULT_FINAL_DELIMITER = "\n[INFO]";
     private static final String MVN_COMMAND_DEPENDENCY_CLASSPATH_DELIMITER = ";";
     private static final String MVN_POM = "pom.xml";
-    
-    private static final String M2 = getAndVerifyM2();    
+
+    private static final String M2 = getAndVerifyM2();
     public static final String MAVEN = (SystemUtil.isWindows() ? (M2 + SystemUtil.FILESEPARATOR + "mvn.bat") : "mvn ");
     private static final String MAVEN2_CLEAN_INSTALL = MAVEN + " clean install -DskipTests -f ";
     private static final String MAVEN2_CLEAN_COMPILE = MAVEN + " -Dmaven.test.skip=true clean compile -f ";
-    
-    
+
+
     public static final String MAVEN2_ERROR_BUILD = "[ERROR] BUILD";
     public static final String MAVEN2_ERROR_FATAL = "[ERROR] FATAL ERROR"; //POM not found kind, parent pom not found...
-    
+
     public static final String MAVEN2_BASE_MAIN_SOURCE_FILES = "src" + SystemUtil.FILESEPARATOR + "main" + SystemUtil.FILESEPARATOR + "java";
     public static final String MAVEN2_BASE_TEST_FOLDER = "src" + SystemUtil.FILESEPARATOR + "test" + SystemUtil.FILESEPARATOR;
     public static final String MAVEN2_BASE_COMPILED_FILES = "target" + SystemUtil.FILESEPARATOR + "classes";
     public static final String SETTINGS_MAVEN_DEFAULT = System.getProperty("user.home").concat(SystemUtil.FILESEPARATOR).concat(".m2").concat(SystemUtil.FILESEPARATOR).concat("settings.xml");
     public static final String REPOSITORY_MAVEN_LOCAL_DEFAULT = System.getProperty("user.home").concat(SystemUtil.FILESEPARATOR).concat(".m2").concat(SystemUtil.FILESEPARATOR).concat("repository");
-    
+
     public static boolean COMPILE_WITH_COMMAND_LINE = true;
-    
+
     public static List<Throwable> execute(String pathProject, List<String> goals, String absolutePathSettings) throws Exception {
         List<String> retorno = mavenExecutionCommandLine(pathProject, goals);
         StringBuilder output = new StringBuilder();
@@ -82,19 +78,19 @@ public class MavenUtil {
 
     private static String setupPath(String path) {
         final String scape = "\"";
-        
+
         //already prepared
         if (path.contains(scape)) {
             return path;
         }
         //fix file separator
         path = PathUtil.getWellFormedPath(path);
-        
+
         //convert to absolute path
         if(PathUtil.isRelativePath(path)){
             path = PathUtil.getAbsolutePathFromRelativetoCurrentPath(path);
         }
-        
+
         if(new File(path).isDirectory()){
             //add System file separator
             path += path.endsWith(SystemUtil.FILESEPARATOR) ? "" : SystemUtil.FILESEPARATOR;
@@ -313,20 +309,20 @@ public class MavenUtil {
         }
     }
     ////////////////////////////////////////////////////////////////////////////
-    
+
     public synchronized static void compile(Revision revision) throws MavenException {
 
         if (!revision.getProject().isMavenProject()) {
             throw new MavenException("Unsupported project type.");
         }
-        
+
         //check if it is already compiled
         File file = new File(revision.getLocalPath());
         Collection filenames = FileUtils.getAllFilesInFolderAndSubFolders(file, ".class");
         if (!filenames.isEmpty()) {
             return;
         }
-        
+
         try {
             if (COMPILE_WITH_COMMAND_LINE) {
                 compileWithCommandLineMaven2(revision.getLocalPath());
@@ -382,7 +378,7 @@ public class MavenUtil {
             throw new CompilerException(ex);
         }
     }
-    
+
     private static String getAndVerifyM2() {
         final String m2 = System.getenv("M2");
 

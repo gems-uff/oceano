@@ -64,23 +64,23 @@ public class MetricHelper {
         //oceano metrics to dependometer metrics        
         //Project metrics
         //project to project
-        oceano2dependometer.put(MetricEnumeration.DSC, MetricEnum.NumberOfTypes);
+        oceano2dependometer.put(MetricEnumeration.DSC, MetricEnum.NUMBER_OF_TYPES);
                 
         //ANA (QMOOD.METRIC_AVERAGE_NUMBER_OF_ANCESTORS)
         //needs to be calculated
-        oceano2dependometer.put(MetricEnumeration.ANA, MetricEnum.DepthOfClassInheritance);
+        oceano2dependometer.put(MetricEnumeration.ANA, MetricEnum.DEPTH_OF_CLASS_INHERITANCE);
         
         //NOH (QMOOD.METRIC_NUMBER_OF_HIERARCHIES)
         //needs to be calculated
-        oceano2dependometer.put(MetricEnumeration.NOH, MetricEnum.DepthOfClassInheritance);
+        oceano2dependometer.put(MetricEnumeration.NOH, MetricEnum.DEPTH_OF_CLASS_INHERITANCE);
 
         //Package metrics
         //package to package
-        oceano2dependometer.put(MetricEnumeration.RMA, MetricEnum.Abstractness);
+        oceano2dependometer.put(MetricEnumeration.RMA, MetricEnum.ABSTRACTNESS);
 
         //File metrics
         //file to CompilationUnit (also package, layer, subsystem)
-        oceano2dependometer.put(MetricEnumeration.DCC, MetricEnum.DependsUpon);
+        oceano2dependometer.put(MetricEnumeration.DCC, MetricEnum.DEPENDS_UPON);
 
         //no mapping
         //CIS(QMOOD.METRIC_CLASS_INTERFACE_SIZE)- MetricEnum.Interface is boolean
@@ -93,10 +93,10 @@ public class MetricHelper {
         canBeProjectMetrics = new LinkedList<MetricEnum>();
 
         //adding compilation units number of types
-        canBeProjectMetrics.add(MetricEnum.NumberOfTypes);
+        canBeProjectMetrics.add(MetricEnum.NUMBER_OF_TYPES);
         
         //average of DepthOfClassInheritance is the same of MetricEnumeration.ANA
-        canBeProjectMetrics.add(MetricEnum.DepthOfClassInheritance);        
+        canBeProjectMetrics.add(MetricEnum.DEPTH_OF_CLASS_INHERITANCE);        
         
         
     }
@@ -151,142 +151,142 @@ public class MetricHelper {
 
         // <editor-fold defaultstate="collapsed" desc="Project metrics">
         projectMetrics = new LinkedList<MetricEnum>();
-        projectMetrics.add(MetricEnum.AverageComponentDependency);
-        projectMetrics.add(MetricEnum.CumulativeComponentDependency);
-        projectMetrics.add(MetricEnum.CumulativeComponentDependencyForBalancedBinaryTree);
-        projectMetrics.add(MetricEnum.CumulativeComponentDependencyForCyclicallyDependentGraph);
-        projectMetrics.add(MetricEnum.NormalizedCumulativeComponentDependency);
+        projectMetrics.add(MetricEnum.AVERAGE_COMPONENT_DEPENDENCY);
+        projectMetrics.add(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY);
+        projectMetrics.add(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY_FOR_BALANCED_BINARY_TREE);
+        projectMetrics.add(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY_FOR_CYCLICALLY_DEPENDENT_GRAPH);
+        projectMetrics.add(MetricEnum.NORMALIZED_CUMULATIVE_COMPONENT_DEPENDENCY);
 
         //Number of compilation units is SIZE or number of files
         //
         //internal are those who passed the filter and external the rest
         //so NumberOfProjectInternalCompilationUnits means SIZE
-        projectMetrics.add(MetricEnum.NumberOfProjectExternalCompilationUnits);
-        projectMetrics.add(MetricEnum.NumberOfProjectInternalCompilationUnits);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_EXTERNAL_COMPILATION_UNITS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_INTERNAL_COMPILATION_UNITS);
         //same as NumberOfProjectInternalCompilationUnits according to dependometer-core code
-        projectMetrics.add(MetricEnum.NumberOfComponents);
+        projectMetrics.add(MetricEnum.NUMBER_OF_COMPONENTS);
 
         //
-        projectMetrics.add(MetricEnum.PercentageOfProjectInternalLayersWithARelationalCohesionGreaterThanOne);
-        projectMetrics.add(MetricEnum.PercentageOfProjectInternalPackagesWithARelationalCohesionGreaterThanOne);
-        projectMetrics.add(MetricEnum.PercentageOfProjectInternalSubsystemsWithARelationalCohesionGreaterThanOne);
-        projectMetrics.add(MetricEnum.PercentageOfProjectInternalVerticalSlicesWithARelationalCohesionGreaterThanOne);
+        projectMetrics.add(MetricEnum.PERCENTAGE_OF_PROJECT_INTERNAL_LAYERS_WITH_A_RELATIONAL_COHESION_GREATER_THAN_ONE);
+        projectMetrics.add(MetricEnum.PERCENTAGE_OF_PROJECT_INTERNAL_PACKAGES_WITH_A_RELATIONAL_COHESION_GREATER_THAN_ONE);
+        projectMetrics.add(MetricEnum.PERCENTAGE_OF_PROJECT_INTERNAL_SUBSYSTEMS_WITH_A_RELATIONAL_COHESION_GREATER_THAN_ONE);
+        projectMetrics.add(MetricEnum.PERCENTAGE_OF_PROJECT_INTERNAL_VERTICAL_SLICES_WITH_A_RELATIONAL_COHESION_GREATER_THAN_ONE);
 
-        projectMetrics.add(MetricEnum.NumberOfAssertions);
-        projectMetrics.add(MetricEnum.AverageUsageOfAssertionsPerClass);
+        projectMetrics.add(MetricEnum.NUMBER_OF_ASSERTIONS);
+        projectMetrics.add(MetricEnum.AVERAGE_USAGE_OF_ASSERTIONS_PER_CLASS);
 
         //Metric described as "total number of efferent package dependencies" in docs
-        projectMetrics.add(MetricEnum.NumberOfOutgoingDependencies);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES);
         //Metric described as "total number of forbidden efferent package dependencies"
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingDependencies);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES);
         //Metric described as "total number of project internal efferent package dependencies"
-        projectMetrics.add(MetricEnum.NumberOfOutgoingDependenciesToProjectExternal);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES_TO_PROJECT_EXTERNAL);
 
         //undocumented
         //determined by dependometer-core code
-        projectMetrics.add(MetricEnum.NumberOfProjectInternalLayers);
-        projectMetrics.add(MetricEnum.NumberOfProjectInternalPackages);
-        projectMetrics.add(MetricEnum.NumberOfProjectInternalSubsystems);
-        projectMetrics.add(MetricEnum.NumberOfProjectInternalTypes);
-        projectMetrics.add(MetricEnum.NumberOfProjectInternalVerticalSlices);
-        projectMetrics.add(MetricEnum.NumberOfProjectExternalLayers);
-        projectMetrics.add(MetricEnum.NumberOfProjectExternalPackages);
-        projectMetrics.add(MetricEnum.NumberOfProjectExternalSubsystems);
-        projectMetrics.add(MetricEnum.NumberOfProjectExternalTypes);
-        projectMetrics.add(MetricEnum.CyclesExistBetweenProjectInternalCompilationUnits);
-        projectMetrics.add(MetricEnum.CyclesExistBetweenProjectInternalLayers);
-        projectMetrics.add(MetricEnum.CyclesExistBetweenProjectInternalPackages);
-        projectMetrics.add(MetricEnum.CyclesExistBetweenProjectInternalSubsystem);
-        projectMetrics.add(MetricEnum.CyclesExistBetweenProjectInternalTypes);
-        projectMetrics.add(MetricEnum.CyclesExistBetweenProjectInternalVerticalSlices);
-        projectMetrics.add(MetricEnum.MaxDepthOfPackageHierarchy);
-        projectMetrics.add(MetricEnum.MaxDepthOfTypeInheritance);
-        projectMetrics.add(MetricEnum.NumberOfAllowedOutgoingLayerDependencies);
-        projectMetrics.add(MetricEnum.NumberOfAllowedOutgoingPackageDependencies);
-        projectMetrics.add(MetricEnum.NumberOfAllowedOutgoingSubsystemDependencies);
-        projectMetrics.add(MetricEnum.NumberOfCompilationUnitCycles);
-        projectMetrics.add(MetricEnum.AfferentIncomingCouplingProjectExternal);
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingCompilationUnitDependencies);
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingLayerDependencies);
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingPackageDependencies);
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingSubsystemDependencies);
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingTypeDependencies);
-        projectMetrics.add(MetricEnum.NumberOfForbiddenOutgoingVerticalSliceDependencies);
-        projectMetrics.add(MetricEnum.NumberOfNotAssignedPackages);
-        projectMetrics.add(MetricEnum.NumberOfNotImplementedSubsystems);
-        projectMetrics.add(MetricEnum.NumberOfOutgoingCompilationUnitDependencies);
-        projectMetrics.add(MetricEnum.NumberOfOutgoingLayerDependencies);
-        projectMetrics.add(MetricEnum.NumberOfOutgoingPackageDependencies);
-        projectMetrics.add(MetricEnum.NumberOfOutgoingSubsystemDependencies);
-        projectMetrics.add(MetricEnum.NumberOfOutgoingTypeDependencies);
-        projectMetrics.add(MetricEnum.NumberOfOutgoingVerticalSliceDependencies);
-        projectMetrics.add(MetricEnum.NumberOfPackageCycles);
-        projectMetrics.add(MetricEnum.NumberOfTypeCycles);
-        projectMetrics.add(MetricEnum.NumberOfSubsystemCycles);
-        projectMetrics.add(MetricEnum.NumberOfLayerCycles);
-        projectMetrics.add(MetricEnum.AverageUsageOfAssertionsPerClass);
-        projectMetrics.add(MetricEnum.NumberOfTypeTangles);
-        projectMetrics.add(MetricEnum.NumberOfCompilationUnitTangles);
-        projectMetrics.add(MetricEnum.NumberOfSubsystemTangles);
-        projectMetrics.add(MetricEnum.NumberOfPackageTangles);
-        projectMetrics.add(MetricEnum.NumberOfLayerTangles);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_INTERNAL_LAYERS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_INTERNAL_PACKAGES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_INTERNAL_SUBSYSTEMS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_INTERNAL_TYPES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_INTERNAL_VERTICAL_SLICES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_EXTERNAL_LAYERS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_EXTERNAL_PACKAGES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_EXTERNAL_SUBSYSTEMS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PROJECT_EXTERNAL_TYPES);
+        projectMetrics.add(MetricEnum.CYCLES_EXIST_BETWEEN_PROJECT_INTERNAL_COMPILATION_UNITS);
+        projectMetrics.add(MetricEnum.CYCLES_EXIST_BETWEEN_PROJECT_INTERNAL_LAYERS);
+        projectMetrics.add(MetricEnum.CYCLES_EXIST_BETWEEN_PROJECT_INTERNAL_PACKAGES);
+        projectMetrics.add(MetricEnum.CYCLES_EXIST_BETWEEN_PROJECT_INTERNAL_SUBSYSTEM);
+        projectMetrics.add(MetricEnum.CYCLES_EXIST_BETWEEN_PROJECT_INTERNAL_TYPES);
+        projectMetrics.add(MetricEnum.CYCLES_EXIST_BETWEEN_PROJECT_INTERNAL_VERTICAL_SLICES);
+        projectMetrics.add(MetricEnum.MAX_DEPTH_OF_PACKAGE_HIERARCHY);
+        projectMetrics.add(MetricEnum.MAX_DEPTH_OF_TYPE_INHERITANCE);
+        projectMetrics.add(MetricEnum.NUMBER_OF_ALLOWED_OUTGOING_LAYER_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_ALLOWED_OUTGOING_PACKAGE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_ALLOWED_OUTGOING_SUBSYSTEM_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_COMPILATION_UNIT_CYCLES);
+        projectMetrics.add(MetricEnum.AFFERENT_INCOMING_COUPLING_PROJECT_EXTERNAL);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_COMPILATION_UNIT_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_LAYER_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_PACKAGE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_SUBSYSTEM_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_TYPE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_VERTICAL_SLICE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_NOT_ASSIGNED_PACKAGES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_NOT_IMPLEMENTED_SUBSYSTEMS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_COMPILATION_UNIT_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_LAYER_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_PACKAGE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_SUBSYSTEM_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_TYPE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_VERTICAL_SLICE_DEPENDENCIES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PACKAGE_CYCLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_TYPE_CYCLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_SUBSYSTEM_CYCLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_LAYER_CYCLES);
+        projectMetrics.add(MetricEnum.AVERAGE_USAGE_OF_ASSERTIONS_PER_CLASS);
+        projectMetrics.add(MetricEnum.NUMBER_OF_TYPE_TANGLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_COMPILATION_UNIT_TANGLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_SUBSYSTEM_TANGLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_PACKAGE_TANGLES);
+        projectMetrics.add(MetricEnum.NUMBER_OF_LAYER_TANGLES);
         // </editor-fold>
 
         // <editor-fold defaultstate="collapsed" desc="Layer metrics">
         layerMetrics = new LinkedList<MetricEnum>();
         //"contained subsystems and their inner layer dependencies
-        layerMetrics.add(MetricEnum.NumberOfContainedSubsystems);
+        layerMetrics.add(MetricEnum.NUMBER_OF_CONTAINED_SUBSYSTEMS);
         //"afferent (incoming) and efferent (outgoing) dependencies - subsystems causing these dependencies"
         //not found in code        
 
         //common for the elements layer, subsystem and package
         //abstract types (Na)
-        layerMetrics.add(MetricEnum.NumberOfAbstractTypes);
+        layerMetrics.add(MetricEnum.NUMBER_OF_ABSTRACT_TYPES);
         //abstractness (A)
-        layerMetrics.add(MetricEnum.Abstractness);
+        layerMetrics.add(MetricEnum.ABSTRACTNESS);
         //accessible types
-        layerMetrics.add(MetricEnum.NumberOfAccessibleTypes);
+        layerMetrics.add(MetricEnum.NUMBER_OF_ACCESSIBLE_TYPES);
         //afferent (incoming) dependencies
-        layerMetrics.add(MetricEnum.NumberOfIncomingDependencies);
+        layerMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES);
         //afferent coupling (Ca)
-        layerMetrics.add(MetricEnum.AfferentIncomingCoupling);
+        layerMetrics.add(MetricEnum.AFFERENT_INCOMING_COUPLING);
         //assertions
-        layerMetrics.add(MetricEnum.NumberOfAssertions);
+        layerMetrics.add(MetricEnum.NUMBER_OF_ASSERTIONS);
         //average component dependency (ACD)
-        layerMetrics.add(MetricEnum.AverageComponentDependency);
+        layerMetrics.add(MetricEnum.AVERAGE_COMPONENT_DEPENDENCY);
         //cumulative component dependency (CCD)
-        layerMetrics.add(MetricEnum.CumulativeComponentDependency);
+        layerMetrics.add(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY);
         //depends upon elements (incl. self)
-        layerMetrics.add(MetricEnum.DependsUpon);
+        layerMetrics.add(MetricEnum.DEPENDS_UPON);
         //distance (D)
-        layerMetrics.add(MetricEnum.Distance);
+        layerMetrics.add(MetricEnum.DISTANCE);
         //efferent (outgoing) dependencies (internal and external)
-        layerMetrics.add(MetricEnum.NumberOfOutgoingDependencies);
+        layerMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES);
         //efferent coupling (Ce)
-        layerMetrics.add(MetricEnum.EfferentOutgoingCoupling);
+        layerMetrics.add(MetricEnum.EFFERENT_OUTGOING_COUPLING);
         //external type relations
-        layerMetrics.add(MetricEnum.NumberOfExternalTypeRelations);
+        layerMetrics.add(MetricEnum.NUMBER_OF_EXTERNAL_TYPE_RELATIONS);
         //forbidden efferent (outgoing) dependencies
-        layerMetrics.add(MetricEnum.NumberOfForbiddenOutgoingDependencies);
+        layerMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES);
         //instability (I)
-        layerMetrics.add(MetricEnum.Instability);
+        layerMetrics.add(MetricEnum.INSTABILITY);
         //internal type relations
-        layerMetrics.add(MetricEnum.NumberOfInternalTypeRelations);
+        layerMetrics.add(MetricEnum.NUMBER_OF_INTERNAL_TYPE_RELATIONS);
         //number of compilation units (SIZE)
         //not found in code or list
         //relational cohesion (Rc)
-        layerMetrics.add(MetricEnum.RelationalCohesion);
+        layerMetrics.add(MetricEnum.RELATIONAL_COHESION);
         //types (Nc)
-        layerMetrics.add(MetricEnum.NumberOfTypes);
+        layerMetrics.add(MetricEnum.NUMBER_OF_TYPES);
         //no physical project internal dependencies detected
-        layerMetrics.add(MetricEnum.NoDepenciesDetected);
+        layerMetrics.add(MetricEnum.NO_DEPENCIES_DETECTED);
         //project internal/external
-        layerMetrics.add(MetricEnum.ProjectInternal);
-        layerMetrics.add(MetricEnum.ProjectExternal);
+        layerMetrics.add(MetricEnum.PROJECT_INTERNAL);
+        layerMetrics.add(MetricEnum.PROJECT_EXTERNAL);
         //abstract/concrete
-        layerMetrics.add(MetricEnum.Abstract);
+        layerMetrics.add(MetricEnum.ABSTRACT);
         //accessible/not accessible
-        layerMetrics.add(MetricEnum.Accessible);
+        layerMetrics.add(MetricEnum.ACCESSIBLE);
         //check actual dependencies against explicitly allowed dependencies
         //not found
         //usage detection of explicitly allowed dependencies                       
@@ -300,7 +300,7 @@ public class MetricHelper {
         // <editor-fold defaultstate="collapsed" desc="Vertical slice metrics">
         verticalSliceMetrics = new LinkedList<MetricEnum>();
         //"contained subsystems and their inner layer dependencies
-        verticalSliceMetrics.add(MetricEnum.NumberOfContainedSubsystems);
+        verticalSliceMetrics.add(MetricEnum.NUMBER_OF_CONTAINED_SUBSYSTEMS);
         //"afferent (incoming) and efferent (outgoing) dependencies - subsystems causing these dependencies"
         //not found in code
         // </editor-fold>    
@@ -312,56 +312,56 @@ public class MetricHelper {
         //contained packages and their inner subsystem dependencies
         //afferent (incoming) and efferent (outgoing) dependencies - packages causing these dependencies
         //Not implemented subsystems
-        subsystemMetrics.add(MetricEnum.NumberOfContainedPackages);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_CONTAINED_PACKAGES);
 
         //common for the elements layer, subsystem and package        
         //abstract types (Na)
-        subsystemMetrics.add(MetricEnum.NumberOfAbstractTypes);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_ABSTRACT_TYPES);
         //abstractness (A)
-        subsystemMetrics.add(MetricEnum.Abstractness);
+        subsystemMetrics.add(MetricEnum.ABSTRACTNESS);
         //accessible types
-        subsystemMetrics.add(MetricEnum.NumberOfAccessibleTypes);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_ACCESSIBLE_TYPES);
         //afferent (incoming) dependencies
-        subsystemMetrics.add(MetricEnum.NumberOfIncomingDependencies);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES);
         //afferent coupling (Ca)
-        subsystemMetrics.add(MetricEnum.AfferentIncomingCoupling);
+        subsystemMetrics.add(MetricEnum.AFFERENT_INCOMING_COUPLING);
         //assertions
-        subsystemMetrics.add(MetricEnum.NumberOfAssertions);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_ASSERTIONS);
         //average component dependency (ACD)
-        subsystemMetrics.add(MetricEnum.AverageComponentDependency);
+        subsystemMetrics.add(MetricEnum.AVERAGE_COMPONENT_DEPENDENCY);
         //cumulative component dependency (CCD)
-        subsystemMetrics.add(MetricEnum.CumulativeComponentDependency);
+        subsystemMetrics.add(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY);
         //depends upon elements (incl. self)
-        subsystemMetrics.add(MetricEnum.DependsUpon);
+        subsystemMetrics.add(MetricEnum.DEPENDS_UPON);
         //distance (D)
-        subsystemMetrics.add(MetricEnum.Distance);
+        subsystemMetrics.add(MetricEnum.DISTANCE);
         //efferent (outgoing) dependencies (internal and external)
-        subsystemMetrics.add(MetricEnum.NumberOfOutgoingDependencies);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES);
         //efferent coupling (Ce)
-        subsystemMetrics.add(MetricEnum.EfferentOutgoingCoupling);
+        subsystemMetrics.add(MetricEnum.EFFERENT_OUTGOING_COUPLING);
         //external type relations
-        subsystemMetrics.add(MetricEnum.NumberOfExternalTypeRelations);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_EXTERNAL_TYPE_RELATIONS);
         //forbidden efferent (outgoing) dependencies
-        subsystemMetrics.add(MetricEnum.NumberOfForbiddenOutgoingDependencies);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES);
         //instability (I)
-        subsystemMetrics.add(MetricEnum.Instability);
+        subsystemMetrics.add(MetricEnum.INSTABILITY);
         //internal type relations
-        subsystemMetrics.add(MetricEnum.NumberOfInternalTypeRelations);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_INTERNAL_TYPE_RELATIONS);
         //number of compilation units (SIZE)
         //not found in code or list
         //relational cohesion (Rc)
-        subsystemMetrics.add(MetricEnum.RelationalCohesion);
+        subsystemMetrics.add(MetricEnum.RELATIONAL_COHESION);
         //types (Nc)
-        subsystemMetrics.add(MetricEnum.NumberOfTypes);
+        subsystemMetrics.add(MetricEnum.NUMBER_OF_TYPES);
         //no physical project internal dependencies detected
-        subsystemMetrics.add(MetricEnum.NoDepenciesDetected);
+        subsystemMetrics.add(MetricEnum.NO_DEPENCIES_DETECTED);
         //project internal/external
-        subsystemMetrics.add(MetricEnum.ProjectInternal);
-        subsystemMetrics.add(MetricEnum.ProjectExternal);
+        subsystemMetrics.add(MetricEnum.PROJECT_INTERNAL);
+        subsystemMetrics.add(MetricEnum.PROJECT_EXTERNAL);
         //abstract/concrete
-        subsystemMetrics.add(MetricEnum.Abstract);
+        subsystemMetrics.add(MetricEnum.ABSTRACT);
         //accessible/not accessible
-        subsystemMetrics.add(MetricEnum.Accessible);
+        subsystemMetrics.add(MetricEnum.ACCESSIBLE);
         //check actual dependencies against explicitly allowed dependencies
         //not found
         //usage detection of explicitly allowed dependencies                       
@@ -375,45 +375,44 @@ public class MetricHelper {
         // <editor-fold defaultstate="collapsed" desc="Package metrics">
         packageMetrics = new LinkedList<MetricEnum>();
         //common for the elements layer, subsystem and package
-        packageMetrics.add(MetricEnum.NumberOfAbstractTypes);
-        packageMetrics.add(MetricEnum.Abstractness);
-        packageMetrics.add(MetricEnum.NumberOfAccessibleTypes);
-        packageMetrics.add(MetricEnum.NumberOfIncomingDependencies);
-        packageMetrics.add(MetricEnum.AfferentIncomingCoupling);
-        packageMetrics.add(MetricEnum.NumberOfAssertions);
-        packageMetrics.add(MetricEnum.AverageComponentDependency);
-        packageMetrics.add(MetricEnum.CumulativeComponentDependency);
-        packageMetrics.add(MetricEnum.DependsUpon);
-        packageMetrics.add(MetricEnum.Distance);
-        packageMetrics.add(MetricEnum.NumberOfOutgoingDependencies);
-        packageMetrics.add(MetricEnum.EfferentOutgoingCoupling);
-        packageMetrics.add(MetricEnum.NumberOfExternalTypeRelations);
-        packageMetrics.add(MetricEnum.NumberOfForbiddenOutgoingDependencies);
-        packageMetrics.add(MetricEnum.Instability);
-        packageMetrics.add(MetricEnum.NumberOfInternalTypeRelations);
+        packageMetrics.add(MetricEnum.NUMBER_OF_ABSTRACT_TYPES);
+        packageMetrics.add(MetricEnum.ABSTRACTNESS);
+        packageMetrics.add(MetricEnum.NUMBER_OF_ACCESSIBLE_TYPES);
+        packageMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES);
+        packageMetrics.add(MetricEnum.AFFERENT_INCOMING_COUPLING);
+        packageMetrics.add(MetricEnum.NUMBER_OF_ASSERTIONS);
+        packageMetrics.add(MetricEnum.AVERAGE_COMPONENT_DEPENDENCY);
+        packageMetrics.add(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY);
+        packageMetrics.add(MetricEnum.DEPENDS_UPON);
+        packageMetrics.add(MetricEnum.DISTANCE);
+        packageMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES);
+        packageMetrics.add(MetricEnum.EFFERENT_OUTGOING_COUPLING);
+        packageMetrics.add(MetricEnum.NUMBER_OF_EXTERNAL_TYPE_RELATIONS);
+        packageMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES);
+        packageMetrics.add(MetricEnum.INSTABILITY);
+        packageMetrics.add(MetricEnum.NUMBER_OF_INTERNAL_TYPE_RELATIONS);
         //"number of compilation units (SIZE)"
         //not found in code or list
-        packageMetrics.add(MetricEnum.RelationalCohesion);
-        packageMetrics.add(MetricEnum.NumberOfTypes);
+        packageMetrics.add(MetricEnum.RELATIONAL_COHESION);
+        packageMetrics.add(MetricEnum.NUMBER_OF_TYPES);
         //no physical project internal dependencies detected
-        packageMetrics.add(MetricEnum.NoDepenciesDetected);
-        packageMetrics.add(MetricEnum.ProjectInternal);
-        packageMetrics.add(MetricEnum.ProjectExternal);
-        packageMetrics.add(MetricEnum.Abstract);
-        packageMetrics.add(MetricEnum.Accessible);
+        packageMetrics.add(MetricEnum.NO_DEPENCIES_DETECTED);
+        packageMetrics.add(MetricEnum.PROJECT_INTERNAL);
+        packageMetrics.add(MetricEnum.PROJECT_EXTERNAL);
+        packageMetrics.add(MetricEnum.ABSTRACT);
+        packageMetrics.add(MetricEnum.ACCESSIBLE);
         //"check actual dependencies against explicitly allowed dependencies"
         //not found
         //"usage detection of explicitly allowed dependencies"
         //not found
-        packageMetrics.add(MetricEnum.NumberOfPackageCycles);
-        packageMetrics.add(MetricEnum.DepthOfPackageHierarchy);
+        packageMetrics.add(MetricEnum.NUMBER_OF_PACKAGE_CYCLES);        
         //"cycles and cumulated participation of dependencies"
         //not found
         //"levelization"
         //not found
 
         //found in code only
-        packageMetrics.add(MetricEnum.DepthOfPackageHierarchy);
+        packageMetrics.add(MetricEnum.DEPTH_OF_PACKAGE_HIERARCHY);
         // </editor-fold>
 
         // <editor-fold defaultstate="collapsed" desc="Compilation unit metrics">        
@@ -424,34 +423,34 @@ public class MetricHelper {
         //attribute not metric
 
         //abstract types
-        compilationUnitMetrics.add(MetricEnum.NumberOfAbstractTypes);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_ABSTRACT_TYPES);
         //accessible types
-        compilationUnitMetrics.add(MetricEnum.NumberOfAccessibleTypes);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_ACCESSIBLE_TYPES);
         //afferent (incoming) dependencies
-        compilationUnitMetrics.add(MetricEnum.NumberOfIncomingDependencies);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES);
         //assertions        
-        compilationUnitMetrics.add(MetricEnum.NumberOfAssertions);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_ASSERTIONS);
         //concrete types
-        compilationUnitMetrics.add(MetricEnum.NumberOfConcreteTypes);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_CONCRETE_TYPES);
         //depends upon elements (incl. self)
-        compilationUnitMetrics.add(MetricEnum.DependsUpon);
+        compilationUnitMetrics.add(MetricEnum.DEPENDS_UPON);
         //efferent (outgoing) dependencies (internal and external)
-        compilationUnitMetrics.add(MetricEnum.NumberOfOutgoingDependencies);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES);
         //forbidden efferent (outgoing) dependencies
-        compilationUnitMetrics.add(MetricEnum.NumberOfForbiddenOutgoingDependencies);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES);
         //more external than internal relations per package exist
-        compilationUnitMetrics.add(MetricEnum.MorePackageExternalThanInternalRelationsExist);  //boolean
+        compilationUnitMetrics.add(MetricEnum.MORE_PACKAGE_EXTERNAL_THAN_INTERNAL_RELATIONS_EXIST);  //boolean
         //the most external relations exist with package
-        compilationUnitMetrics.add(MetricEnum.TheMostExternalRelationsExistWithPackage);  //boolean        
+        compilationUnitMetrics.add(MetricEnum.THE_MOST_EXTERNAL_RELATIONS_EXIST_WITH_PACKAGE);  //boolean        
         //total external package relations
-        compilationUnitMetrics.add(MetricEnum.NumberOfPackageExternalRelations);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_PACKAGE_EXTERNAL_RELATIONS);
         //total internal package relations
-        compilationUnitMetrics.add(MetricEnum.NumberOfPackageInternalRelations);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_PACKAGE_INTERNAL_RELATIONS);
         //types
-        compilationUnitMetrics.add(MetricEnum.NumberOfTypes);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_TYPES);
         //no physical project internal dependencies detected        
-        compilationUnitMetrics.add(MetricEnum.NoIncomingDepenciesDetected);
-        compilationUnitMetrics.add(MetricEnum.NoDepenciesDetected);
+        compilationUnitMetrics.add(MetricEnum.NO_INCOMING_DEPENCIES_DETECTED);
+        compilationUnitMetrics.add(MetricEnum.NO_DEPENCIES_DETECTED);
 
         //abstract/concrete
         //not found
@@ -462,12 +461,12 @@ public class MetricHelper {
         //levelization
         //not found
         //from code
-        compilationUnitMetrics.add(MetricEnum.ContainsAccessibleTypesButNoIncomingOuterPackageDependenciesExist);
-        compilationUnitMetrics.add(MetricEnum.Refactored);
-        compilationUnitMetrics.add(MetricEnum.ProjectInternal);
-        compilationUnitMetrics.add(MetricEnum.ProjectExternal);
-        compilationUnitMetrics.add(MetricEnum.NumberOfOutgoingDependenciesToProjectExternal);
-        compilationUnitMetrics.add(MetricEnum.NumberOfIncomingDependenciesProjectExternal);
+        compilationUnitMetrics.add(MetricEnum.CONTAINS_ACCESSIBLE_TYPES_BUT_NO_INCOMING_OUTER_PACKAGE_DEPENDENCIES_EXIST);
+        compilationUnitMetrics.add(MetricEnum.REFACTORED);
+        compilationUnitMetrics.add(MetricEnum.PROJECT_INTERNAL);
+        compilationUnitMetrics.add(MetricEnum.PROJECT_EXTERNAL);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES_TO_PROJECT_EXTERNAL);
+        compilationUnitMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES_PROJECT_EXTERNAL);
         // </editor-fold>
 
         // <editor-fold defaultstate="collapsed" desc="Type metrics">        
@@ -475,54 +474,54 @@ public class MetricHelper {
         //containing compilation unit
         //attribute not metric  
         //abstract/concrete
-        typeMetrics.add(MetricEnum.Abstract);
+        typeMetrics.add(MetricEnum.ABSTRACT);
         //accessible/not accessible
-        typeMetrics.add(MetricEnum.Accessible);
+        typeMetrics.add(MetricEnum.ACCESSIBLE);
         //abstract types
-        typeMetrics.add(MetricEnum.NumberOfAbstractTypes);
+        typeMetrics.add(MetricEnum.NUMBER_OF_ABSTRACT_TYPES);
         //accessible types
-        typeMetrics.add(MetricEnum.NumberOfAccessibleTypes);
+        typeMetrics.add(MetricEnum.NUMBER_OF_ACCESSIBLE_TYPES);
         //afferent (incoming) dependencies
-        typeMetrics.add(MetricEnum.NumberOfIncomingDependencies);
+        typeMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES);
         //efferent (outgoing) dependencies (internal and external)
-        typeMetrics.add(MetricEnum.NumberOfOutgoingDependencies);
+        typeMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES);
         //forbidden efferent (outgoing) dependencies
-        typeMetrics.add(MetricEnum.NumberOfForbiddenOutgoingDependencies);
+        typeMetrics.add(MetricEnum.NUMBER_OF_FORBIDDEN_OUTGOING_DEPENDENCIES);
         //interface
-        typeMetrics.add(MetricEnum.Interface);
+        typeMetrics.add(MetricEnum.INTERFACE);
         //no physical project internal dependencies detected        
-        typeMetrics.add(MetricEnum.NoIncomingDepenciesDetected);
-        typeMetrics.add(MetricEnum.NoDepenciesDetected);
+        typeMetrics.add(MetricEnum.NO_INCOMING_DEPENCIES_DETECTED);
+        typeMetrics.add(MetricEnum.NO_DEPENCIES_DETECTED);
         //number of childs (NOC)
-        typeMetrics.add(MetricEnum.NumberOfChildren);
+        typeMetrics.add(MetricEnum.NUMBER_OF_CHILDREN);
         //DepthOfClassInheritance
-        typeMetrics.add(MetricEnum.DepthOfClassInheritance);
+        typeMetrics.add(MetricEnum.DEPTH_OF_CLASS_INHERITANCE);
         //DepthOfInterfaceInheritance
-        typeMetrics.add(MetricEnum.DepthOfInterfaceInheritance);
+        typeMetrics.add(MetricEnum.DEPTH_OF_INTERFACE_INHERITANCE);
         //cycles and cumulated participation of dependencies
         //not found
         //levelization
         //not found
 
         //from code        
-        typeMetrics.add(MetricEnum.Nested);
-        typeMetrics.add(MetricEnum.Refactored);
-        typeMetrics.add(MetricEnum.ProjectInternal);
-        typeMetrics.add(MetricEnum.DependsUpon);
-        typeMetrics.add(MetricEnum.NumberOfOutgoingDependenciesToProjectExternal);
-        typeMetrics.add(MetricEnum.ProjectExternal);
-        typeMetrics.add(MetricEnum.NumberOfIncomingDependenciesProjectExternal);
-        typeMetrics.add(MetricEnum.Extendable);
+        typeMetrics.add(MetricEnum.NESTED);
+        typeMetrics.add(MetricEnum.REFACTORED);
+        typeMetrics.add(MetricEnum.PROJECT_INTERNAL);
+        typeMetrics.add(MetricEnum.DEPENDS_UPON);
+        typeMetrics.add(MetricEnum.NUMBER_OF_OUTGOING_DEPENDENCIES_TO_PROJECT_EXTERNAL);
+        typeMetrics.add(MetricEnum.PROJECT_EXTERNAL);
+        typeMetrics.add(MetricEnum.NUMBER_OF_INCOMING_DEPENDENCIES_PROJECT_EXTERNAL);
+        typeMetrics.add(MetricEnum.EXTENDABLE);
 
         // </editor-fold>
 
         // <editor-fold defaultstate="collapsed" desc="Not implemented metrics">        
         notImplementedMetrics = new LinkedList<MetricEnum>();
-        notImplementedMetrics.add(MetricEnum.NumberOfSkipNodes);
-        notImplementedMetrics.add(MetricEnum.NumberOfIgnoreNodes);
-        notImplementedMetrics.add(MetricEnum.NumberOfRefactoringNodes);
-        notImplementedMetrics.add(MetricEnum.NumberOfVerticalSlicesCycles);
-        notImplementedMetrics.add(MetricEnum.NumberOfVerticalSliceTangles);
+        notImplementedMetrics.add(MetricEnum.NUMBER_OF_SKIP_NODES);
+        notImplementedMetrics.add(MetricEnum.NUMBER_OF_IGNORE_NODES);
+        notImplementedMetrics.add(MetricEnum.NUMBER_OF_REFACTORING_NODES);
+        notImplementedMetrics.add(MetricEnum.NUMBER_OF_VERTICAL_SLICES_CYCLES);
+        notImplementedMetrics.add(MetricEnum.NUMBER_OF_VERTICAL_SLICE_TANGLES);
         // </editor-fold>
     }
 

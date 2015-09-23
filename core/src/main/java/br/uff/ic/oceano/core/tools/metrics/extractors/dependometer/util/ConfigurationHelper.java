@@ -5,9 +5,9 @@
 package br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.util;
 
 import br.uff.ic.oceano.util.file.PathUtil;
-import org.jdom.Attribute;
-import org.jdom.Comment;
-import org.jdom.Element;
+import org.jdom2.Attribute;
+import org.jdom2.Comment;
+import org.jdom2.Element;
 
 /**
  *

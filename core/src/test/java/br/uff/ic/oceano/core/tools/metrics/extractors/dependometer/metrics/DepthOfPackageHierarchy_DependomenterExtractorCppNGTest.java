@@ -19,7 +19,7 @@ import org.testng.annotations.BeforeClass;
 public class DepthOfPackageHierarchy_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public DepthOfPackageHierarchy_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.DepthOfPackageHierarchy,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.DEPTH_OF_PACKAGE_HIERARCHY,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

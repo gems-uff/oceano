@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class NumberOfExternalTypeRelations_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public NumberOfExternalTypeRelations_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.NumberOfExternalTypeRelations.name(),Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.NUMBER_OF_EXTERNAL_TYPE_RELATIONS.name(),Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

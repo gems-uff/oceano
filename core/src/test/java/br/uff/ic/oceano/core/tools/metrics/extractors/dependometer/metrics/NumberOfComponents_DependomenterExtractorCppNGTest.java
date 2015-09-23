@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class NumberOfComponents_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public NumberOfComponents_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.NumberOfComponents,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.NUMBER_OF_COMPONENTS,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

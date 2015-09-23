@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class RelationalCohesion_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public RelationalCohesion_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.RelationalCohesion.name(),Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.RELATIONAL_COHESION.name(),Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class AverageComponentDependency_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public AverageComponentDependency_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.AverageComponentDependency,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.AVERAGE_COMPONENT_DEPENDENCY,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

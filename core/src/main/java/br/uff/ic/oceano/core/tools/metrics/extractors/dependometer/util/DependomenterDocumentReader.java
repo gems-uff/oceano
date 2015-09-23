@@ -2,16 +2,15 @@ package br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.util;
 
 import br.uff.ic.oceano.core.model.Metric;
 import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.DependometerException;
-import br.uff.ic.oceano.core.tools.metrics.extractors.dependometer.util.MetricHelper;
 import br.uff.ic.oceano.util.NumberUtil;
 import br.uff.ic.oceano.util.Output;
 import com.valtech.source.dependometer.app.core.common.MetricEnum;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import org.jdom.Attribute;
-import org.jdom.Document;
-import org.jdom.Element;
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
 
 /**
  *

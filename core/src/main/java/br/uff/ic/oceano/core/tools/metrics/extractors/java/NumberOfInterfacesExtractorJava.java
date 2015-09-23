@@ -8,14 +8,10 @@ import br.uff.ic.oceano.core.tools.metrics.MetricException;
 import br.uff.ic.oceano.core.model.MetricValue;
 import br.uff.ic.oceano.core.model.Revision;
 import br.uff.ic.oceano.core.tools.metrics.extractors.AbstractMetricExtractor;
-import csdl.locc.measures.java.parser.javacc.CompilationUnit;
-import csdl.locc.measures.java.parser.javacc.JavaParser;
-import csdl.locc.measures.java.parser.javacc.ParseException;
-import csdl.locc.measures.java.parser.javacc.TokenMgrError;
+import csdl.locc.measures.java.parser.CompilationUnit;
+import csdl.locc.measures.java.parser.JavaParser;
 import csdl.locc.sys.DirTree;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Iterator;
 
 /**

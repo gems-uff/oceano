@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 public class Distance_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public Distance_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.Distance,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.DISTANCE,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

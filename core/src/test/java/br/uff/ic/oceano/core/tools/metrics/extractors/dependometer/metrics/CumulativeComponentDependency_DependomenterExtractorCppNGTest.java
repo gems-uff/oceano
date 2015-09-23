@@ -19,7 +19,7 @@ import static org.testng.Assert.*;
 public class CumulativeComponentDependency_DependomenterExtractorCppNGTest extends BaseMetricTest{
 
     public CumulativeComponentDependency_DependomenterExtractorCppNGTest() {
-        super(MetricEnum.CumulativeComponentDependency,Language.CPP,DependomenterExtractor.class);
+        super(MetricEnum.CUMULATIVE_COMPONENT_DEPENDENCY,Language.CPP,DependomenterExtractor.class);
     }
 
     @BeforeClass

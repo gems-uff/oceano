@@ -95,7 +95,7 @@ public class MetricServiceNGTest extends AbstractNGTest{
     public void testSave_longDescription() {
         println("testSave_longDescription");
         
-        MetricEnum mEnum = MetricEnum.Abstractness;
+        MetricEnum mEnum = MetricEnum.ABSTRACTNESS;
         Metric metric = new Metric();
         metric.setName(mEnum.getDisplayName());
         metric.setAcronym(mEnum.name());

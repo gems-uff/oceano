@@ -17,7 +17,7 @@ import com.valtech.source.dependometer.ui.console.Dependometer;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
-import org.jdom.Document;
+import org.jdom2.Document;
 
 /**
  *
