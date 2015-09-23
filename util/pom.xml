@@ -4,14 +4,12 @@
     <modelVersion>4.0.0</modelVersion>   
     <groupId>br.uff.ic.gems</groupId>
     <artifactId>util</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>${project.artifactId}</name>    
-    <url>https://sel.ic.uff.br/redmine/projects/oceano-util</url>
-    <description>see https://sel.ic.uff.br/redmine/projects/oceano-util/wiki</description>    
+    <version>3.0.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>        
     <parent>
         <groupId>br.uff.ic.gems</groupId>
         <artifactId>oceano-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>        
     <dependencies>
         <dependency>
@@ -50,7 +48,7 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>release</id>
+            <id>release-profile</id>
             <properties>
                 <maven.test.skip>true</maven.test.skip>
             </properties>

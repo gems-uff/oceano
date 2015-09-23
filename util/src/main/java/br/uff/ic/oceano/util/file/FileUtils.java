@@ -103,18 +103,18 @@ public class FileUtils {
      * Extrai um arquivo ZIP apontado no caminho zipOrign para o
      * arquivo/diretorio de destino destign
      *
-     * @param zipOrign
-     * @param destign
+     * @param zip arquivo compactado
+     * @param folder
      * @return
      */
-    public static boolean extractZip(File zip, File destign) {
+    public static boolean extractZip(File zip, File folder) {
         try {
             InputStream is = new FileInputStream(zip);
             ZipInputStream zi = new ZipInputStream(is);
             ZipEntry ze = null;
             ZipFile zf = new ZipFile(zip);
             while ((ze = zi.getNextEntry()) != null) {
-                File newFile = new File(destign, ze.getName());
+                File newFile = new File(folder, ze.getName());
                 copyFile(zf.getInputStream(ze), newFile);
             }
         } catch (IOException ex) {
