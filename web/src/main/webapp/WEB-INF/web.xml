@@ -24,7 +24,7 @@
         <param-value>blueSky</param-value>
     </context-param>
 
-<!--    <context-param>
+    <!--    <context-param>
         <param-name>com.sun.faces.verifyObjects</param-name>
         <param-value>true</param-value>
     </context-param>-->
@@ -94,6 +94,18 @@
         <param-name>org.richfaces.SKIN</param-name>
         <param-value>blueSky</param-value>
     </context-param>
+    
+    <!-- Habilitar stream de bytes quando-->
+    <context-param>
+        <param-name>createTempFiles</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <!-- Tamanho máximo de arquivos baixados-->
+    <context-param>
+        <param-name>maxRequestSize</param-name>
+        <param-value>1000000000</param-value>
+    </context-param>
+    
 
     <filter>
         <display-name>RichFaces Filter</display-name>
@@ -137,22 +149,5 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
-
-    <!--<security-constraint>
-        <web-resource-collection>
-            <web-resource-name/>
-            <url-pattern>/*</url-pattern>
-            <http-method>HEAD</http-method>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-            <http-method>PUT</http-method>
-            <http-method>DELETE</http-method>
-        </web-resource-collection>
-        <user-data-constraint>
-            <description>Secured Pages</description>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>-->
 
 </web-app>

@@ -7,12 +7,17 @@ package br.uff.ic.oceano.peixeespada.controller;
 import br.uff.ic.oceano.contexto.ConstantesAplicacao;
 import br.uff.ic.oceano.controller.BaseBean;
 import br.uff.ic.oceano.util.file.FileUtils;
-import java.io.File;
 import java.util.ArrayList;
 import br.uff.ic.oceano.util.file.Archive;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import org.richfaces.event.UploadEvent;
-import org.richfaces.model.UploadItem;
+import org.apache.commons.io.FilenameUtils;
+import org.richfaces.event.FileUploadEvent;
+import org.richfaces.model.UploadedFile;
 
 /**
  *
@@ -20,7 +25,7 @@ import org.richfaces.model.UploadItem;
  */
 public class PeixeEspadaBean extends BaseBean {
 
-    private ArrayList<UploadItem> files = new ArrayList<UploadItem>();
+    private ArrayList<UploadedFile> files = new ArrayList<UploadedFile>();
     private int uploadsAvailable = 1;
     private Archive archiveInfo = new Archive(ConstantesAplicacao.DIR_FILE_INFO_UPLOAD);
     private static final String PAGINA_DOWN_JNLP = "def:/privado/peixeespada/formPeixeEspada";
@@ -59,19 +64,25 @@ public class PeixeEspadaBean extends BaseBean {
         return sb.toString();
     }
 
-    public void listener(UploadEvent event) throws Exception {
-        UploadItem item = event.getUploadItem();
-        File newFileLocation = new File(ConstantesAplicacao.DIR_BASE_JNLP, item.getFileName());
-        File f = item.getFile();
-        System.out.println("Moveu?: " + FileUtils.move(f, newFileLocation));
-
-        if (!item.getFileName().endsWith(".zip") && !item.getFileName().endsWith(".ZIP")) {
-            error("Only files end with '.zip' are accepteds");
+    public void listener(FileUploadEvent event) throws Exception {
+        final UploadedFile uploadedFile = event.getUploadedFile();
+        
+        if (uploadedFile.getFileExtension().compareToIgnoreCase("zip")!=0 ) {
+            error("Only files ended with '.zip' are accepted");
             return;
         }
-
-        if(FileUtils.extractZip(newFileLocation, newFileLocation.getParentFile())){
-            String currentVersion = item.getFileName().substring(0, item.getFileName().length()-4);
+        
+        final Path folder = Paths.get(ConstantesAplicacao.DIR_BASE_JNLP);
+        String filename = FilenameUtils.getBaseName(uploadedFile.getName()); 
+        String extension = FilenameUtils.getExtension(uploadedFile.getName());
+        Path tempPath = Files.createTempFile(folder, filename, "." + extension);
+        
+        try (InputStream input = uploadedFile.getInputStream()) {
+            Files.copy(input, tempPath, StandardCopyOption.REPLACE_EXISTING);
+        }
+        
+        if(FileUtils.extractZip(tempPath.toFile(), tempPath.toFile().getParentFile())){
+            String currentVersion = uploadedFile.getName().substring(0, uploadedFile.getName().length()-4);
             StringBuilder sb = new StringBuilder();
             if(archiveInfo.existsFile()){
                 // pegando as duas primeiras linhas do arquivo
@@ -93,10 +104,9 @@ public class PeixeEspadaBean extends BaseBean {
             archiveInfo.openAppendAndClose("Versão atual: "+currentVersion);
             archiveInfo.openAppendAndClose("-----------------------------------");
             archiveInfo.openAppendAndClose(sb.toString());
-
         }
 
-        files.add(item);
+        files.add(uploadedFile);
         uploadsAvailable--;
     }
 
@@ -113,11 +123,11 @@ public class PeixeEspadaBean extends BaseBean {
         return System.currentTimeMillis();
     }
 
-    public ArrayList<UploadItem> getFiles() {
+    public ArrayList<UploadedFile> getFiles() {
         return files;
     }
 
-    public void setFiles(ArrayList<UploadItem> files) {
+    public void setFiles(ArrayList<UploadedFile> files) {
         this.files = files;
     }
 

@@ -8,8 +8,6 @@
  */
 package br.uff.ic.oceano.contexto;
 
-import br.uff.ic.oceano.core.control.ApplicationConstants;
-import br.uff.ic.oceano.util.ResourceUtil;
 import br.uff.ic.oceano.util.SystemUtil;
 
 /**

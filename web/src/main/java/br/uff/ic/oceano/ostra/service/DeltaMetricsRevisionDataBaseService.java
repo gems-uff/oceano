@@ -110,11 +110,11 @@ public class DeltaMetricsRevisionDataBaseService {
 
     private void buildDeltaMetricsDataBase(Set<Revision> revisions, boolean calculateDeltaMetrics) throws ServiceException {
 
-        List<Revision> revisionsList = new ArrayList<Revision>(revisions);        
+        List<Revision> revisionsList = new ArrayList<Revision>(revisions);
         Collections.sort(revisionsList);
         //>debuging
         //TODO remove after testing
-        revisionsList = revisionsList.subList(0, 30);
+        //revisionsList = revisionsList.subList(0, 30);
         //<debuging
 
         mapWithLastMetricValueForItem = new HashMap<Item, Map<Metric, Double>>();
@@ -136,13 +136,13 @@ public class DeltaMetricsRevisionDataBaseService {
 
             //instance id
             addAttributeValue(ATTRIBUTE_INSTANCE_ID, revision.getProject().getConfigurationItem().getName() + "-r" + revision.getNumber(), revision);
-            
+
             final String commitDate = DateUtil.format(revision.getCommitDate());
-            addAttributeValue(ATTRIBUTE_REVISION_DATE, commitDate, revision);            
+            addAttributeValue(ATTRIBUTE_REVISION_DATE, commitDate, revision);
             addAttributeValue(ATTRIBUTE_REVISION_DATE_DAY_OF_WEEK, commitDate, revision);
             addAttributeValue(ATTRIBUTE_REVISION_DATE_HOUR, commitDate, revision);
             addAttributeValue(ATTRIBUTE_REVISION_DATE_ROUND, commitDate, revision);
-            
+
             //revision commiter
             addAttributeValue(ATTRIBUTE_REVISION_COMMITER, revision.getCommiter(), revision);
             //does it compiles
@@ -158,7 +158,7 @@ public class DeltaMetricsRevisionDataBaseService {
             }
 
             Output.println(">>>>>>>>>>>>>>>>>>>> gerando delta values for r-" + revision.getNumber()+"(" +revision+") #files "+ revision.getChangedFiles().size());
-            
+
             //delta metrics
             if (calculateDeltaMetrics) {
                 calculateAndAddDeltaMetricValuesForMetricsOfVersionedItems(revision);
@@ -271,7 +271,7 @@ public class DeltaMetricsRevisionDataBaseService {
 //                Output.print(entry2.getKey() + ": " +entry2.getValue()+ "\t");
 //            }
 //        }
-//        
+//
 //        Output.println("Delta mapping result");
 //        for (Map.Entry<Revision, Map<String, String>> entry : instanceAttributes.entrySet()) {
 //            Output.print("Revision: " + entry.getKey()+ "\t");
@@ -428,7 +428,7 @@ public class DeltaMetricsRevisionDataBaseService {
 
     private void calculateDeltaForProjectMetrics(Revision revision) {
         //Output.println("\nCalculating Delta for Project Metrics of revision: "+revision);
-        
+
         final List<MetricValue> metricValuesOfTheCurrentRevision = metricValueService.getByRevision(revision);
 
         for (MetricValue metricValue : metricValuesOfTheCurrentRevision) {
@@ -439,7 +439,7 @@ public class DeltaMetricsRevisionDataBaseService {
             Output.print(metric.getName()+":");
             Double deltaValue;
             if (metricValue.isDelta()) {
-                //already is a delta value                
+                //already is a delta value
                 deltaValue = metricValue.getDoubleValue();
                 Output.println( "delta" + deltaValue);
             } else {
@@ -473,18 +473,18 @@ public class DeltaMetricsRevisionDataBaseService {
                     //last and current values known.
                     deltaValue = currentValue - lastValue;
                 }
-                
+
                 mapWithLastValueForEachMetric.put(metricValue.getMetric(), currentValue);
                 markToSaveDeltaMetricAndAddItsAttribute(revision, metric, deltaValue, false);
             }
-            
+
             final String strValue = String.valueOf(deltaValue);
             //Output.println("Metric delta value:"+deltaValue + "("+strValue+")");
             Output.println(" delta:"+deltaValue);
             addAttributeValue(ATTRIBUTE_PREFIX_DELTA_AVG + metricValue.getMetric().getName(), strValue, revision);
-            
+
         }
-        
+
     }
 
     public static List<Discretizer> getDefaultDiscretizers() throws ServiceException {
