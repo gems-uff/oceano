@@ -3,14 +3,45 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.uff.ic.gems</groupId>
     <name>${project.artifactId}</name>
-    <artifactId>core</artifactId>
+    <artifactId>oceano-core</artifactId>
     <packaging>jar</packaging>
     <version>3.0.0-SNAPSHOT</version>
-    <parent>
-        <groupId>br.uff.ic.gems</groupId>
-        <artifactId>oceano-parent</artifactId>
-        <version>3.0.0-SNAPSHOT</version>
-    </parent>
+    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.build.timestamp.format>dd/MM/yyyy - HH:mm</maven.build.timestamp.format>
+      <build.timestamp>${maven.build.timestamp}</build.timestamp>
+      <maven.compiler.source>1.7</maven.compiler.source>
+      <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    <pluginRepositories>
+      <pluginRepository>
+        <id>stat-scm-sourceforge</id>
+        <url>http://stat-scm.sourceforge.net/maven2</url>
+      </pluginRepository>
+      <pluginRepository>
+        <id>stat-scm-sourceforge-snapshot</id>
+        <url>http://stat-scm.sourceforge.net/maven2-snapshots</url>
+      </pluginRepository>
+    </pluginRepositories>
+    <distributionManagement>
+      <repository>
+        <id>releases</id>
+        <name>GEMS Releases</name>
+        <url>http://sel.ic.uff.br/nexus/content/repositories/releases</url>
+      </repository>
+      <snapshotRepository>
+        <id>snapshots</id>
+        <name>GEMS Snapshots</name>
+        <url>http://sel.ic.uff.br/nexus/content/repositories/snapshots</url>
+      </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+      <repository>
+        <id>public</id>
+        <name>GEMs Public</name>
+        <url>http://sel.ic.uff.br/nexus/content/groups/public</url>
+      </repository>
+    </repositories>
     <profiles>
         <profile>
             <id>deploy</id>
@@ -247,7 +278,7 @@
     <dependencies>
         <dependency>
             <groupId>br.uff.ic.gems</groupId>
-            <artifactId>util</artifactId>
+            <artifactId>oceano-util</artifactId>
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <!-- ******************** ASPECTJ COMPILER *****************-->

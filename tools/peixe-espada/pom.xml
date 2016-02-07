@@ -5,22 +5,10 @@
     <groupId>ic.gems</groupId>
     <artifactId>PeixeEspadaCliente</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3</version>
+    <version>3.0.0-SNAPSHOT</version>
     <name>PeixeEspadaCliente</name>
-    <url>https://sel.ic.uff.br/redmine/projects/peixeespadacliente</url>
-    <description>see https://sel.ic.uff.br/redmine/projects/peixeespadacliente/wiki</description>
-    <scm>
-        <connection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/peixeespadacliente/trunk</connection>
-        <developerConnection>scm:svn:https://sel.ic.uff.br/gems/svn/oceano/peixeespadacliente/trunk</developerConnection>
-        <url>https://sel.ic.uff.br/gems/svn/oceano/peixeespadacliente/trunk</url>
-    </scm>  
-    <parent>
-        <groupId>br.uff.ic.gems</groupId>
-        <artifactId>tools-parent</artifactId>
-        <version>3.0.0-SNAPSHOT</version>
-    </parent>    
     <properties>
-        <maven.test.skip>false</maven.test.skip>        
+        <maven.test.skip>false</maven.test.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -34,7 +22,7 @@
     <profiles>
 
         <profile>
-            <id>Desenvolvimento</id>			
+            <id>Desenvolvimento</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -94,7 +82,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo.webstart</groupId>
                 <artifactId>webstart-maven-plugin</artifactId>
-                <version>1.0-beta-1</version>           
+                <version>1.0-beta-1</version>
 
                 <configuration>
 
@@ -168,7 +156,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -269,7 +257,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <dependencies>
         <dependency>
             <groupId>br.uff.ic.gems</groupId>
@@ -327,6 +315,7 @@
             </exclusions>
         </dependency>
         <dependency>
+          <!--http://sourceforge.net/projects/refactorit/-->
             <groupId>net.sf</groupId>
             <artifactId>refactorit</artifactId>
             <version>2.7.2</version>

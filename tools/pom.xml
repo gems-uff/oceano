@@ -4,13 +4,8 @@
     <name>${project.artifactId}</name>
     <groupId>br.uff.ic.gems</groupId>
     <artifactId>tools-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <parent>
-        <groupId>br.uff.ic.gems</groupId>
-        <artifactId>oceano-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+    <version>3.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>    
     <modules>
         <module>peixe-espada</module>
 		<module>ourico</module>

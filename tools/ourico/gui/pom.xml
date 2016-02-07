@@ -6,11 +6,6 @@
     <artifactId>gui-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <parent>
-        <groupId>br.uff.ic.gems.ourico</groupId>
-        <artifactId>ourico-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
     <modules>
         <module>checkout</module>
 		<module>update</module>
