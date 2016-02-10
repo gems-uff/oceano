@@ -5,7 +5,7 @@
 
 package uff.org.br.eo.autobranch;
 
-import br.uff.ic.oceano.ostra.controle.Constantes;
+import br.uff.ic.oceano.util.SystemUtil;
 
 /**
  *
@@ -17,7 +17,7 @@ public class TrataAutobranch {
         Long result = null;
 
         String[] partes = diretorioAlterado.split(pathAutobranch);
-        String[] partes2 = partes[1].split(Constantes.OS_SLASH);
+      String[] partes2 = partes[1].split(SystemUtil.FILESEPARATOR);
         for (String string : partes2) {
             System.out.println(string);
 
