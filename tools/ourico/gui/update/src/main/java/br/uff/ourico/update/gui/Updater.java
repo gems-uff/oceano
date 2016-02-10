@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.tmatesoft.svn.core.SVNException;
-import weka.gui.arffviewer.FileChooser;
 
 /**
  *
@@ -193,15 +192,20 @@ public class Updater extends javax.swing.JFrame {
                 caminho = new JFileChooser(currentWorkspace);
             }
             else
-                caminho = new FileChooser();
+                caminho = new JFileChooser();
         }
 
 
         caminho.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
 
-        if (caminho.showOpenDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
-            tfWorkspaceParh.setText(caminho.getSelectedFile().toString());
+      if (caminho.showOpenDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
+        if (caminho.getSelectedFile() != null) {
+          tfWorkspaceParh.setText(caminho.getSelectedFile().toString());
+        } else {
+          tfWorkspaceParh.setText("Diretório não selecionado");
+        }
+
         }
 
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -211,9 +215,9 @@ public class Updater extends javax.swing.JFrame {
         OuricoUpdate ouricoUpdate = new OuricoUpdate();
 
         String urlOceano = Constants.URL_OCEANO;
-  
-       
-        
+
+
+
         try {
             ouricoUpdate.update(tfWorkspaceParh.getText(), tfLogin.getText(), tfPassword.getText(), urlOceano);
         } catch (ServiceException ex) {
