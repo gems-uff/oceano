@@ -7,7 +7,7 @@ Nowadays, the Oceano project is composed of the following modules:
 Peixe-Espada (beltfish in english): software automated refactoring
 Ostra (oyster in english): quality metrics monitoring and data mining
 Polvo (octopus in english): branch complexity measuring
-Ouriço (sea-urchin in english): protect repository from broken artifacts
+OuriÃ§o (sea-urchin in english): protect repository from broken artifacts
 Peixe-dipnoico (lungfish in english): prediction of structural characteristics
 
 This project was proposed by professor **Leonardo Murta** and implemented allong four dissertation projects from the Software Engineering postgraduate course at Universidade Federal Fluminense. A term project was also involved from the undergraduate Computer Science course at Universidade Federal Fluminense. This project is developed by the [Software Maintenance and Evolution Group (GEMS)](http://gems.ic.uff.br/), which has several others project and researches.
@@ -19,34 +19,34 @@ This project was proposed by professor **Leonardo Murta** and implemented allong
 * [Gleiph Ghiotto Lima de Menezes](http://lattes.cnpq.br/3713266006821874)                 
 * Heliomar Kann da Rocha Santos       
 * Rafael de Souza Santos
-* João Felipe Nicolaci Pimentel
+* JoÃ£o Felipe Nicolaci Pimentel
 * Wallace da Silva Ribeiro 	  
 * [Heron Souza Marques](http://lattes.cnpq.br/1462665328199244)                 
-* [Daniel Heráclio Olsen Maia do Carmo](http://lattes.cnpq.br/5517735932072114)
+* [Daniel HerÃ¡clio Olsen Maia do Carmo](http://lattes.cnpq.br/5517735932072114)
 
 #Documentation
 
 * [Dissertation about Peixe-Espada from Heliomar Kann da Rocha Santos](doc/hsantos.pdf)
 * [Dissertation about Ostra from Daniel Drumond Castellani Ribeiro](doc/dcastellani.pdf)
 * [Dissertation about Polvo from Rafael de Souza Santos](doc/rsantos.pdf)
-* [Dissertation about Ouriço from Gleiph Ghiotto Lima de Menezes](doc/gmenezes.pdf)
+* [Dissertation about OuriÃ§o from Gleiph Ghiotto Lima de Menezes](doc/gmenezes.pdf)
 * [Dissertation about Peixe-dipnoico from Heron Souza Marques](doc/hmarques.pdf)
 * [Term paper about Ostra metrics from Wallace da Silva Ribeiro](doc/wribeiro.pdf)
 * [Wiki](https://github.com/gems-uff/oceano/wiki)
 
 #Papers
 
-MENEZES, G. G. L. ; MURTA, L. G. P. . Ouriço: Uma Abordagem para Manutenção da Consistência em Repositórios de Gerência de Configuração. In: Concurso de Teses e Dissertações em Qualidade de Software (CTDQS), Simpósio Brasileiro de Qualidade de Software (SBQS), 2012, Fortaleza. Anais..., 2012. p. 460-474. 
-Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários; Homepage: http://www.ic.uff.br/~leomurta/papers/menezes2012.pdf.
+MENEZES, G. G. L. ; MURTA, L. G. P. . OuriÃ§o: Uma Abordagem para ManutenÃ§Ã£o da ConsistÃªncia em RepositÃ³rios de GerÃªncia de ConfiguraÃ§Ã£o. In: Concurso de Teses e DissertaÃ§Ãµes em Qualidade de Software (CTDQS), SimpÃ³sio Brasileiro de Qualidade de Software (SBQS), 2012, Fortaleza. Anais..., 2012. p. 460-474. 
+ReferÃªncias adicionais: ClassificaÃ§Ã£o do evento: Nacional; Brasil/ PortuguÃªs; Meio de divulgaÃ§Ã£o: VÃ¡rios; Homepage: http://www.ic.uff.br/~leomurta/papers/menezes2012.pdf.
 
-RIBEIRO, W. S. ; RIBEIRO, D. D. C. ; PLASTINO, A. ; MURTA, L. G. P. . Acompanhamento da Evolução de Software via Métricas. In: Workshop de Manutenção de Software Moderna (WMSWM), 2012, Fortaleza. Anais..., 2012. 
-Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários; Homepage: http://www.ic.uff.br/~leomurta/papers/ribeiro2012.pdf.
+RIBEIRO, W. S. ; RIBEIRO, D. D. C. ; PLASTINO, A. ; MURTA, L. G. P. . Acompanhamento da EvoluÃ§Ã£o de Software via MÃ©tricas. In: Workshop de ManutenÃ§Ã£o de Software Moderna (WMSWM), 2012, Fortaleza. Anais..., 2012. 
+ReferÃªncias adicionais: ClassificaÃ§Ã£o do evento: Nacional; Brasil/ PortuguÃªs; Meio de divulgaÃ§Ã£o: VÃ¡rios; Homepage: http://www.ic.uff.br/~leomurta/papers/ribeiro2012.pdf.
 
-SANTOS, H. K. R. ; MURTA, L. G. P. ; SILVA, V. T. . Uma Abordagem distribuída para Refatoração Automática de Código Fonte guiada por Atributos de Qualidade. In: Workshop de Teses e Dissertações em Qualidade de Software (WTDQS), 2010, Belém. Anais..., 2010. 
-Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Homepage: http://www.ic.uff.br/~leomurta/papers/santos2010.pdf.
+SANTOS, H. K. R. ; MURTA, L. G. P. ; SILVA, V. T. . Uma Abordagem distribuÃ­da para RefatoraÃ§Ã£o AutomÃ¡tica de CÃ³digo Fonte guiada por Atributos de Qualidade. In: Workshop de Teses e DissertaÃ§Ãµes em Qualidade de Software (WTDQS), 2010, BelÃ©m. Anais..., 2010. 
+ReferÃªncias adicionais: ClassificaÃ§Ã£o do evento: Nacional; Brasil/ PortuguÃªs; Homepage: http://www.ic.uff.br/~leomurta/papers/santos2010.pdf.
 
-SANTOS, R. S. ; MURTA, L. G. P. . Evaluating the Branch Merging Effort in Version Control Systems. In: Simpósio Brasileiro de Engenharia de Software (SBES), 2012, Natal. Anais..., 2012. p. 151-160. 
-Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários.
+SANTOS, R. S. ; MURTA, L. G. P. . Evaluating the Branch Merging Effort in Version Control Systems. In: SimpÃ³sio Brasileiro de Engenharia de Software (SBES), 2012, Natal. Anais..., 2012. p. 151-160. 
+ReferÃªncias adicionais: ClassificaÃ§Ã£o do evento: Nacional; Brasil/ PortuguÃªs; Meio de divulgaÃ§Ã£o: VÃ¡rios.
 
 
 #Development
@@ -64,6 +64,7 @@ Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Me
 * Nexus
 * Postgres
 * TestNG
+* [Travis CI](https://travis-ci.org/gems-uff/oceano)  [![Build Status](https://travis-ci.org/gems-uff/oceano.svg?branch=master)](https://travis-ci.org/gems-uff/oceano)
 
 #License
 
