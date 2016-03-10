@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.valtech.source.dependometer</groupId>
+  <artifactId>dependometer-java</artifactId>
+  <version>1.2.9</version>
+  <packaging>jar</packaging>
+  <name>Dependometer Java</name>
+
+  <scm>
+    <connection>scm:git:git@github.com:dheraclio/dependometer.git</connection>
+    <url>scm:git:git@github.com:dheraclio/dependometer.git</url>
+    <developerConnection>scm:git:git@github.com:dheraclio/dependometer.git</developerConnection>
+    <tag>dependometer-java-1.2.9</tag>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.source.version>1.7</java.source.version>
+    <java.target.version>1.7</java.target.version>
+    <dependometer.core.version>1.2.9</dependometer.core.version>
+    <junit.version>4.12</junit.version>
+    <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+    <maven.compiler.plugin.version>2.3</maven.compiler.plugin.version>
+    <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
+    <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+    <maven.source.plugin.version>2.4</maven.source.plugin.version>
+    <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
+    <maven.archiver.version>2.6</maven.archiver.version>
+    <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
+    <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.valtech.source.dependometer</groupId>
+      <artifactId>dependometer-core</artifactId>
+      <version>${dependometer.core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.valtech.source.dependometer</groupId>
+      <artifactId>dependometer-core</artifactId>
+      <version>${dependometer.core.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven.release.plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <failOnError>true</failOnError>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <source>${java.source.version}</source>
+          <target>${java.target.version}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven.resources.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>copy-testdependencies</id>
+            <!-- here the phase you need -->
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/test-dependencies</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/test/test-dependencies</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-misc</id>
+            <!-- here the phase you need -->
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/classes</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}</directory>
+                  <includes>
+                    <include>README</include>
+                    <include>RELEASE_NOTES</include>
+                    <include>LICENCE</include>
+                    <include>NOTICE</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin> <!-- compile test-dependencies - howto with maven? -->
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>process-test-resources</phase>
+            <configuration>
+              <tasks>
+                <property name="build.compiler" value="extJavac" />
+                <!-- use the complete project classpath to get log4j -->
+                <property name="compile_classpath" refid="maven.compile.classpath" />
+                <!--
+                        <echo message="classpath=${compile_classpath}" />
+                -->
+                <javac srcdir="target/test-dependencies" classpath="${compile_classpath}" />
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${maven.source.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.plugin.version}</version>
+        <configuration>
+          <testFailureIgnore>false</testFailureIgnore>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>java</executable>
+          <classpathScope>compile</classpathScope>
+          <arguments>
+            <argument>-ea</argument>
+            <argument>-classpath</argument>
+            <classpath />
+            <argument>com.valtech.source.dependometer.ui.console.Main</argument>
+            <argument>-file</argument>
+            <argument>target/test-classes/dependometer-selftest.xml</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven.jar.plugin.version}</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.valtech.source.dependometer.ui.console.Main</mainClass>
+              <addClasspath>true</addClasspath>
+              <classpathLayoutType>custom</classpathLayoutType>
+              <customClasspathLayout>$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}</customClasspathLayout>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-archiver</artifactId>
+            <version>${maven.archiver.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven.javadoc.plugin.version}</version>
+        <configuration>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin> <!-- build binary distribution -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${maven.assembly.plugin.version}</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/bin.xml</descriptor>
+            <descriptor>src/main/assembly/src.xml</descriptor>
+          </descriptors>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+  <profiles>
+    <profile>
+      <id>release-profile</id>
+      <build>
+        <!--<finalName>${project.artifactId}-${project.version}</finalName>-->
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven.javadoc.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven.source.plugin.version}</version>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

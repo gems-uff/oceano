@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.valtech.source.dependometer</groupId>
+  <artifactId>dependometer-core</artifactId>
+  <version>1.2.9</version>
+  <packaging>jar</packaging>
+  <name>Dependometer Core</name>
+  <description>This module contains the (language-independent) core functionality of Dependometer.</description>
+
+  <scm>
+    <connection>scm:git:git@github.com:dheraclio/dependometer.git</connection>
+    <url>scm:git:git@github.com:dheraclio/dependometer.git</url>
+    <developerConnection>scm:git:git@github.com:dheraclio/dependometer.git</developerConnection>
+    <tag>dependometer-core-1.2.9</tag>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.source.version>1.7</java.source.version>
+    <java.target.version>1.7</java.target.version>
+    <junit.version>4.12</junit.version>
+    <log4j.version>1.2.8</log4j.version>
+    <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+    <maven.compiler.plugin.version>2.3</maven.compiler.plugin.version>
+    <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.sun</groupId>
+      <artifactId>tools</artifactId>
+      <version>1.5.0</version>
+      <scope>system</scope>
+      <systemPath>${java.home}/../lib/tools.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>asm</groupId>
+      <artifactId>asm-util</artifactId>
+      <version>3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.9.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven.release.plugin.version}</version>
+      </plugin>
+
+      <plugin> <!-- compile -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <failOnError>true</failOnError>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <source>${java.source.version}</source>
+          <target>${java.target.version}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <!-- Build test jar -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <plugin> <!-- run tests -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.plugin.version}</version>
+        <configuration>
+          <testFailureIgnore>false</testFailureIgnore>
+          <forkMode>once</forkMode>
+          <argLine>-ea</argLine>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <plugin> <!-- add sources to deployment -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.5</version>
+        <configuration>
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>${java.target.version}</targetJdk>
+          <excludeRoots>
+            <excludeRoot>target/test-classes
+            </excludeRoot>
+          </excludeRoots>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.valtech.source.dependometer</groupId>
+        <artifactId>maven-dependometer-plugin</artifactId>
+        <version>0.9</version>
+        <configuration>
+          <configFile>target/test-classes/dependometer-selftest.xml</configFile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
