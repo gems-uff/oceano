@@ -14,7 +14,7 @@ mvn install:install-file -Dfile=dependencies/dependencyfinder-jar-1.2.3.jar -Dpo
 mvn install:install-file -Dfile=dependencies/ckjm-1.9.1.jar -DpomFile=dependencies/ckjm-1.9.1.pom
 
 
-echo "Building all modules"
-mvn -T 1C clean install -DskipTests -fae
+echo "Building all modules, ignoring  tools/peixe-espada until solving its dependencies"
+mvn -T 1C -pl '!tools/peixe-espada' -DskipTests -fae clean install
 
 
