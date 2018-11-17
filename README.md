@@ -17,7 +17,7 @@ This project was proposed by professor **Leonardo Murta** and implemented allong
 # Team
 
 * [Leonardo Gresta Paulino Murta](http://lattes.cnpq.br/1565296529736448)
-* [Daniel Drumond Castellani Ribeiro](http://lattes.cnpq.br/8731649877223519) - @dancastellani
+* [Daniel Drumond Castellani Ribeiro](http://lattes.cnpq.br/8731649877223519) - [@dancastellani](https://github.com/dancastellani)
 * [Gleiph Ghiotto Lima de Menezes](http://lattes.cnpq.br/3713266006821874)                 
 * Heliomar Kann da Rocha Santos       
 * Rafael de Souza Santos
