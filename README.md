@@ -1,4 +1,6 @@
-#About
+[![Build Status](https://travis-ci.org/gems-uff/oceano.svg?branch=master)](https://travis-ci.org/gems-uff/oceano)
+
+# About
 
 Oceano project is an integrated environment, focused on Software Configuration Management applied to projects under version control.
 Its design allows continuous addition of new modules, which enhance software evolution control. The services provided by the modules are accessible through a web interface, which allows projects to be registered and evaluated, called Oceano-web.
@@ -12,10 +14,10 @@ Peixe-dipnoico (lungfish in english): prediction of structural characteristics
 
 This project was proposed by professor **Leonardo Murta** and implemented allong four dissertation projects from the Software Engineering postgraduate course at Universidade Federal Fluminense. A term project was also involved from the undergraduate Computer Science course at Universidade Federal Fluminense. This project is developed by the [Software Maintenance and Evolution Group (GEMS)](http://gems.ic.uff.br/), which has several others project and researches.
 
-#Team
+# Team
 
 * [Leonardo Gresta Paulino Murta](http://lattes.cnpq.br/1565296529736448)
-* [Daniel Drumond Castellani Ribeiro](http://lattes.cnpq.br/8731649877223519)
+* [Daniel Drumond Castellani Ribeiro](http://lattes.cnpq.br/8731649877223519) - [@dancastellani](https://github.com/dancastellani)
 * [Gleiph Ghiotto Lima de Menezes](http://lattes.cnpq.br/3713266006821874)                 
 * Heliomar Kann da Rocha Santos       
 * Rafael de Souza Santos
@@ -24,7 +26,7 @@ This project was proposed by professor **Leonardo Murta** and implemented allong
 * [Heron Souza Marques](http://lattes.cnpq.br/1462665328199244)                 
 * [Daniel Heráclio Olsen Maia do Carmo](http://lattes.cnpq.br/5517735932072114)
 
-#Documentation
+# Documentation
 
 * [Dissertation about Peixe-Espada from Heliomar Kann da Rocha Santos](doc/hsantos.pdf)
 * [Dissertation about Ostra from Daniel Drumond Castellani Ribeiro](doc/dcastellani.pdf)
@@ -34,7 +36,7 @@ This project was proposed by professor **Leonardo Murta** and implemented allong
 * [Term paper about Ostra metrics from Wallace da Silva Ribeiro](doc/wribeiro.pdf)
 * [Wiki](https://github.com/gems-uff/oceano/wiki)
 
-#Papers
+# Papers
 
 MENEZES, G. G. L. ; MURTA, L. G. P. . Ouriço: Uma Abordagem para Manutenção da Consistência em Repositórios de Gerência de Configuração. In: Concurso de Teses e Dissertações em Qualidade de Software (CTDQS), Simpósio Brasileiro de Qualidade de Software (SBQS), 2012, Fortaleza. Anais..., 2012. p. 460-474. 
 Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários; Homepage: http://www.ic.uff.br/~leomurta/papers/menezes2012.pdf.
@@ -49,13 +51,13 @@ SANTOS, R. S. ; MURTA, L. G. P. . Evaluating the Branch Merging Effort in Versio
 Referências adicionais: Classificação do evento: Nacional; Brasil/ Português; Meio de divulgação: Vários.
 
 
-#Development
+# Development
 
 * [Guidelines](https://github.com/gems-uff/oceano/wiki/Guidelines)
 * [Source Code](https://github.com/gems-uff/oceano)
 * [Issue Tracking](https://github.com/gems-uff/oceano/issues)
 
-#Technologies
+# Technologies
 
 * JPA 2.0
 * Hibernate
@@ -66,7 +68,7 @@ Referências adicionais: Classificação do evento: Nacional; Brasil/ Português
 * TestNG
 * [Travis CI](https://travis-ci.org/gems-uff/oceano)  [![Build Status](https://travis-ci.org/gems-uff/oceano.svg?branch=master)](https://travis-ci.org/gems-uff/oceano)
 
-#License
+# License
 
 The MIT License (MIT)
 
